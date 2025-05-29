@@ -108,7 +108,7 @@ export default function Navbar() {
             { href: "https://www.linkedin.com/in/bilal-waleed-2411172bb/", icon: FaLinkedin, label: "LinkedIn" },
             { href: "https://github.com/Bilal-Waleed", icon: FaGithub, label: "GitHub" },
             { href: "mailto:bilalwaleed246@gmail.com", icon: FaEnvelope, label: "Email" },
-            { href: "", icon: FaCode, label: "Codolio" },
+            { href: "https://github.com/Bilal-Waleed/PORTFOLIO.git", icon: FaCode, label: "Codolio" },
           ].map((social) => (
             <motion.a
               key={social.label}
@@ -174,7 +174,7 @@ export default function Navbar() {
                     { href: "https://www.linkedin.com/in/bilal-waleed-2411172bb/", icon: FaLinkedin, label: "LinkedIn" },
                     { href: "https://github.com/Bilal-Waleed", icon: FaGithub, label: "GitHub" },
                     { href: "mailto:bilalwaleed246@gmail.com", icon: FaEnvelope, label: "Email" },
-                    { href: "", icon: FaCode, label: "Codolio" },
+                    { href: "https://github.com/Bilal-Waleed/PORTFOLIO.git", icon: FaCode, label: "Codolio" },
                   ].map((social) => (
                     <motion.a
                       key={social.label}
