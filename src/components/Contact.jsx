@@ -19,7 +19,6 @@ const Contact = () => {
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: yupResolver(schema),
-    mode: 'all',
   });
 
   const onSubmit = (data) => {
