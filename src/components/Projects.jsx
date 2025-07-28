@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
-import { FaReact, FaNodeJs, FaGithub, FaExternalLinkAlt, FaHtml5, FaCss3, FaClock } from 'react-icons/fa'
-import { SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit, SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase, SiTypescript } from 'react-icons/si'
+import { FaReact, FaNodeJs, FaGithub, FaExternalLinkAlt, FaHtml5, FaCss3 } from 'react-icons/fa'
+import { SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit, SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase, SiTypescript, SiExpress } from 'react-icons/si'
 import { BsArrowUpRight } from 'react-icons/bs'
 
 // --- Tech icons map ---
@@ -20,17 +20,50 @@ const technologies = {
   'TanStackQuery': { icon: <SiReactquery className="text-[#FF4154]" />, name: 'TanStack Query' },
   'Firebase': { icon: <SiFirebase className="text-[#FFCA28]" />, name: 'Firebase' },
   'TypeScript': { icon: <SiTypescript className="text-[#007ACC]" />, name: 'TypeScript' },
+  'Express': { icon: <SiExpress className="text-[#F7DF1E]" />, name: 'Express' },
 }
 
 // --- Projects array ---
 const projects = [
   {
-    title: 'Docs Mini App',
-    description: 'A minimal React-based Docs app featuring a custom cursor animation. Users can freely drag the Docs element across the full screen for an interactive experience.',
-    technologies: ['ReactJs','JavaScript', 'MUI', 'Tailwind'],
-    image: '/docs-app.png',
-    live: 'https://docs-mini-app-blue.vercel.app/',
-    github: 'https://github.com/Bilal-Waleed/Docs-mini-app.git',
+    title: 'Growth Mindset Mastery',
+    description: 'An interactive Growth Mindset Mastery app built with Python and Streamlit. It offers motivational content, self-assessment tools, and habit tracking to boost personal development',
+    technologies: ['Python', 'Streamlit'],
+    image: '/growth-mindset.png',
+    live: 'https://growth-mindset-bw.streamlit.app/',
+    github: 'https://github.com/Bilal-Waleed/Growth-Mindset-Mastery.git',
+  },
+  {
+    title: 'Personal Library Manager',
+    description: 'A digital Personal Library system developed using Python and Streamlit. Users can add, search, and manage their book collection with a clean and user-friendly interface.',
+    technologies: ['Python', 'Streamlit'],
+    image: '/library.png',
+    live: 'https://personal-library-bw.streamlit.app/',
+    github: 'https://github.com/Bilal-Waleed/Personal-Library-Manager.git',
+  },
+  {
+    title: 'Salt-n-Pepper-web',
+    description: 'Developed a responsive website for Salt n Pepper featuring a dynamic carousel, franchise listings, and social feeds. Crafted using HTML, CSS, and Bootstrap for a modern, user-friendly experience',
+    technologies: ['HTML', 'CSS', 'Bootstrap'],
+    image: '/saltnpepper.png',
+    live: 'https://saltnpepper-bw.netlify.app/',
+    github: 'https://github.com/Bilal-Waleed/Assignment-10-Salt-n-Pepper-web.git',
+  },
+  {
+    title: 'Tomato.',
+    description: 'Tomato is a sleek food delivery web app built with React.js and CSS. It offers a user-friendly interface to browse, select, and order food quickly and efficiently',
+    technologies: ['ReactJs', 'Tailwind', 'CSS', 'JavaScript'],
+    image: '/tomato.png',
+    live: 'https://tomato-food-delivery-app-nine.vercel.app/',
+    github: 'https://github.com/Bilal-Waleed/Tomato-Food-Delivery-App.git',
+  },
+  {
+    title: 'Agency Website',
+    description: 'A full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
+    technologies: ['ReactJs', 'NodeJS', 'MUI', 'MongoDB','Express','JavaScript', 'Tailwind'],
+    image: '/agency-web.png',
+    live: 'https://agency-web-client.vercel.app/',
+    github: 'https://github.com/Bilal-Waleed/Agency-web-client.git',
   },
   {
     title: 'Social Media Web with Firebase',
@@ -49,38 +82,6 @@ const projects = [
     github: 'https://github.com/Bilal-Waleed/Quiz-App.git',
   },
   {
-    title: 'Dummy-APP with React',
-    description: 'A SMIT React assignment with a To-Do App (CRUD) and Products App using TanStack Query',
-    technologies: ['ReactJs', 'MUI','Tailwind', 'TanStackQuery'],
-    image: '/Dummy-app.png',
-    live: 'https://dummy-app-with-react.vercel.app/',
-    github: 'https://github.com/Bilal-Waleed/Dummy-App-With-React.git',
-  },
-  {
-    title: 'Quantum Vault',
-    description: 'A secure data encryption system built using Python and Streamlit. It allows users to encrypt and decrypt sensitive information through a simple and interactive web interface.',
-    technologies: ['Python', 'Streamlit'],
-    image: '/Quantum.png',
-    live: 'https://data-encrypted-system.streamlit.app/',
-    github: 'https://github.com/Bilal-Waleed/Data-encrypted-system.git',
-  },
-  {
-    title: 'Salt-n-Pepper-web',
-    description: 'Developed a responsive website for Salt n Pepper featuring a dynamic carousel, franchise listings, and social feeds. Crafted using HTML, CSS, and Bootstrap for a modern, user-friendly experience',
-    technologies: ['HTML', 'CSS', 'Bootstrap'],
-    image: '/saltnpepper.png',
-    live: 'https://saltnpepper-bw.netlify.app/',
-    github: 'https://github.com/Bilal-Waleed/Assignment-10-Salt-n-Pepper-web.git',
-  },
-  {
-    title: 'Growth Mindset Mastery',
-    description: 'An interactive Growth Mindset Mastery app built with Python and Streamlit. It offers motivational content, self-assessment tools, and habit tracking to boost personal development',
-    technologies: ['Python', 'Streamlit'],
-    image: '/growth-mindset.png',
-    live: 'https://growth-mindset-bw.streamlit.app/',
-    github: 'https://github.com/Bilal-Waleed/Growth-Mindset-Mastery.git',
-  },
-  {
     title: 'Cryptex Web Clone',
     description: 'A fully responsive Cryptex website clone built with HTML, CSS, and JavaScript. It replicates the sleek design and layout of the original for a modern crypto platform look.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
@@ -89,35 +90,12 @@ const projects = [
     github: 'https://github.com/Bilal-Waleed/Cryptex-Web-Clone.git',
   },
   {
-    title: 'Personal Library Manager',
-    description: 'A digital Personal Library system developed using Python and Streamlit. Users can add, search, and manage their book collection with a clean and user-friendly interface.',
+    title: 'Quantum Vault',
+    description: 'A secure data encryption system built using Python and Streamlit. It allows users to encrypt and decrypt sensitive information through a simple and interactive web interface.',
     technologies: ['Python', 'Streamlit'],
-    image: '/library.png',
-    live: 'https://personal-library-bw.streamlit.app/',
-    github: 'https://github.com/Bilal-Waleed/Personal-Library-Manager.git',
-  },
-  {
-    title: 'Shop.Co',
-    description: 'Shop.co is a modern e-commerce web app built using Next.js, Tailwind CSS, and TypeScript. It features a sleek main landing page and a dynamic products page for a smooth shopping experience.',
-    technologies: ['NextJs', 'Tailwind', 'TypeScript'],
-    image: '/Shop.co.png',
-    live: 'https://shop-co-ten-lyart.vercel.app/',
-    github: 'https://github.com/Bilal-Waleed/Shop.Co.git',
-  },
-  {
-    title: 'Tomato.',
-    description: 'Tomato is a sleek food delivery web app built with React.js and CSS. It offers a user-friendly interface to browse, select, and order food quickly and efficiently',
-    technologies: ['ReactJs', 'Tailwind', 'CSS', 'JavaScript'],
-    image: '/tomato.png',
-    live: 'https://tomato-food-delivery-app-nine.vercel.app/',
-    github: 'https://github.com/Bilal-Waleed/Tomato-Food-Delivery-App.git',
-  },
-  {
-    title: 'E-Store',
-    description: 'E-Store is a modern e-commerce platform built with React.js, Tailwind CSS, MUI, Firebase, and JavaScript, offering a seamless shopping experience with dynamic product listings and user-friendly navigation.',
-    technologies: ['ReactJs', 'Tailwind', 'MUI', 'Firebase', 'JavaScript'],
-    image: '/estore.png',
-    comingSoon: true,
+    image: '/Quantum.png',
+    live: 'https://data-encrypted-system.streamlit.app/',
+    github: 'https://github.com/Bilal-Waleed/Data-encrypted-system.git',
   },
 ]
 
@@ -193,12 +171,6 @@ export default function Projects() {
                     </div>
                   ))}
                 </div>
-                {project.comingSoon ? (
-                  <div className="flex items-center gap-2 text-cyan-400 text-md font-medium">
-                    <FaClock className="text-sm" />
-                    Coming Soon
-                  </div>
-                ) : (
                   <div className="flex items-center gap-2">
                     <motion.a
                       href={project.live}
@@ -221,7 +193,6 @@ export default function Projects() {
                       Code
                     </motion.a>
                   </div>
-                )}
               </div>
             </div>
           ))}
