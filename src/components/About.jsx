@@ -7,7 +7,7 @@ const cards = [
     icon: <FaGraduationCap />,
     title: 'Web and App Development',
     subtitle: 'MERN-Stack Development from SMIT ',
-    details: 'A-1 | 2024 - Present',
+    details: ' 2024 - Present',
   },
   {
     icon: <FaLaptopCode />,

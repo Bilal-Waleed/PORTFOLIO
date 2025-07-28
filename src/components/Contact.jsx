@@ -58,7 +58,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center bg-gray-900 text-white py-16">
+    <section id="contact" className="relative flex flex-col items-center justify-center min-h-screen px-6 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -79,7 +79,7 @@ const Contact = () => {
                   fullWidth
                   InputProps={{
                     className: 'bg-gray-800',
-                    style: { color: 'white' }, // Ensure input text is white
+                    style: { color: 'white' }, 
                   }}
                   InputLabelProps={{
                     style: { color: '#b0bec5' },
@@ -102,7 +102,7 @@ const Contact = () => {
                   fullWidth
                   InputProps={{
                     className: 'bg-gray-800',
-                    style: { color: 'white' }, // Ensure input text is white
+                    style: { color: 'white' }, 
                   }}
                   InputLabelProps={{
                     style: { color: '#b0bec5' },
@@ -125,7 +125,7 @@ const Contact = () => {
                   fullWidth
                   InputProps={{
                     className: 'bg-gray-800',
-                    style: { color: 'white' }, // Ensure input text is white
+                    style: { color: 'white' }, 
                   }}
                   InputLabelProps={{
                     style: { color: '#b0bec5' },
@@ -151,7 +151,7 @@ const Contact = () => {
                 rows={4}
                 InputProps={{
                   className: 'bg-gray-800',
-                  style: { color: 'white' }, // Ensure input text is white
+                  style: { color: 'white' },
                 }}
                 InputLabelProps={{
                   style: { color: '#b0bec5' },

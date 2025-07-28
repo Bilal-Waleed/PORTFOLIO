@@ -9,13 +9,12 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Achievements from './components/Achievements';
-import Contact from './components/Contact'; // Import the new Contact component
+import Contact from './components/Contact'; 
 
 export default function App() {
   const [showButton, setShowButton] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Scroll event listener
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 300) {
@@ -29,7 +28,6 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Loading screen logic
   useEffect(() => {
     const hasVisited = localStorage.getItem('hasVisited');
     if (hasVisited) {
