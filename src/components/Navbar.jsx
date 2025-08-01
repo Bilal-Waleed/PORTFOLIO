@@ -107,7 +107,7 @@ export default function Navbar() {
           {[
             { href: "https://www.linkedin.com/in/bilal-waleed-2411172bb/", icon: FaLinkedin, label: "LinkedIn" },
             { href: "https://github.com/Bilal-Waleed", icon: FaGithub, label: "GitHub" },
-            { href: "mailto:bilalwaleed246@gmail.com", icon: FaEnvelope, label: "Email" },
+            { href: "mailto:bilalwaleed01@gmail.com", icon: FaEnvelope, label: "Email" },
             { href: "https://github.com/Bilal-Waleed/PORTFOLIO.git", icon: FaCode, label: "Codolio" },
           ].map((social) => (
             <motion.a
