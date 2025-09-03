@@ -1,7 +1,12 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FaReact, FaNodeJs, FaGithub, FaExternalLinkAlt, FaHtml5, FaCss3 } from 'react-icons/fa'
-import { SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit, SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase, SiTypescript, SiExpress } from 'react-icons/si'
+import { 
+  SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit, 
+  SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase, 
+  SiTypescript, SiExpress, SiWordpress, SiShopify, SiN8N, SiWoocommerce
+} from 'react-icons/si'
 import { BsArrowUpRight } from 'react-icons/bs'
+import { useState } from 'react'
 
 // --- Tech icons map ---
 const technologies = {
@@ -21,7 +26,12 @@ const technologies = {
   'Firebase': { icon: <SiFirebase className="text-[#FFCA28]" />, name: 'Firebase' },
   'TypeScript': { icon: <SiTypescript className="text-[#007ACC]" />, name: 'TypeScript' },
   'Express': { icon: <SiExpress className="text-[#F7DF1E]" />, name: 'Express' },
+  'WordPress': { icon: <SiWordpress className="text-[#21759B]" />, name: 'WordPress' },
+  'WooCommerce': { icon: <SiWoocommerce className="text-[#96588A]" />, name: 'WooCommerce' },
+  'Shopify': { icon: <SiShopify className="text-[#96BF48]" />, name: 'Shopify' },
+  'n8n': { icon: <SiN8N className="text-[#E87C60]" />, name: 'n8n' },
 }
+
 
 // --- Projects array ---
 const projects = [
@@ -101,8 +111,29 @@ const projects = [
 
 const DURATION = 40
 
+const categories = [
+  { label: 'All', value: 'all' },
+  { label: 'Python', value: 'python' },
+  { label: 'MERN/Next.js', value: 'mern' },
+  { label: 'WordPress', value: 'wordpress' },
+  { label: 'n8n', value: 'n8n' },
+]
+
 export default function Projects() {
-  const allProjects = [...projects, ...projects]
+  const [selectedCategory, setSelectedCategory] = useState('all')
+
+  const filteredProjects = projects.filter((project) => {
+    if (selectedCategory === 'all') return true
+    if (selectedCategory === 'python') return project.technologies.includes('Python')
+    if (selectedCategory === 'mern') {
+      return project.technologies.some(tech => ['ReactJs', 'NextJs', 'NodeJS', 'MongoDB', 'Express'].includes(tech))
+    }
+    if (selectedCategory === 'wordpress') return project.technologies.includes('WordPress') 
+    if (selectedCategory === 'n8n') return project.technologies.includes('n8n') 
+    return false
+  })
+
+  const displayProjects = filteredProjects.length > 0 ? [...filteredProjects, ...filteredProjects] : []
 
   return (
     <motion.section
@@ -116,61 +147,81 @@ export default function Projects() {
         My <span className="text-white">Projects</span>
       </h2>
 
-      <div className="relative w-full max-w-6xl overflow-hidden py-8">
-        <motion.div
-          className="flex gap-8"
-          style={{ width: 'max-content' }}
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{
-            repeat: Infinity,
-            repeatType: 'loop',
-            ease: 'linear',
-            duration: DURATION,
-          }}
-        >
-          {allProjects.map((project, idx) => (
-            <div
-              key={project.title + idx}
-              className="relative w-[280px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] backdrop-blur-sm group transition-all duration-300 hover:scale-105 hover:border-cyan-400"
-            >
-              <div className="relative h-35 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="object-cover transition-transform duration-500 group-hover:scale-110 w-full h-full"
-                  quality={90}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                  {project.title}
-                  <motion.span
-                    className="text-cyan-400"
-                    animate={{ rotate: [0, -10, 10, 0] }}
-                    transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
-                  >
-                    <BsArrowUpRight className="inline-block text-sm" />
-                  </motion.span>
-                </h3>
-                <p className="text-gray-300 text-sm mb-3 line-clamp-2">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.technologies.map((tech) => (
-                    <div
-                      key={tech}
-                      className="flex items-center gap-1 bg-cyan-950/30 px-2 py-0.5 rounded-full border border-cyan-500/20"
-                    >
-                      <span className="text-base">
-                        {technologies[tech].icon}
-                      </span>
-                      <span className="text-xs text-gray-300">
-                        {technologies[tech].name}
-                      </span>
-                    </div>
-                  ))}
+      <div className="flex flex-wrap justify-center gap-4 mb-8 max-w-4xl mx-auto grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-row">
+        {categories.map((cat) => (
+          <motion.button
+            key={cat.value}
+            onClick={() => setSelectedCategory(cat.value)}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 border ${
+              selectedCategory === cat.value
+                ? 'bg-cyan-500 text-white border-cyan-500'
+                : 'bg-white/10 text-cyan-400 border-cyan-500/20 hover:bg-cyan-500/20'
+            }`}
+            whileTap={{ scale: 0.95 }}
+          >
+            {cat.label}
+          </motion.button>
+        ))}
+      </div>
+
+      <AnimatePresence mode="wait">
+        <div className="relative w-full max-w-6xl overflow-hidden py-8">
+          <motion.div
+            key={selectedCategory} 
+            className="flex gap-8"
+            style={{ width: 'max-content' }}
+            initial={{ x: '0%' }}
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{
+              repeat: Infinity,
+              repeatType: 'loop',
+              ease: 'linear',
+              duration: DURATION * (displayProjects.length / (projects.length * 2)), 
+            }}
+          >
+            {displayProjects.map((project, idx) => (
+              <div
+                key={project.title + idx}
+                className="relative w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] backdrop-blur-sm group transition-all duration-300 hover:scale-105 hover:border-cyan-400"
+              >
+                <div className="relative h-40 sm:h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="object-cover transition-transform duration-500 group-hover:scale-110 w-full h-full"
+                    quality={90}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                 </div>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                    {project.title}
+                    <motion.span
+                      className="text-cyan-400"
+                      animate={{ rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
+                    >
+                      <BsArrowUpRight className="inline-block text-sm" />
+                    </motion.span>
+                  </h3>
+                  <p className="text-gray-300 text-sm mb-3 line-clamp-2">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.technologies.map((tech) => (
+                      <div
+                        key={tech}
+                        className="flex items-center gap-1 bg-cyan-950/30 px-2 py-0.5 rounded-full border border-cyan-500/20"
+                      >
+                        <span className="text-base">
+                          {technologies[tech].icon}
+                        </span>
+                        <span className="text-xs text-gray-300">
+                          {technologies[tech].name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                   <div className="flex items-center gap-2">
                     <motion.a
                       href={project.live}
@@ -193,13 +244,14 @@ export default function Projects() {
                       Code
                     </motion.a>
                   </div>
+                </div>
               </div>
-            </div>
-          ))}
-        </motion.div>
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-black via-transparent to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-black via-transparent to-transparent z-10" />
-      </div>
+            ))}
+          </motion.div>
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-black via-transparent to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-black via-transparent to-transparent z-10" />
+        </div>
+      </AnimatePresence>
 
       <div className="mt-6 flex gap-2 items-center text-cyan-400/60 text-sm font-medium">
         <motion.span 

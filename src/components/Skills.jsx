@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion'
 import { FaPython, FaRobot, FaReact, FaNodeJs, FaGitAlt, FaFigma, FaJsSquare } from 'react-icons/fa'
-import { SiTailwindcss, SiMongodb, SiNextdotjs, SiBootstrap, SiAdobexd, SiGooglecolab, SiStreamlit, SiFirebase, SiTypescript } from 'react-icons/si'
+import { 
+  SiTailwindcss, SiMongodb, SiNextdotjs, SiBootstrap, SiAdobexd, 
+  SiGooglecolab, SiStreamlit, SiFirebase, SiTypescript,
+  SiWordpress, SiWoocommerce, SiShopify, SiN8N
+} from 'react-icons/si'
 
 const technologies = [
   { name: 'JavaScript', icon: <FaJsSquare /> },
@@ -20,7 +24,12 @@ const technologies = [
   { name: 'Figma', icon: <FaFigma /> },
   { name: 'Git', icon: <FaGitAlt /> },
   { name: 'Adobe XD', icon: <SiAdobexd /> },
+  { name: 'WordPress', icon: <SiWordpress /> },
+  { name: 'WooCommerce', icon: <SiWoocommerce /> },
+  { name: 'Shopify', icon: <SiShopify /> },
+  { name: 'n8n', icon: <SiN8N /> },
 ]
+
 
 const skillVariants = {
   hidden: { opacity: 0 },
@@ -76,9 +85,9 @@ const InfiniteLoopSlider = ({ children, duration, reverse = false }) => {
 }
 
 export default function Skills() {
-  const row1 = technologies.slice(0, 6)
-  const row2 = technologies.slice(6, 12)
-  const row3 = technologies.slice(12, 17)
+  const row1 = technologies.slice(0, 7)
+  const row2 = technologies.slice(7, 14)
+  const row3 = technologies.slice(14, 21)
 
   return (
     <motion.section

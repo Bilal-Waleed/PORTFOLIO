@@ -4,16 +4,16 @@ import { FaGraduationCap, FaLaptopCode, FaSchool } from 'react-icons/fa';
 // Card data
 const cards = [
   {
-    icon: <FaGraduationCap />,
-    title: 'Web and App Development',
-    subtitle: 'MERN-Stack Development from SMIT ',
-    details: ' 2024 - Present',
-  },
-  {
     icon: <FaLaptopCode />,
     title: 'Cloud Applied Generative AI Engineer',
     subtitle: 'AI Engineer from PIAIC',
     details: ' 2024 - Present',
+  },
+  {
+    icon: <FaGraduationCap />,
+    title: 'Web and App Development',
+    subtitle: 'MERN-Stack & Next.js Development from SMIT ',
+    details: ' 2024 - 2025',
   },
   {
     icon: <FaSchool />,

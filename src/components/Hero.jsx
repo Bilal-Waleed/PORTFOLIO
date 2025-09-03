@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Tilt from 'react-parallax-tilt';
 import ParticleBackground from "./ParticleBackground";
 
-const roles = ["MERN-Stack Developer", "Front-End Developer", "UI/UX Designer"];
+const roles = ["MERN-Stack Developer","Next.js Developer", "Workflow Automation (n8n)", "WordPress & Shopify Developer"];
 
 const Typewriter = ({ roles }) => {
   const [currentRole, setCurrentRole] = useState(0);
