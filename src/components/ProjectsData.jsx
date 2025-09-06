@@ -31,13 +31,6 @@ export const projects = [
     fullImage: '/wp-cafe-full.png',
   },
   {
-    title: 'Modern Restaurant Website',
-    description: 'I designed and developed a fully responsive restaurant website using WordPress and Elementor with a strong focus on speed, design, and user experience. The website is optimized for fast reloading and works seamlessly across all devices, including mobile, tablet, and desktop. The purpose of this project was to help restaurant businesses establish a strong digital presence and attract more customers through an engaging online experience. By creating a visually appealing and easy-to-navigate platform, the website makes it simple for customers to explore offerings and connect with the business.',
-    technologies: ['WordPress'],
-    image: '/wp-rest-1.png',
-    fullImage: '/wp-rest-1-full.png',
-  },
-  {
     title: 'Salt-n-Pepper-web',
     description: 'Developed a responsive website for Salt n Pepper featuring a dynamic carousel, franchise listings, and social feeds. Crafted using HTML, CSS, and Bootstrap for a modern, user-friendly experience',
     technologies: ['HTML', 'CSS', 'Bootstrap'],
@@ -52,6 +45,13 @@ export const projects = [
     image: '/tomato.png',
     live: 'https://tomato-food-delivery-app-nine.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/Tomato-Food-Delivery-App.git',
+  },
+  {
+    title: 'Modern Restaurant Website',
+    description: 'I designed and developed a fully responsive restaurant website using WordPress and Elementor with a strong focus on speed, design, and user experience. The website is optimized for fast reloading and works seamlessly across all devices, including mobile, tablet, and desktop. The purpose of this project was to help restaurant businesses establish a strong digital presence and attract more customers through an engaging online experience. By creating a visually appealing and easy-to-navigate platform, the website makes it simple for customers to explore offerings and connect with the business.',
+    technologies: ['WordPress'],
+    image: '/wp-rest-1.png',
+    fullImage: '/wp-rest-1-full.png',
   },
   {
     title: 'Agency Website',
