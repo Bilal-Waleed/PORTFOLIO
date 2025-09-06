@@ -1,12 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaReact, FaNodeJs, FaGithub, FaExternalLinkAlt, FaHtml5, FaCss3 } from 'react-icons/fa'
-import { 
-  SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit, 
-  SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase, 
+import {
+  SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit,
+  SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase,
   SiTypescript, SiExpress, SiWordpress, SiShopify, SiN8N, SiWoocommerce
 } from 'react-icons/si'
 import { BsArrowUpRight } from 'react-icons/bs'
 import { useState } from 'react'
+import { projects } from './projectsData' // Import the projects array
 
 // --- Tech icons map ---
 const technologies = {
@@ -32,83 +33,6 @@ const technologies = {
   'n8n': { icon: <SiN8N className="text-[#E87C60]" />, name: 'n8n' },
 }
 
-
-// --- Projects array ---
-const projects = [
-  {
-    title: 'Growth Mindset Mastery',
-    description: 'An interactive Growth Mindset Mastery app built with Python and Streamlit. It offers motivational content, self-assessment tools, and habit tracking to boost personal development',
-    technologies: ['Python', 'Streamlit'],
-    image: '/growth-mindset.png',
-    live: 'https://growth-mindset-bw.streamlit.app/',
-    github: 'https://github.com/Bilal-Waleed/Growth-Mindset-Mastery.git',
-  },
-  {
-    title: 'Personal Library Manager',
-    description: 'A digital Personal Library system developed using Python and Streamlit. Users can add, search, and manage their book collection with a clean and user-friendly interface.',
-    technologies: ['Python', 'Streamlit'],
-    image: '/library.png',
-    live: 'https://personal-library-bw.streamlit.app/',
-    github: 'https://github.com/Bilal-Waleed/Personal-Library-Manager.git',
-  },
-  {
-    title: 'Salt-n-Pepper-web',
-    description: 'Developed a responsive website for Salt n Pepper featuring a dynamic carousel, franchise listings, and social feeds. Crafted using HTML, CSS, and Bootstrap for a modern, user-friendly experience',
-    technologies: ['HTML', 'CSS', 'Bootstrap'],
-    image: '/saltnpepper.png',
-    live: 'https://saltnpepper-bw.netlify.app/',
-    github: 'https://github.com/Bilal-Waleed/Assignment-10-Salt-n-Pepper-web.git',
-  },
-  {
-    title: 'Tomato.',
-    description: 'Tomato is a sleek food delivery web app built with React.js and CSS. It offers a user-friendly interface to browse, select, and order food quickly and efficiently',
-    technologies: ['ReactJs', 'Tailwind', 'CSS', 'JavaScript'],
-    image: '/tomato.png',
-    live: 'https://tomato-food-delivery-app-nine.vercel.app/',
-    github: 'https://github.com/Bilal-Waleed/Tomato-Food-Delivery-App.git',
-  },
-  {
-    title: 'Agency Website',
-    description: 'A full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
-    technologies: ['ReactJs', 'NodeJS', 'MUI', 'MongoDB','Express','JavaScript', 'Tailwind'],
-    image: '/agency-web.png',
-    live: 'https://agency-web-client.vercel.app/',
-    github: 'https://github.com/Bilal-Waleed/Agency-web-client.git',
-  },
-  {
-    title: 'Social Media Web with Firebase',
-    description: 'A mini social media web app built using Firebase, HTML, CSS, and JavaScript. Users can create posts, send friend requests, chat, comment, and like posts. Fully responsive and many more features',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Firebase'],
-    image: '/social-media-web.png',
-    live: 'https://bw-web.vercel.app/',
-    github: 'https://github.com/Bilal-Waleed/Complete-web-with-firebase.git',
-  },
-  {
-    title: 'Quiz App',
-    description: 'A simple quiz app built using HTML, CSS, and JavaScript. Users can answer questions and see their scores. Fully responsive and many more features',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
-    image: '/quiz-app.png',
-    live: 'https://bilal-waleed.github.io/Quiz-App/',
-    github: 'https://github.com/Bilal-Waleed/Quiz-App.git',
-  },
-  {
-    title: 'Cryptex Web Clone',
-    description: 'A fully responsive Cryptex website clone built with HTML, CSS, and JavaScript. It replicates the sleek design and layout of the original for a modern crypto platform look.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
-    image: '/cryptex-web.png',
-    live: 'https://bilal-waleed.github.io/Cryptex-Web-Clone/',
-    github: 'https://github.com/Bilal-Waleed/Cryptex-Web-Clone.git',
-  },
-  {
-    title: 'Quantum Vault',
-    description: 'A secure data encryption system built using Python and Streamlit. It allows users to encrypt and decrypt sensitive information through a simple and interactive web interface.',
-    technologies: ['Python', 'Streamlit'],
-    image: '/Quantum.png',
-    live: 'https://data-encrypted-system.streamlit.app/',
-    github: 'https://github.com/Bilal-Waleed/Data-encrypted-system.git',
-  },
-]
-
 const DURATION = 40
 
 const categories = [
@@ -119,8 +43,18 @@ const categories = [
   { label: 'n8n', value: 'n8n' },
 ]
 
+const getProjectType = (project) => {
+  if (project.technologies.includes('n8n')) return 'n8n'
+  if (project.technologies.includes('WordPress')) return 'wordpress'
+  if (project.technologies.some(tech => ['ReactJs', 'NextJs', 'NodeJS', 'MongoDB', 'Express'].includes(tech))) return 'mern'
+  if (project.technologies.includes('Python')) return 'python'
+  return 'other'
+}
+
 export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [fullScreenMedia, setFullScreenMedia] = useState(null)
 
   const filteredProjects = projects.filter((project) => {
     if (selectedCategory === 'all') return true
@@ -128,8 +62,8 @@ export default function Projects() {
     if (selectedCategory === 'mern') {
       return project.technologies.some(tech => ['ReactJs', 'NextJs', 'NodeJS', 'MongoDB', 'Express'].includes(tech))
     }
-    if (selectedCategory === 'wordpress') return project.technologies.includes('WordPress') 
-    if (selectedCategory === 'n8n') return project.technologies.includes('n8n') 
+    if (selectedCategory === 'wordpress') return project.technologies.includes('WordPress')
+    if (selectedCategory === 'n8n') return project.technologies.includes('n8n')
     return false
   })
 
@@ -147,7 +81,7 @@ export default function Projects() {
         My <span className="text-white">Projects</span>
       </h2>
 
-      <div className="flex flex-wrap justify-center gap-4 mb-8 max-w-4xl mx-auto grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-row">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-row flex-wrap justify-center gap-4 mb-8 max-w-4xl mx-auto">
         {categories.map((cat) => (
           <motion.button
             key={cat.value}
@@ -167,7 +101,7 @@ export default function Projects() {
       <AnimatePresence mode="wait">
         <div className="relative w-full max-w-6xl overflow-hidden py-8">
           <motion.div
-            key={selectedCategory} 
+            key={selectedCategory}
             className="flex gap-8"
             style={{ width: 'max-content' }}
             initial={{ x: '0%' }}
@@ -176,13 +110,15 @@ export default function Projects() {
               repeat: Infinity,
               repeatType: 'loop',
               ease: 'linear',
-              duration: DURATION * (displayProjects.length / (projects.length * 2)), 
+              duration: DURATION * (displayProjects.length / (projects.length * 2)),
             }}
           >
             {displayProjects.map((project, idx) => (
-              <div
+              <motion.div
                 key={project.title + idx}
-                className="relative w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] backdrop-blur-sm group transition-all duration-300 hover:scale-105 hover:border-cyan-400"
+                className="relative w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] backdrop-blur-sm group transition-all duration-300 hover:scale-105 hover:border-cyan-400 cursor-pointer"
+                onClick={() => setSelectedProject(project)}
+                whileTap={{ scale: 0.95 }}
               >
                 <div className="relative h-40 sm:h-48 overflow-hidden">
                   <img
@@ -223,47 +159,187 @@ export default function Projects() {
                     ))}
                   </div>
                   <div className="flex items-center gap-2">
-                    <motion.a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FaExternalLinkAlt className="text-xs" />
-                      Live
-                    </motion.a>
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-full text-sm font-medium border border-white/10 transition-colors duration-300"
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FaGithub className="text-sm" />
-                      Code
-                    </motion.a>
+                    {project.live && (
+                      <motion.a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <FaExternalLinkAlt className="text-xs" />
+                        Live
+                      </motion.a>
+                    )}
+                    {project.github && (
+                      <motion.a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-full text-sm font-medium border border-white/10 transition-colors duration-300"
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <FaGithub className="text-sm" />
+                        Code
+                      </motion.a>
+                    )}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-black via-transparent to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-black via-transparent to-transparent z-10" />
         </div>
       </AnimatePresence>
 
       <div className="mt-6 flex gap-2 items-center text-cyan-400/60 text-sm font-medium">
-        <motion.span 
-          animate={{ x: [-5, 0, -5] }} 
+        <motion.span
+          animate={{ x: [-5, 0, -5] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >←</motion.span>
         Auto-scrolling carousel
-        <motion.span 
-          animate={{ x: [0, 5, 0] }} 
+        <motion.span
+          animate={{ x: [0, 5, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         >→</motion.span>
       </div>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              className="relative bg-[#000000]/90 border-2 border-cyan-500/30 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.2)] max-w-4xl w-full mx-4 md:mx-0 flex flex-col md:flex-row"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <motion.button
+                className="absolute top-4 right-4 bg-cyan-500 hover:bg-cyan-600 text-white rounded-full w-8 h-8 flex items-center justify-center z-20"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setSelectedProject(null)}
+              >
+                ✕
+              </motion.button>
+
+              <div className="relative w-full md:w-1/2 h-64 md:h-auto overflow-hidden group">
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="object-cover w-full h-full"
+                  quality={90}
+                />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  {getProjectType(selectedProject) === 'wordpress' && selectedProject.fullImage && (
+                    <motion.button
+                      className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-full"
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setFullScreenMedia({ type: 'image', url: selectedProject.fullImage })}
+                    >
+                      View Full Page
+                    </motion.button>
+                  )}
+                  {getProjectType(selectedProject) === 'n8n' && selectedProject.video && (
+                    <motion.button
+                      className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-full"
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setFullScreenMedia({ type: 'video', url: selectedProject.video })}
+                    >
+                      View Video
+                    </motion.button>
+                  )}
+                </div>
+              </div>
+
+              <div className="p-6 w-full md:w-1/2 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-4">{selectedProject.title}</h3>
+                  <p className="text-gray-300 mb-4">{selectedProject.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {selectedProject.technologies.map((tech) => (
+                      <div
+                        key={tech}
+                        className="flex items-center gap-1 bg-cyan-950/30 px-3 py-1 rounded-full border border-cyan-500/20"
+                      >
+                        <span className="text-lg">{technologies[tech].icon}</span>
+                        <span className="text-sm text-gray-300">{technologies[tech].name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {['python', 'mern'].includes(getProjectType(selectedProject)) && (
+                  <div className="flex items-center gap-4">
+                    {selectedProject.live && (
+                      <motion.a
+                        href={selectedProject.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-full font-medium transition-colors duration-300"
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FaExternalLinkAlt />
+                        Live
+                      </motion.a>
+                    )}
+                    {selectedProject.github && (
+                      <motion.a
+                        href={selectedProject.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full font-medium border border-white/10 transition-colors duration-300"
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FaGithub />
+                        Code
+                      </motion.a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {fullScreenMedia && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setFullScreenMedia(null)}
+          >
+            <div className="relative w-full h-full flex items-center justify-center">
+              {fullScreenMedia.type === 'image' && (
+                <img
+                  src={fullScreenMedia.url}
+                  alt="Full View"
+                  className="max-w-full max-h-full object-contain cursor-zoom-in"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              )}
+              {fullScreenMedia.type === 'video' && (
+                <video
+                  src={fullScreenMedia.url}
+                  controls
+                  className="max-w-full max-h-full"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.section>
   )
 }
