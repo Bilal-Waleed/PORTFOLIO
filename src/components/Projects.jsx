@@ -7,7 +7,7 @@ import {
 } from 'react-icons/si'
 import { BsArrowUpRight } from 'react-icons/bs'
 import { useState } from 'react'
-import { projects } from './projectsData' // Import the projects array
+import { projects } from './ProjectsData' 
 
 // --- Tech icons map ---
 const technologies = {
