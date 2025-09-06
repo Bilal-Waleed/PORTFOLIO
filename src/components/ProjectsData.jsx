@@ -1,6 +1,20 @@
 // projectsData.js
 export const projects = [
   {
+    title: 'Realand Real Estate Website',
+    description: 'I created a modern and professional Realand Real Estate Website designed to help agencies and property dealers showcase their listings in the best possible way. The website is fully responsive, fast-loading, and SEO-friendly, making it easy for buyers and investors to explore properties on any device. With features like property listings, detailed descriptions, images, and contact forms, the website gives clients a seamless experience to find their dream property. For real estate businesses, having a website is essential to build trust, generate leads, and stand out from competitors in today’s digital market.',
+    technologies: ['WordPress'],
+    image: '/wp-real-estate.png',
+    fullImage: '/wp-real-estate-full.png',
+  },
+  {
+    title: 'Stradale Cafe Website',
+    description: 'This project involved designing a Café Website that reflects a warm, inviting, and modern style. The website features digital menus, café specialties, gallery images, and location maps, making it easier for customers to explore and visit. In the food and beverage industry, having a professional website is essential for visibility. It allows cafés to showcase their ambiance, attract local customers, and provide updates on new offers or events. A website like this helps transform a café into a recognized brand in its area.',
+    technologies: ['WordPress'],
+    image: '/wp-cafe.png',
+    fullImage: '/wp-cafe-full.png',
+  },
+  {
     title: 'Growth Mindset Mastery',
     description: 'An interactive Growth Mindset Mastery app built with Python and Streamlit. It offers motivational content, self-assessment tools, and habit tracking to boost personal development',
     technologies: ['Python', 'Streamlit'],
@@ -15,6 +29,13 @@ export const projects = [
     image: '/library.png',
     live: 'https://personal-library-bw.streamlit.app/',
     github: 'https://github.com/Bilal-Waleed/Personal-Library-Manager.git',
+  },
+  {
+    title: 'Modern Restaurant Website',
+    description: 'I designed and developed a fully responsive restaurant website using WordPress and Elementor with a strong focus on speed, design, and user experience. The website is optimized for fast reloading and works seamlessly across all devices, including mobile, tablet, and desktop. The purpose of this project was to help restaurant businesses establish a strong digital presence and attract more customers through an engaging online experience. By creating a visually appealing and easy-to-navigate platform, the website makes it simple for customers to explore offerings and connect with the business.',
+    technologies: ['WordPress'],
+    image: '/wp-rest-1.png',
+    fullImage: '/wp-rest-1-full.png',
   },
   {
     title: 'Salt-n-Pepper-web',
@@ -57,6 +78,13 @@ export const projects = [
     github: 'https://github.com/Bilal-Waleed/Quiz-App.git',
   },
   {
+    title: 'Dentlab Dental Website',
+    description: 'This project was built for a Dentlab Dental Clinic, focusing on a clean, professional, and trustworthy design. The website highlights services, doctor profiles, appointment booking, and patient testimonials, ensuring that new patients can easily connect with the clinic. In healthcare, first impressions matter and a website helps create credibility. By providing all the important details online, dental practices can gain patient trust, simplify appointment booking, and grow their client base.',
+    technologies: ['WordPress'],
+    image: '/wp-dentist-1-dentlab.png',
+    fullImage: '/wp-dentlab-full.png',
+  },
+  {
     title: 'Cryptex Web Clone',
     description: 'A fully responsive Cryptex website clone built with HTML, CSS, and JavaScript. It replicates the sleek design and layout of the original for a modern crypto platform look.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
@@ -73,40 +101,13 @@ export const projects = [
     github: 'https://github.com/Bilal-Waleed/Data-encrypted-system.git',
   },
   {
-    title: 'Modern Restaurant Website',
-    description: 'I designed and developed a fully responsive restaurant website using WordPress and Elementor with a strong focus on speed, design, and user experience. The website is optimized for fast reloading and works seamlessly across all devices, including mobile, tablet, and desktop. The purpose of this project was to help restaurant businesses establish a strong digital presence and attract more customers through an engaging online experience. By creating a visually appealing and easy-to-navigate platform, the website makes it simple for customers to explore offerings and connect with the business.',
-    technologies: ['WordPress'],
-    image: '/wp-rest-1.png',
-    fullImage: '/wp-rest-1-full.png',
-  },
-  {
-    title: 'Dentlab Dental Website',
-    description: 'This project was built for a Dentlab Dental Clinic, focusing on a clean, professional, and trustworthy design. The website highlights services, doctor profiles, appointment booking, and patient testimonials, ensuring that new patients can easily connect with the clinic. In healthcare, first impressions matter and a website helps create credibility. By providing all the important details online, dental practices can gain patient trust, simplify appointment booking, and grow their client base.',
-    technologies: ['WordPress'],
-    image: '/wp-dentist-1-dentlab.png',
-    fullImage: '/wp-dentlab-full.png',
-  },
-  {
-    title: 'Stradale Cafe Website',
-    description: 'This project involved designing a Café Website that reflects a warm, inviting, and modern style. The website features digital menus, café specialties, gallery images, and location maps, making it easier for customers to explore and visit. In the food and beverage industry, having a professional website is essential for visibility. It allows cafés to showcase their ambiance, attract local customers, and provide updates on new offers or events. A website like this helps transform a café into a recognized brand in its area.',
-    technologies: ['WordPress'],
-    image: '/wp-cafe.png',
-    fullImage: '/wp-cafe-full.png',
-  },
-  {
     title: 'Finovate Financial Website',
     description: 'I developed a Finovate Financial Services Website aimed at professionals and firms offering accounting, investment, and advisory services. The website features a modern corporate design, service sections, client testimonials, and a contact portal for easy communication.For financial businesses, trust and professionalism are key. A website not only represents credibility but also helps attract new clients by showcasing services, expertise, and success stories. In a competitive market, this kind of online presence is vital for growth and client trust.',
     technologies: ['WordPress'],
     image: '/wp-finovate.png',
     fullImage: '/wp-finovate-full.png',
   },
-  {
-    title: 'Realand Real Estate Website',
-    description: 'I created a modern and professional Realand Real Estate Website designed to help agencies and property dealers showcase their listings in the best possible way. The website is fully responsive, fast-loading, and SEO-friendly, making it easy for buyers and investors to explore properties on any device. With features like property listings, detailed descriptions, images, and contact forms, the website gives clients a seamless experience to find their dream property. For real estate businesses, having a website is essential to build trust, generate leads, and stand out from competitors in today’s digital market.',
-    technologies: ['WordPress'],
-    image: '/wp-real-estate.png',
-    fullImage: '/wp-real-estate-full.png',
-  },
+  
   // {
   //   title: 'n8n Example',
   //   description: '...',
