@@ -1,20 +1,6 @@
 // projectsData.js
 export const projects = [
-  {
-    title: 'Realand Real Estate Website',
-    description: 'I created a modern and professional Realand Real Estate Website designed to help agencies and property dealers showcase their listings in the best possible way. The website is fully responsive, fast-loading, and SEO-friendly, making it easy for buyers and investors to explore properties on any device. With features like property listings, detailed descriptions, images, and contact forms, the website gives clients a seamless experience to find their dream property. For real estate businesses, having a website is essential to build trust, generate leads, and stand out from competitors in today’s digital market.',
-    technologies: ['WordPress'],
-    image: '/wp-real-estate.png',
-    fullImage: '/wp-real-estate-full.png',
-  },
-  {
-    title: 'Stradale Cafe Website',
-    description: 'This project involved designing a Café Website that reflects a warm, inviting, and modern style. The website features digital menus, café specialties, gallery images, and location maps, making it easier for customers to explore and visit. In the food and beverage industry, having a professional website is essential for visibility. It allows cafés to showcase their ambiance, attract local customers, and provide updates on new offers or events. A website like this helps transform a café into a recognized brand in its area.',
-    technologies: ['WordPress'],
-    image: '/wp-cafe.png',
-    fullImage: '/wp-cafe-full.png',
-  },
-  {
+ {
     title: 'Growth Mindset Mastery',
     description: 'An interactive Growth Mindset Mastery app built with Python and Streamlit. It offers motivational content, self-assessment tools, and habit tracking to boost personal development',
     technologies: ['Python', 'Streamlit'],
@@ -29,6 +15,20 @@ export const projects = [
     image: '/library.png',
     live: 'https://personal-library-bw.streamlit.app/',
     github: 'https://github.com/Bilal-Waleed/Personal-Library-Manager.git',
+  },
+  {
+    title: 'Realand Real Estate Website',
+    description: 'I created a modern and professional Realand Real Estate Website designed to help agencies and property dealers showcase their listings in the best possible way. The website is fully responsive, fast-loading, and SEO-friendly, making it easy for buyers and investors to explore properties on any device. With features like property listings, detailed descriptions, images, and contact forms, the website gives clients a seamless experience to find their dream property. For real estate businesses, having a website is essential to build trust, generate leads, and stand out from competitors in today’s digital market.',
+    technologies: ['WordPress'],
+    image: '/wp-real-estate.png',
+    fullImage: '/wp-real-estate-full.png',
+  },
+  {
+    title: 'Stradale Cafe Website',
+    description: 'This project involved designing a Café Website that reflects a warm, inviting, and modern style. The website features digital menus, café specialties, gallery images, and location maps, making it easier for customers to explore and visit. In the food and beverage industry, having a professional website is essential for visibility. It allows cafés to showcase their ambiance, attract local customers, and provide updates on new offers or events. A website like this helps transform a café into a recognized brand in its area.',
+    technologies: ['WordPress'],
+    image: '/wp-cafe.png',
+    fullImage: '/wp-cafe-full.png',
   },
   {
     title: 'Modern Restaurant Website',
