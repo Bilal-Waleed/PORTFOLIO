@@ -1,4 +1,3 @@
-// projectsData.js
 export const projects = [
  {
     title: 'Growth Mindset Mastery',
