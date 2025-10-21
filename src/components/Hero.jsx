@@ -106,8 +106,8 @@ export default function Hero() {
           </motion.div>
 
           <motion.a
-            href="https://drive.google.com/file/d/1k7ay953mQpuiF5Hin9Nd_cvsCIAa_SVY/view?usp=sharing"
-            download="Resume Bilal Waleed.pdf"
+            href="https://drive.google.com/file/d/1SuETPnHhOIsKwoTs0tojI6m8vD7Jcm9I/view?usp=sharing"
+            download="Bilal Waleed Resume.pdf"
             target="_blank"
             className="relative inline-flex items-center justify-center px-7 py-3 rounded-lg font-semibold text-white bg-transparent border-2 border-cyan-400 overflow-hidden group transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-black"
             initial={{ opacity: 0, y: 20 }}
