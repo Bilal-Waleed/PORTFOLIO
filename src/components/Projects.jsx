@@ -3,7 +3,7 @@ import { FaReact, FaNodeJs, FaGithub, FaExternalLinkAlt, FaHtml5, FaCss3 } from 
 import {
   SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit,
   SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase,
-  SiTypescript, SiExpress, SiWordpress, SiShopify, SiN8N, SiWoocommerce
+  SiTypescript, SiExpress, SiWordpress, SiShopify, SiN8N, SiWoocommerce, SiNeovim 
 } from 'react-icons/si'
 import { BsArrowUpRight } from 'react-icons/bs'
 import { useState } from 'react'
@@ -30,10 +30,11 @@ const technologies = {
   'WordPress': { icon: <SiWordpress className="text-[#21759B]" />, name: 'WordPress' },
   'WooCommerce': { icon: <SiWoocommerce className="text-[#96588A]" />, name: 'WooCommerce' },
   'Shopify': { icon: <SiShopify className="text-[#96BF48]" />, name: 'Shopify' },
+  'NeonDB': { icon: <SiNeovim className="text-[#00E599]" />, name: 'NeonDB' },
   'n8n': { icon: <SiN8N className="text-[#E87C60]" />, name: 'n8n' },
 }
 
-const DURATION = 40
+const DURATION = 80
 
 const categories = [
   { label: 'All', value: 'all' },

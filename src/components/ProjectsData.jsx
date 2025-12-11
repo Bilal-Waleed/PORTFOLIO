@@ -69,6 +69,22 @@ export const projects = [
     github: 'https://github.com/Bilal-Waleed/Complete-web-with-firebase.git',
   },
   {
+    title: 'HealthMate',
+    description: 'HealthMate - Sehat ka Smart Dost | Frontend A bilingual (English + Roman Urdu) React-based health companion app that lets users upload medical reports, view AI-powered summaries, and track vitals all in one place.',
+    technologies: ['ReactJs', 'JavaScript', 'Tailwind', 'MongoDB'],
+    image: './healthmate.png',
+    live: 'https://hackathon-client-one.vercel.app/',
+    github: 'https://github.com/Bilal-Waleed/Hackathon-Client.git',
+  },
+  {
+    title: 'ZCRUM',
+    description: 'ZCRUM - A complete project management SaaS like Jira manage teams, projects, and tasks with real-time updates and sprint planning.',
+    technologies: ['JavaScript', 'NextJs', 'NeonDB'],
+    image: '/zcrum.png',
+    live: 'https://zcrum-self.vercel.app/',
+    github: 'https://github.com/Bilal-Waleed/ZCRUM.git',
+  },
+  {
     title: 'Quiz App',
     description: 'A simple quiz app built using HTML, CSS, and JavaScript. Users can answer questions and see their scores. Fully responsive and many more features',
     technologies: ['HTML', 'CSS', 'JavaScript'],
