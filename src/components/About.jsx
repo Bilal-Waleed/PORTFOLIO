@@ -4,9 +4,15 @@ import { FaGraduationCap, FaLaptopCode, FaSchool } from 'react-icons/fa';
 // Card data
 const cards = [
   {
+    icon: <FaSchool />,
+    title: 'University of Karachi',
+    subtitle: "I'm doing bachelor's in software engineering from UBIT",
+    details: ' 2026 - Present',
+  },
+  {
     icon: <FaLaptopCode />,
     title: 'Cloud Applied Generative AI Engineer',
-    subtitle: 'AI Engineer from PIAIC',
+    subtitle: 'Generative AI Engineer from PIAIC',
     details: ' 2024 - Present',
   },
   {
@@ -14,13 +20,6 @@ const cards = [
     title: 'Web and App Development',
     subtitle: 'MERN-Stack & Next.js Development from SMIT ',
     details: ' 2024 - 2025',
-  },
-  {
-    icon: <FaSchool />,
-    title: 'Board of Secondary Education',
-    subtitle: 'Intermediate in Computer Science from Degree Collage',
-    details: 'A | 2022 - 2024',
-    
   },
 ];
 
@@ -91,7 +90,7 @@ export default function About() {
         className="max-w-4xl text-center text-gray-300 text-lg sm:text-xl mb-16 font-light tracking-wide leading-relaxed"
         variants={itemVariants}
       >
-        I am Bilal, a passionate MERN-Stack Developer, Front-End Developer, and UI/UX designer. I thrive on building scalable web applications and exploring the latest technologies.
+        I am Bilal, a passionate MERN-Stack Developer, Next.js developer or AI web developer and SaaS website developer or exploring generative AI. I thrive on building scalable web applications and exploring the latest technologies.
       </motion.p>
 
       <motion.div

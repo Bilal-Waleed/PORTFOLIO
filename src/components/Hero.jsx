@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Tilt from 'react-parallax-tilt';
 import ParticleBackground from "./ParticleBackground";
 
-const roles = ["MERN-Stack Developer","Next.js Developer", "Workflow Automation (n8n)", "WordPress & Shopify Developer"];
+const roles = ["MERN-Stack Developer","Next.js Developer", "SaaS Application Developer", "Workflow Automation (n8n)", "WordPress & Shopify Developer"];
 
 const Typewriter = ({ roles }) => {
   const [currentRole, setCurrentRole] = useState(0);
@@ -106,7 +106,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.a
-            href="https://drive.google.com/file/d/1SuETPnHhOIsKwoTs0tojI6m8vD7Jcm9I/view?usp=sharing"
+            href="https://drive.google.com/file/d/1ODD3J2LpSsi0wQEeBz00Vu_sfMBI3fWK/view?usp=sharing"
             download="Bilal Waleed Resume.pdf"
             target="_blank"
             className="relative inline-flex items-center justify-center px-7 py-3 rounded-lg font-semibold text-white bg-transparent border-2 border-cyan-400 overflow-hidden group transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-black"

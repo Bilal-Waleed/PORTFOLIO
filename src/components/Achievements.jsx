@@ -4,6 +4,11 @@ import { FaMedal } from 'react-icons/fa';
 
 const achievements = [
   {
+    title: "Revotic AI ML Internship Completion Certificate",
+    description: "Completed an AI/ML internship at Revotic, working on machine learning projects using Python, FastAPI, Uvicorn, React, Next.js, and Hugging Face to build intelligent applications and explore generative AI technologies.",
+    images: ['/revoticai certificate.png'],
+  },
+  {
     title: "Saylani Mass IT Training Hackathon 2025",
     description: "Participated in the Saylani Mass IT Training Hackathon 2025, collaborating on innovative Full-Stack development challenges to showcase coding skills and problem-solving abilities.",
     images: ['/achieve5 (3).png', '/healthmate.png', '/achieve5 (1).png'],
@@ -151,7 +156,7 @@ export default function Achievements() {
         <span className="bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">Achievements</span>
       </motion.h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto w-full">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl mx-auto w-full">
         {achievements.map((achievement, index) => (
           <AchievementCard key={index} achievement={achievement} index={index} />
         ))}
