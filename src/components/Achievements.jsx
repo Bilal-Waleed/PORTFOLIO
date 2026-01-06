@@ -46,7 +46,7 @@ function AchievementCard({ achievement, index }) {
 
   return (
     <motion.div
-      className="relative w-full max-w-sm mx-auto"
+      className="relative w-[320px] sm:w-[350px] flex-shrink-0"
       variants={cardVariants}
       initial="initial"
       animate="animate"
@@ -139,7 +139,11 @@ function AchievementCard({ achievement, index }) {
   );
 }
 
+const DURATION = 60
+
 export default function Achievements() {
+  const displayAchievements = achievements.length > 0 ? [...achievements, ...achievements] : []
+
   return (
     <motion.section
       id="achievements"
@@ -156,10 +160,41 @@ export default function Achievements() {
         <span className="bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">Achievements</span>
       </motion.h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl mx-auto w-full">
-        {achievements.map((achievement, index) => (
-          <AchievementCard key={index} achievement={achievement} index={index} />
-        ))}
+      <div className="relative w-full max-w-7xl overflow-hidden py-8">
+        {/* Left gradient overlay */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black via-black/80 to-transparent z-20 pointer-events-none" />
+        
+        {/* Right gradient overlay */}
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black via-black/80 to-transparent z-20 pointer-events-none" />
+
+        <motion.div
+          className="flex gap-6"
+          style={{ width: 'max-content' }}
+          initial={{ x: '0%' }}
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{
+            repeat: Infinity,
+            repeatType: 'loop',
+            ease: 'linear',
+            duration: DURATION * (displayAchievements.length / (achievements.length * 2)),
+          }}
+        >
+          {displayAchievements.map((achievement, idx) => (
+            <AchievementCard key={`${achievement.title}-${idx}`} achievement={achievement} index={idx} />
+          ))}
+        </motion.div>
+      </div>
+
+      <div className="mt-6 flex gap-2 items-center text-cyan-400/60 text-sm font-medium">
+        <motion.span
+          animate={{ x: [-5, 0, -5] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >←</motion.span>
+        Auto-scrolling carousel
+        <motion.span
+          animate={{ x: [0, 5, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >→</motion.span>
       </div>
 
       {/* Custom drop-shadow for medal */}
