@@ -4,6 +4,11 @@ import { FaMedal } from 'react-icons/fa';
 
 const achievements = [
   {
+    title: "Saylani Mass IT Training Hackathon 2024",
+    description: "Participated in the Saylani Mass IT Training Hackathon 2024, collaborating on innovative Front-End development challenges to showcase coding skills and problem-solving abilities.",
+    images: ['/achieve1.png', '/achieve2.png', '/achieve3.png'],
+  },
+  {
     title: "Revotic AI ML Internship Completion Certificate",
     description: "Completed an AI/ML internship at Revotic, working on machine learning projects using Python, FastAPI, Uvicorn, React, Next.js, and Hugging Face to build intelligent applications and explore generative AI technologies.",
     images: ['/revoticai certificate.png'],
@@ -17,11 +22,6 @@ const achievements = [
     title: "CodSoft Web Development Internship",
     description: "Completed a Web development internship at CodSoft, working on real-world projects using React, JavaScript, and modern UI/UX practices to build responsive web applications.",
     images: ['/codesoft.png'],
-  },
-  {
-    title: "Saylani Mass IT Training Hackathon 2024",
-    description: "Participated in the Saylani Mass IT Training Hackathon 2024, collaborating on innovative Front-End development challenges to showcase coding skills and problem-solving abilities.",
-    images: ['/achieve1.png', '/achieve2.png', '/achieve3.png'],
   }
 ];
 

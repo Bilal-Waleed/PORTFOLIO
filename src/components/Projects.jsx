@@ -41,7 +41,7 @@ const categories = [
   { label: 'Python', value: 'python' },
   { label: 'MERN/Next.js', value: 'mern' },
   { label: 'WordPress', value: 'wordpress' },
-  { label: 'n8n', value: 'n8n' },
+  // { label: 'n8n', value: 'n8n' },
 ]
 
 const getProjectType = (project) => {
@@ -249,7 +249,7 @@ export default function Projects() {
                       View Full Page
                     </motion.button>
                   )}
-                  {getProjectType(selectedProject) === 'n8n' && selectedProject.video && (
+                  {/* {getProjectType(selectedProject) === 'n8n' && selectedProject.video && (
                     <motion.button
                       className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-full"
                       whileTap={{ scale: 0.95 }}
@@ -257,7 +257,7 @@ export default function Projects() {
                     >
                       View Video
                     </motion.button>
-                  )}
+                  )} */}
                 </div>
               </div>
 

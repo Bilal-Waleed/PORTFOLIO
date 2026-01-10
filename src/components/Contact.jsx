@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
-import { TextField, Button, Alert } from '@mui/material';
+import { TextField, Button, Alert, CircularProgress } from '@mui/material';
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required').min(2, 'Name must be at least 2 characters'),
@@ -16,36 +16,46 @@ const schema = yup.object().shape({
 const Contact = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    setShowSuccess(false);
+    setShowError(false);
+
     const emailParams = {
+      from_name: data.name,
+      from_email: data.email,
+      to_email: 'enemyop123456789@gmail.com',
+      reply_to: data.email,
       name: data.name,
       email: data.email,
-      phone: data.phone,
+      phone: data.phone || 'Not provided',
       message: data.message,
-      to_email: 'enemyop123456789@gmail.com',
       project_source: 'Portfolio Contact Form Message',
     };
 
-    emailjs
-      .send('service_5s9rybe', 'template_skdaqm7', emailParams, 'mJNe4k8LuOfkw5FHc')
-      .then((response) => {
-        console.log('Email sent successfully:', response.status, response.text);
-        setShowSuccess(true);
-        setShowError(false);
-        setTimeout(() => setShowSuccess(false), 10000);
-        reset();
-      })
-      .catch((error) => {
-        console.error('Failed to send email:', error.text || error);
-        setShowError(true);
+    try {
+      const response = await emailjs.send('service_5s9rybe', 'template_skdaqm7', emailParams, 'mJNe4k8LuOfkw5FHc');
+      console.log('Email sent successfully:', response.status, response.text);
+      setShowSuccess(true);
+      setShowError(false);
+      reset();
+      setIsSubmitting(false);
+      setTimeout(() => {
         setShowSuccess(false);
-        setTimeout(() => setShowError(false), 5000);
-      });
+      }, 10000);
+    } catch (error) {
+      console.error('Failed to send email:', error.text || error);
+      setShowError(true);
+      setShowSuccess(false);
+      setIsSubmitting(false);
+      setTimeout(() => setShowError(false), 5000);
+    }
   };
 
   const handleCloseSuccess = () => {
@@ -71,6 +81,7 @@ const Contact = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <TextField
                   label="Your Name"
+                  placeholder="Enter your full name"
                   {...register('name')}
                   error={!!errors.name}
                   helperText={errors.name?.message}
@@ -90,10 +101,12 @@ const Contact = () => {
                       '&.Mui-focused fieldset': { borderColor: '#00bcd4' },
                     },
                     '& .MuiFormHelperText-root': { color: '#ef5350' },
+                    '& input::placeholder': { color: '#78909c', opacity: 1 },
                   }}
                 />
                 <TextField
                   label="Your Email"
+                  placeholder="example@email.com"
                   {...register('email')}
                   error={!!errors.email}
                   helperText={errors.email?.message}
@@ -113,13 +126,15 @@ const Contact = () => {
                       '&.Mui-focused fieldset': { borderColor: '#00bcd4' },
                     },
                     '& .MuiFormHelperText-root': { color: '#ef5350' },
+                    '& input::placeholder': { color: '#78909c', opacity: 1 },
                   }}
                 />
                 <TextField
-                  label="Your Phone (e.g., +923001234567)"
+                  label="Your Phone"
+                  placeholder="+923001234567"
                   {...register('phone')}
                   error={!!errors.phone}
-                  helperText={errors.phone?.message}
+                  helperText={errors.phone?.message || 'Optional - Include country code'}
                   variant="outlined"
                   fullWidth
                   InputProps={{
@@ -135,12 +150,14 @@ const Contact = () => {
                       '&:hover fieldset': { borderColor: '#b0bec5' },
                       '&.Mui-focused fieldset': { borderColor: '#00bcd4' },
                     },
-                    '& .MuiFormHelperText-root': { color: '#ef5350' },
+                    '& .MuiFormHelperText-root': { color: errors.phone ? '#ef5350' : '#78909c' },
+                    '& input::placeholder': { color: '#78909c', opacity: 1 },
                   }}
                 />
               </div>
               <TextField
                 label="Your Message"
+                placeholder="Write your message here... (minimum 10 characters)"
                 {...register('message')}
                 error={!!errors.message}
                 helperText={errors.message?.message}
@@ -162,6 +179,7 @@ const Contact = () => {
                     '&.Mui-focused fieldset': { borderColor: '#00bcd4' },
                   },
                   '& .MuiFormHelperText-root': { color: '#ef5350' },
+                  '& textarea::placeholder': { color: '#78909c', opacity: 1 },
                 }}
               />
               {showSuccess && (
@@ -188,17 +206,38 @@ const Contact = () => {
                 type="submit"
                 variant="contained"
                 fullWidth
+                disabled={isSubmitting}
                 sx={{
-                  backgroundColor: '#00bcd4',
-                  color: 'oklch(100% 0 0)',
+                  backgroundColor: isSubmitting ? '#78909c' : '#00bcd4',
+                  color: 'white',
                   fontWeight: 'bold',
-                  padding: '10px',
+                  padding: '12px',
                   borderRadius: '8px',
                   mt: 3,
-                  '&:hover': { backgroundColor: '#00acc1' },
+                  fontSize: '16px',
+                  textTransform: 'none',
+                  cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                  opacity: isSubmitting ? 0.7 : 1,
+                  '&:hover': { 
+                    backgroundColor: isSubmitting ? '#78909c' : '#00acc1',
+                    transform: isSubmitting ? 'none' : 'translateY(-2px)',
+                    boxShadow: isSubmitting ? 'none' : '0 4px 12px rgba(0, 188, 212, 0.4)',
+                  },
+                  '&:disabled': {
+                    backgroundColor: '#78909c',
+                    color: 'white',
+                  },
+                  transition: 'all 0.3s ease',
                 }}
               >
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <CircularProgress size={20} sx={{ color: 'white', mr: 1 }} />
+                    Sending...
+                  </>
+                ) : (
+                  'Send Message'
+                )}
               </Button>
             </form>
           </div>
