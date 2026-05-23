@@ -182,7 +182,6 @@ section {
 .tech-stack-inner {
   display: flex;
   width: fit-content;
-  will-change: transform;
 }
 
 /* Hide scrollbar but keep functionality */

@@ -18,13 +18,13 @@ export default function ParticleBackground() {
       init={particlesInit}
       options={{
         fullScreen: false,
-        fpsLimit: 60,
+        fpsLimit: 30,
         particles: {
           number: {
-            value: 80, 
+            value: 35,
             density: {
               enable: true,
-              value_area: 800
+              value_area: 900
             }
           },
           color: {
@@ -42,8 +42,8 @@ export default function ParticleBackground() {
             random: true
           },
           links: {
-            enable: true, 
-            distance: 150,
+            enable: true,
+            distance: 120,
             color: "#ffffff", 
             opacity: 0.1,
             width: 1
@@ -62,10 +62,9 @@ export default function ParticleBackground() {
         interactivity: {
           events: {
             onHover: {
-              enable: true,
-              mode: "grab" 
+              enable: window.matchMedia('(pointer: fine)').matches,
+              mode: "grab"
             },
-            
           },
           modes: {
             grab: {

@@ -20,14 +20,16 @@ export default function InteractiveLoopSlider({
   const isPausedRef = useRef(false)
   const isDraggingRef = useRef(false)
   const isPointerDownRef = useRef(false)
+  const isVisibleRef = useRef(true)
   const resumeTimerRef = useRef(null)
+  const rafIdRef = useRef(null)
   const dragStartRef = useRef({ x: 0, offset: 0 })
   const activePointerIdRef = useRef(null)
   const direction = reverse ? 1 : -1
 
   const applyTransform = useCallback(() => {
     if (innerRef.current) {
-      innerRef.current.style.transform = `translateX(${offsetRef.current}px)`
+      innerRef.current.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`
     }
   }, [])
 
@@ -56,6 +58,13 @@ export default function InteractiveLoopSlider({
     applyTransform()
   }, [reverse, wrapOffset, applyTransform])
 
+  const stopAnimation = useCallback(() => {
+    if (rafIdRef.current != null) {
+      cancelAnimationFrame(rafIdRef.current)
+      rafIdRef.current = null
+    }
+  }, [])
+
   const clearResumeTimer = useCallback(() => {
     if (resumeTimerRef.current) {
       clearTimeout(resumeTimerRef.current)
@@ -63,17 +72,46 @@ export default function InteractiveLoopSlider({
     }
   }, [])
 
+  const startAnimation = useCallback(() => {
+    stopAnimation()
+    if (isPausedRef.current || isDraggingRef.current || !isVisibleRef.current) return
+    if (halfWidthRef.current <= 0) return
+
+    let lastTime = performance.now()
+
+    const tick = (now) => {
+      if (isPausedRef.current || isDraggingRef.current || !isVisibleRef.current) {
+        rafIdRef.current = null
+        return
+      }
+
+      const dt = Math.min(now - lastTime, 50)
+      lastTime = now
+
+      const pxPerMs = halfWidthRef.current / duration
+      offsetRef.current += direction * pxPerMs * dt
+      wrapOffset()
+      applyTransform()
+
+      rafIdRef.current = requestAnimationFrame(tick)
+    }
+
+    rafIdRef.current = requestAnimationFrame(tick)
+  }, [duration, direction, wrapOffset, applyTransform, stopAnimation])
+
   const scheduleResume = useCallback(() => {
     clearResumeTimer()
     resumeTimerRef.current = setTimeout(() => {
       isPausedRef.current = false
+      startAnimation()
     }, RESUME_DELAY_MS)
-  }, [clearResumeTimer])
+  }, [clearResumeTimer, startAnimation])
 
   const pauseAuto = useCallback(() => {
     isPausedRef.current = true
     clearResumeTimer()
-  }, [clearResumeTimer])
+    stopAnimation()
+  }, [clearResumeTimer, stopAnimation])
 
   useEffect(() => {
     measure()
@@ -85,29 +123,40 @@ export default function InteractiveLoopSlider({
   }, [measure])
 
   useEffect(() => {
-    let rafId
-    let lastTime = performance.now()
-
-    const tick = (now) => {
-      const dt = Math.min(now - lastTime, 50)
-      lastTime = now
-
-      if (!isPausedRef.current && !isDraggingRef.current && halfWidthRef.current > 0) {
-        const pxPerMs = halfWidthRef.current / duration
-        offsetRef.current += direction * pxPerMs * dt
-        wrapOffset()
-        applyTransform()
-      }
-
-      rafId = requestAnimationFrame(tick)
+    const node = trackRef.current
+    if (!node || typeof IntersectionObserver === 'undefined') {
+      startAnimation()
+      return () => stopAnimation()
     }
 
-    rafId = requestAnimationFrame(tick)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting
+        if (entry.isIntersecting && !isPausedRef.current && !isDraggingRef.current) {
+          startAnimation()
+        } else {
+          stopAnimation()
+        }
+      },
+      { root: null, rootMargin: '80px', threshold: 0 }
+    )
+
+    observer.observe(node)
     return () => {
-      cancelAnimationFrame(rafId)
+      observer.disconnect()
+      stopAnimation()
+    }
+  }, [startAnimation, stopAnimation])
+
+  useEffect(() => {
+    if (isVisibleRef.current && !isPausedRef.current && !isDraggingRef.current) {
+      startAnimation()
+    }
+    return () => {
+      stopAnimation()
       clearResumeTimer()
     }
-  }, [duration, direction, wrapOffset, applyTransform, clearResumeTimer])
+  }, [duration, direction, startAnimation, stopAnimation, clearResumeTimer])
 
   const onPointerDown = (e) => {
     if (e.pointerType === 'mouse' && e.button !== 0) return

@@ -116,7 +116,7 @@ export default function Projects() {
               {filteredProjects.map((project) => (
               <motion.div
                 key={project.title}
-                className="relative z-0 w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] backdrop-blur-sm group transition-all duration-300 hover:z-10 hover:scale-[1.02] hover:border-cyan-400 cursor-pointer"
+                className="relative z-0 w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] group transition-all duration-300 hover:z-10 hover:scale-[1.02] hover:border-cyan-400 cursor-pointer"
                 onPointerUp={(e) => {
                   if (dragMovedRef.current) return
                   if (e.pointerType === 'mouse' && e.button !== 0) return
@@ -129,6 +129,8 @@ export default function Projects() {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
+                    decoding="async"
                     className="max-w-full max-h-full w-auto h-auto object-contain object-center"
                   />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/80 to-transparent" />
@@ -136,13 +138,9 @@ export default function Projects() {
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
                     {project.title}
-                    <motion.span
-                      className="text-cyan-400"
-                      animate={{ rotate: [0, -10, 10, 0] }}
-                      transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 3 }}
-                    >
+                    <span className="text-cyan-400 inline-block transition-transform duration-300 group-hover:rotate-45">
                       <BsArrowUpRight className="inline-block text-sm" />
-                    </motion.span>
+                    </span>
                   </h3>
                   <p className="text-gray-300 text-sm mb-3 line-clamp-2">
                     {project.description}

@@ -1,68 +1,82 @@
 import { useEffect, useRef } from 'react'
 
-const TRAIL_LENGTH = 20
+const TRAIL_LENGTH = 12
 
 export default function CursorTrail() {
   const trailRef = useRef([])
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
+
+    if (prefersReducedMotion || isCoarsePointer) return undefined
+
     for (let i = 0; i < TRAIL_LENGTH; i++) {
       const el = document.createElement('div')
       el.className = 'cursor-trail-dot'
       el.style.position = 'fixed'
       el.style.pointerEvents = 'none'
-      el.style.zIndex = 9999
-      const size = Math.max(1, 4 - i * 0.2)
+      el.style.zIndex = '9999'
+      const size = Math.max(2, 4 - i * 0.15)
       el.style.width = `${size}px`
       el.style.height = `${size}px`
       el.style.borderRadius = '50%'
-
-      el.style.backgroundColor = 'rgba(255, 255, 255, 0.8)' 
-      el.style.boxShadow = `
-        0 0 8px 3px rgba(0, 255, 255, 0.7),  // CHANGE THIS (e.g., 'rgba(255, 215, 0, 0.7)' for gold)
-        0 0 12px 5px rgba(255, 0, 255, 0.5)   // CHANGE THIS (e.g., 'rgba(255, 165, 0, 0.5)' for orange)
-      `
-      el.style.transition = `transform 0.1s linear, opacity 0.2s linear`
-
-      el.style.opacity = `${1 - i / (TRAIL_LENGTH + 5)}`
-      el.style.transform = 'translate(-50%, -50%)'
+      el.style.backgroundColor = 'rgba(255, 255, 255, 0.8)'
+      el.style.boxShadow = '0 0 6px 2px rgba(0, 255, 255, 0.5)'
+      el.style.willChange = 'transform'
+      el.style.opacity = `${1 - i / (TRAIL_LENGTH + 4)}`
+      el.style.transform = 'translate3d(-50%, -50%, 0)'
       document.body.appendChild(el)
       trailRef.current.push(el)
     }
 
-
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
     let positions = Array.from({ length: TRAIL_LENGTH }, () => ({ ...mouse }))
+    let rafId = null
+    let isVisible = true
 
     const move = (e) => {
       mouse = { x: e.clientX, y: e.clientY }
     }
 
     const animate = () => {
+      if (!isVisible) {
+        rafId = null
+        return
+      }
+
       positions.unshift({ ...mouse })
-      positions = positions.slice(0, TRAIL_LENGTH)
+      positions.length = TRAIL_LENGTH
+
       for (let i = 0; i < TRAIL_LENGTH; i++) {
-        const { x, y } = positions[i]
         const el = trailRef.current[i]
         if (el) {
-     
-          const delay = i * 0.005
-          el.style.transitionDelay = `${delay}s`
-          el.style.left = `${x}px`
-          el.style.top = `${y}px`
+          el.style.transform = `translate3d(${positions[i].x}px, ${positions[i].y}px, 0) translate(-50%, -50%)`
         }
       }
-      requestAnimationFrame(animate)
+
+      rafId = requestAnimationFrame(animate)
     }
 
-    document.body.style.cursor = 'none'
-    window.addEventListener('mousemove', move)
-    animate()
+    const onVisibilityChange = () => {
+      isVisible = document.visibilityState === 'visible'
+      if (isVisible && rafId == null) {
+        rafId = requestAnimationFrame(animate)
+      } else if (!isVisible && rafId != null) {
+        cancelAnimationFrame(rafId)
+        rafId = null
+      }
+    }
+
+    window.addEventListener('mousemove', move, { passive: true })
+    document.addEventListener('visibilitychange', onVisibilityChange)
+    rafId = requestAnimationFrame(animate)
 
     return () => {
       window.removeEventListener('mousemove', move)
-      document.body.style.cursor = 'auto'
-      trailRef.current.forEach((el) => document.body.removeChild(el))
+      document.removeEventListener('visibilitychange', onVisibilityChange)
+      if (rafId != null) cancelAnimationFrame(rafId)
+      trailRef.current.forEach((el) => el.remove())
       trailRef.current = []
     }
   }, [])
