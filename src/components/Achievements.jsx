@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaMedal } from 'react-icons/fa';
+import InteractiveLoopSlider from './InteractiveLoopSlider';
+import { projects } from './ProjectsData.jsx';
 
 const achievements = [
   {
@@ -22,6 +24,11 @@ const achievements = [
     title: "CodSoft Web Development Internship",
     description: "Completed a Web development internship at CodSoft, working on real-world projects using React, JavaScript, and modern UI/UX practices to build responsive web applications.",
     images: ['/codesoft.png'],
+  },
+  {
+    title: "Saylani Mass IT Training Completion Certificate",
+    description: "Completed a Saylani Mass IT Training, working on real-world projects using React, JavaScript, Express, Node.js, Next.js, MongoDB, Tailwind CSS, and modern UI/UX practices to build responsive web applications.",
+    images: ['/achieve6.png'],
   }
 ];
 
@@ -108,6 +115,7 @@ function AchievementCard({ achievement, index }) {
                 {achievement.images.map((_, i) => (
                   <button
                     key={i}
+                    onPointerDown={(e) => e.stopPropagation()}
                     onClick={() => setImgIndex(i)}
                     className={`w-2.5 h-2.5 rounded-full transition-all duration-300 border border-cyan-400/60 ${
                       i === imgIndex ? 'bg-cyan-400' : 'bg-white/20'
@@ -139,10 +147,11 @@ function AchievementCard({ achievement, index }) {
   );
 }
 
-const DURATION = 60
+const DURATION = 80
 
 export default function Achievements() {
-  const displayAchievements = achievements.length > 0 ? [...achievements, ...achievements] : []
+  const carouselDuration =
+    DURATION * 1000 * (achievements.length / projects.length)
 
   return (
     <motion.section
@@ -160,29 +169,12 @@ export default function Achievements() {
         <span className="bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">Achievements</span>
       </motion.h2>
 
-      <div className="relative w-full max-w-7xl overflow-hidden py-8">
-        {/* Left gradient overlay */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black via-black/80 to-transparent z-20 pointer-events-none" />
-        
-        {/* Right gradient overlay */}
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black via-black/80 to-transparent z-20 pointer-events-none" />
-
-        <motion.div
-          className="flex gap-6"
-          style={{ width: 'max-content' }}
-          initial={{ x: '0%' }}
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{
-            repeat: Infinity,
-            repeatType: 'loop',
-            ease: 'linear',
-            duration: DURATION * (displayAchievements.length / (achievements.length * 2)),
-          }}
-        >
-          {displayAchievements.map((achievement, idx) => (
-            <AchievementCard key={`${achievement.title}-${idx}`} achievement={achievement} index={idx} />
+      <div className="relative w-full max-w-7xl py-8">
+        <InteractiveLoopSlider duration={carouselDuration} innerClassName="flex gap-6">
+          {achievements.map((achievement, idx) => (
+            <AchievementCard key={achievement.title} achievement={achievement} index={idx} />
           ))}
-        </motion.div>
+        </InteractiveLoopSlider>
       </div>
 
       <div className="mt-6 flex gap-2 items-center text-cyan-400/60 text-sm font-medium">

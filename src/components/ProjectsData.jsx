@@ -61,12 +61,26 @@ export const projects = [
     github: 'https://github.com/Bilal-Waleed/Agency-web-client.git',
   },
   {
+    title: 'Islambol - Umrah & Hajj Tour Listing Platform',
+    description: 'Islambol - Umrah & Hajj Tour Listing Platform is a full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
+  technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    image: '/islambol.png',
+    live: 'https://islambol.com/'
+  },
+  {
     title: 'Social Media Web with Firebase',
     description: 'A mini social media web app built using Firebase, HTML, CSS, and JavaScript. Users can create posts, send friend requests, chat, comment, and like posts. Fully responsive and many more features',
     technologies: ['HTML', 'CSS', 'JavaScript', 'Firebase'],
     image: '/social-media-web.png',
     live: 'https://bw-web.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/Complete-web-with-firebase.git',
+  },
+  {
+    title: 'Student Cheat Sheet - AI Presentation Builder',
+    description: 'Built an AI-powered presentation generation platform where users can create slides from prompts, edit content on an interactive canvas, and customize presentations in real time. Implemented PPTX/PDF export functionality with smooth slide editing and backend file processing for efficient presentation generation.',
+    technologies: ['ReactJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    image: '/slides-agent.png',
+    live: 'https://slides.studentcheatsheet.com/',
   },
   {
     title: 'HealthMate',

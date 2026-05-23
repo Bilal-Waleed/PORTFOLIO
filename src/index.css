@@ -164,9 +164,25 @@ section {
   }
 }
 
-/* Add a smooth mask for the edges */
-.overflow-hidden {
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+.tech-stack-track {
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tech-stack-track.is-dragging {
+  cursor: grabbing;
+}
+
+.tech-stack-inner {
+  display: flex;
+  width: fit-content;
+  will-change: transform;
 }
 
 /* Hide scrollbar but keep functionality */

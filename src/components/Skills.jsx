@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import InteractiveLoopSlider from './InteractiveLoopSlider'
 import { FaPython, FaRobot, FaReact, FaNodeJs, FaGitAlt, FaFigma, FaJsSquare } from 'react-icons/fa'
 import { 
   SiTailwindcss, SiMongodb, SiNextdotjs, SiBootstrap, SiAdobexd, 
@@ -52,7 +53,7 @@ const SkillCard = ({ name, icon }) => {
     <motion.div
       className="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-xl border-2 border-cyan-500/10 hover:border-cyan-500/30 transition-all duration-300"
       whileHover={{ 
-        scale: 1.05,
+        scale: 1.02,
         boxShadow: "0 0 25px rgba(6, 182, 212, 0.2)",
       }}
     >
@@ -67,20 +68,6 @@ const SkillCard = ({ name, icon }) => {
       </motion.div>
       <p className="text-sm text-gray-300 font-medium">{name}</p>
     </motion.div>
-  )
-}
-
-const InfiniteLoopSlider = ({ children, duration, reverse = false }) => {
-  return (
-    <div className="loop-slider" style={{
-      '--duration': `${duration}ms`,
-      '--direction': reverse ? 'reverse' : 'normal'
-    }}>
-      <div className="inner">
-        {children}
-        {children}
-      </div>
-    </div>
   )
 }
 
@@ -105,46 +92,34 @@ export default function Skills() {
         Tech <span className="text-white">Stack</span>
       </motion.h2>
 
-      <div className="w-full max-w-5xl overflow-hidden">
+      <div className="w-full max-w-5xl">
         <motion.div 
           className="relative w-full flex flex-col gap-4"
           variants={skillItemVariants}
         >
-          <div className="flex -mx-4 animate-scroll">
-            <InfiniteLoopSlider duration={25000}>
-              <div className="flex gap-4 px-4">
-                {row1.map((tech) => (
-                  <div key={tech.name} className="flex-shrink-0 w-48">
-                    <SkillCard {...tech} />
-                  </div>
-                ))}
+          <InteractiveLoopSlider duration={25000} innerClassName="flex gap-4 px-4">
+            {row1.map((tech) => (
+              <div key={tech.name} className="flex-shrink-0 w-48">
+                <SkillCard {...tech} />
               </div>
-            </InfiniteLoopSlider>
-          </div>
+            ))}
+          </InteractiveLoopSlider>
 
-          <div className="flex -mx-4 animate-scroll">
-            <InfiniteLoopSlider duration={30000} reverse={true}>
-              <div className="flex gap-4 px-4">
-                {row2.map((tech) => (
-                  <div key={tech.name} className="flex-shrink-0 w-48">
-                    <SkillCard {...tech} />
-                  </div>
-                ))}
+          <InteractiveLoopSlider duration={30000} reverse innerClassName="flex gap-4 px-4">
+            {row2.map((tech) => (
+              <div key={tech.name} className="flex-shrink-0 w-48">
+                <SkillCard {...tech} />
               </div>
-            </InfiniteLoopSlider>
-          </div>
+            ))}
+          </InteractiveLoopSlider>
 
-          <div className="flex -mx-4 animate-scroll">
-            <InfiniteLoopSlider duration={20000}>
-              <div className="flex gap-4 px-4">
-                {row3.map((tech) => (
-                  <div key={tech.name} className="flex-shrink-0 w-48">
-                    <SkillCard {...tech} />
-                  </div>
-                ))}
+          <InteractiveLoopSlider duration={20000} innerClassName="flex gap-4 px-4">
+            {row3.map((tech) => (
+              <div key={tech.name} className="flex-shrink-0 w-48">
+                <SkillCard {...tech} />
               </div>
-            </InfiniteLoopSlider>
-          </div>
+            ))}
+          </InteractiveLoopSlider>
         </motion.div>
       </div>
     </motion.section>

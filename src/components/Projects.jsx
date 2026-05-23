@@ -6,8 +6,9 @@ import {
   SiTypescript, SiExpress, SiWordpress, SiShopify, SiN8N, SiWoocommerce, SiNeovim 
 } from 'react-icons/si'
 import { BsArrowUpRight } from 'react-icons/bs'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { projects } from './ProjectsData.jsx'
+import InteractiveLoopSlider from './InteractiveLoopSlider'
 
 // --- Tech icons map ---
 const technologies = {
@@ -56,6 +57,7 @@ export default function Projects() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedProject, setSelectedProject] = useState(null)
   const [fullScreenMedia, setFullScreenMedia] = useState(null)
+  const dragMovedRef = useRef(false)
 
   const filteredProjects = projects.filter((project) => {
     if (selectedCategory === 'all') return true
@@ -68,7 +70,10 @@ export default function Projects() {
     return false
   })
 
-  const displayProjects = filteredProjects.length > 0 ? [...filteredProjects, ...filteredProjects] : []
+  const carouselDuration =
+    filteredProjects.length > 0
+      ? DURATION * 1000 * (filteredProjects.length / projects.length)
+      : 0
 
   return (
     <motion.section
@@ -99,36 +104,34 @@ export default function Projects() {
         ))}
       </div>
 
-      <AnimatePresence mode="wait">
-        <div className="relative w-full max-w-6xl overflow-hidden py-8">
-          <motion.div
+      {filteredProjects.length > 0 && (
+        <div className="relative w-full max-w-6xl py-10">
+          <InteractiveLoopSlider
             key={selectedCategory}
-            className="flex gap-8"
-            style={{ width: 'max-content' }}
-            initial={{ x: '0%' }}
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{
-              repeat: Infinity,
-              repeatType: 'loop',
-              ease: 'linear',
-              duration: DURATION * (displayProjects.length / (projects.length * 2)),
-            }}
+            duration={carouselDuration}
+            dragMovedRef={dragMovedRef}
+            innerClassName="flex items-stretch gap-8"
+            className="py-2"
           >
-            {displayProjects.map((project, idx) => (
+              {filteredProjects.map((project) => (
               <motion.div
-                key={project.title + idx}
-                className="relative w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] backdrop-blur-sm group transition-all duration-300 hover:scale-105 hover:border-cyan-400 cursor-pointer"
-                onClick={() => setSelectedProject(project)}
+                key={project.title}
+                className="relative z-0 w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] backdrop-blur-sm group transition-all duration-300 hover:z-10 hover:scale-[1.02] hover:border-cyan-400 cursor-pointer"
+                onPointerUp={(e) => {
+                  if (dragMovedRef.current) return
+                  if (e.pointerType === 'mouse' && e.button !== 0) return
+                  if (e.target.closest('a, button')) return
+                  setSelectedProject(project)
+                }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="relative h-40 sm:h-48 overflow-hidden">
+                <div className="relative h-44 sm:h-52 overflow-hidden bg-zinc-950/90 flex items-center justify-center p-2">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="object-cover transition-transform duration-500 group-hover:scale-110 w-full h-full"
-                    quality={90}
+                    className="max-w-full max-h-full w-auto h-auto object-contain object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/80 to-transparent" />
                 </div>
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
@@ -167,6 +170,8 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
                         whileTap={{ scale: 0.95 }}
+                        onPointerDown={(e) => e.stopPropagation()}
+                        onPointerUp={(e) => e.stopPropagation()}
                         onClick={(e) => e.stopPropagation()}
                       >
                         <FaExternalLinkAlt className="text-xs" />
@@ -180,6 +185,8 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-full text-sm font-medium border border-white/10 transition-colors duration-300"
                         whileTap={{ scale: 0.95 }}
+                        onPointerDown={(e) => e.stopPropagation()}
+                        onPointerUp={(e) => e.stopPropagation()}
                         onClick={(e) => e.stopPropagation()}
                       >
                         <FaGithub className="text-sm" />
@@ -189,10 +196,10 @@ export default function Projects() {
                   </div>
                 </div>
               </motion.div>
-            ))}
-          </motion.div>
+              ))}
+          </InteractiveLoopSlider>
         </div>
-      </AnimatePresence>
+      )}
 
       <div className="mt-6 flex gap-2 items-center text-cyan-400/60 text-sm font-medium">
         <motion.span
@@ -232,12 +239,11 @@ export default function Projects() {
                 ✕
               </motion.button>
 
-              <div className="relative w-full md:w-1/2 h-64 md:h-auto overflow-hidden group">
+              <div className="relative w-full md:w-1/2 shrink-0 min-h-[220px] md:min-h-[320px] bg-zinc-950 flex items-center justify-center p-4 sm:p-5 overflow-hidden group">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="object-cover w-full h-full"
-                  quality={90}
+                  className="max-w-full max-h-[200px] sm:max-h-[240px] md:max-h-[min(420px,65vh)] w-auto h-auto object-contain object-center"
                 />
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   {getProjectType(selectedProject) === 'wordpress' && selectedProject.fullImage && (
@@ -325,7 +331,7 @@ export default function Projects() {
                 <img
                   src={fullScreenMedia.url}
                   alt="Full View"
-                  className="max-w-full max-h-full object-contain cursor-zoom-in"
+                  className="max-w-[min(100%,1200px)] max-h-[min(100%,90vh)] w-auto h-auto object-contain object-center p-4 cursor-zoom-in"
                   onClick={(e) => e.stopPropagation()}
                 />
               )}
