@@ -43,28 +43,21 @@ export default function LoadingScreen({ finishLoading }) {
       }}
     >
       <motion.div
-        className="relative"
+        className="loading-brand-stack relative"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <motion.div
-          className="text-5xl sm:text-7xl font-bold relative text-center"
+        <motion.h1
+          className="brand-name-lg text-center whitespace-nowrap"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          <span className="text-white">B</span>
-          <motion.span
-            className="text-cyan-400"
-            animate={{ opacity: [0.4, 1, 0.4] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-          >
-            folio
-          </motion.span>
-        </motion.div>
+          M Bilal Waleed
+        </motion.h1>
 
-        <div className="w-64 h-3 bg-gray-800 rounded-full mt-8 overflow-hidden">
+        <div className="w-full h-2.5 bg-gray-800 rounded-full mt-6 overflow-hidden">
           <motion.div
             className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
             initial={{ width: 0 }}
@@ -74,7 +67,7 @@ export default function LoadingScreen({ finishLoading }) {
         </div>
 
         <motion.div
-          className="mt-3 text-center text-gray-400"
+          className="mt-3 text-center text-sm text-gray-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}

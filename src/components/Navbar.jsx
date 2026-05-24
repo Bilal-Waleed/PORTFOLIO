@@ -42,7 +42,7 @@ export default function Navbar() {
 
   return (
     <header className="navbar-fixed pt-4">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 relative">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative flex items-center justify-between h-16">
         <div className="absolute inset-0 mx-2 sm:mx-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-md rounded-xl border border-white/10 shadow-lg" />
           <div className="absolute inset-0 rounded-xl p-[1px] overflow-hidden">
@@ -55,28 +55,23 @@ export default function Navbar() {
           </div>
         </div>
 
-        <motion.div
-          className="relative z-10 flex items-baseline space-x-1 cursor-pointer select-none group"
-          initial={{ opacity: 0, x: -20 }}
+        <motion.a
+          href="#home"
+          onClick={(e) => handleSmoothScroll(e, 'home')}
+          className="brand-name brand-name-link cursor-pointer select-none whitespace-nowrap"
+          initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           whileHover="hover"
         >
+          M Bilal Waleed
           <motion.span
-            className="text-3xl font-bold text-cyan-400 group-hover:text-white transition-colors duration-300"
-            variants={linkVariants}
-          >
-            B
-          </motion.span>
-          <motion.span
-            className="text-xl font-light text-gray-300 group-hover:text-cyan-300 transition-colors duration-300 tracking-wider"
-            variants={linkVariants}
-            transition={{ delay: 0.05 }}
-          >
-            folio
-          </motion.span>
-        </motion.div>
-
+            className="brand-name-underline"
+            initial={{ scaleX: 0 }}
+            variants={{ hover: { scaleX: 1 } }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.a>
 
         <ul className="hidden md:flex items-center space-x-6 relative z-10">
           {navLinks.map((link) => (
