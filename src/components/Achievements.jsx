@@ -11,6 +11,11 @@ const achievements = [
     images: ['/achieve1.png', '/achieve2.png', '/achieve3.png'],
   },
   {
+    title: "Agentic AI level 1 Developer Certificate",
+    description: "Completed the Agentic AI level 1 Developer Certificate, working on real-world projects using RAG, Langchain, Crew AI, OpenAI, and other AI technologies.",
+    images: ['/agentic.png'],
+  },
+  {
     title: "Revotic AI ML Internship Completion Certificate",
     description: "Completed an AI/ML internship at Revotic, working on machine learning projects using Python, FastAPI, Uvicorn, React, Next.js, and Hugging Face to build intelligent applications and explore generative AI technologies.",
     images: ['/revoticai certificate.png'],

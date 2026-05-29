@@ -39,16 +39,16 @@ const DURATION = 80
 
 const categories = [
   { label: 'All', value: 'all' },
-  { label: 'Python', value: 'python' },
   { label: 'MERN/Next.js', value: 'mern' },
+  { label: 'Python', value: 'python' },
   { label: 'WordPress', value: 'wordpress' },
   // { label: 'n8n', value: 'n8n' },
 ]
 
 const getProjectType = (project) => {
+  if (project.technologies.some(tech => ['ReactJs', 'NextJs', 'NodeJS', 'MongoDB', 'Express'].includes(tech))) return 'mern'
   if (project.technologies.includes('n8n')) return 'n8n'
   if (project.technologies.includes('WordPress')) return 'wordpress'
-  if (project.technologies.some(tech => ['ReactJs', 'NextJs', 'NodeJS', 'MongoDB', 'Express'].includes(tech))) return 'mern'
   if (project.technologies.includes('Python')) return 'python'
   return 'other'
 }
