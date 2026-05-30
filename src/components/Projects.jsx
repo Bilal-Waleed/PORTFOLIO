@@ -59,6 +59,20 @@ export default function Projects() {
   const [fullScreenMedia, setFullScreenMedia] = useState(null)
   const dragMovedRef = useRef(false)
 
+  const openProject = (project) => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      if (project.live) {
+        window.open(project.live, '_blank', 'noopener,noreferrer')
+        return
+      }
+      if (project.github) {
+        window.open(project.github, '_blank', 'noopener,noreferrer')
+        return
+      }
+    }
+    setSelectedProject(project)
+  }
+
   const filteredProjects = projects.filter((project) => {
     if (selectedCategory === 'all') return true
     if (selectedCategory === 'python') return project.technologies.includes('Python')
@@ -141,7 +155,7 @@ export default function Projects() {
                     if (dragMovedRef.current) return
                     if (e.pointerType === 'mouse' && e.button !== 0) return
                     if (e.target.closest('a, button')) return
-                    setSelectedProject(project)
+                    openProject(project)
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -239,7 +253,7 @@ export default function Projects() {
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md"
+            className="hidden md:flex fixed inset-0 z-50 items-center justify-center bg-black/70 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

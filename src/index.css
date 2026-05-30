@@ -220,13 +220,15 @@ section {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   cursor: grab;
-  touch-action: none;
+  /* Allow vertical page scroll on touch; horizontal drag handled in JS */
+  touch-action: pan-y;
   user-select: none;
   -webkit-user-select: none;
 }
 
 .tech-stack-track.is-dragging {
   cursor: grabbing;
+  touch-action: none;
 }
 
 .tech-stack-inner {

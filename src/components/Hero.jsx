@@ -56,10 +56,10 @@ const Typewriter = ({ roles, active }) => {
   }, [text, isDeleting, currentRole, roles, active]);
 
   return (
-    <span className="text-cyan-400 font-medium whitespace-nowrap">
+    <span className="block w-full max-w-full px-3 text-center leading-snug text-cyan-400 font-medium whitespace-normal break-words md:inline md:w-auto md:px-0 md:text-left md:leading-normal md:whitespace-nowrap md:break-normal">
       {text}
       <motion.span
-        className="inline-block w-0.5 h-6 sm:h-7 bg-cyan-400 ml-1"
+        className="inline-block w-0.5 h-5 sm:h-6 md:h-7 bg-cyan-400 ml-0.5 align-text-bottom md:align-middle"
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 0.8, repeat: Infinity }}
       />
@@ -113,7 +113,7 @@ export default function Hero({ startAnimation = true }) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center text-white px-4 sm:px-6 lg:px-8 overflow-hidden scroll-mt-24"
+      className="relative min-h-screen flex items-center justify-center text-white px-4 sm:px-6 lg:px-8 overflow-hidden scroll-mt-24 pt-20"
     >
       <div className="absolute inset-0 -z-10">
         <ParticleBackground />
@@ -122,7 +122,7 @@ export default function Hero({ startAnimation = true }) {
       {ready && showContent && (
         <motion.div
           key={heroKey}
-          className="relative flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-16 max-w-6xl w-full z-10"
+          className="relative flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16 max-w-6xl w-full z-10"
           variants={heroContainer}
           initial="hidden"
           animate="visible"
@@ -151,11 +151,11 @@ export default function Hero({ startAnimation = true }) {
           </motion.div>
 
           <motion.div
-            className="flex flex-col items-center md:items-start text-center md:text-left max-w-lg -mt-6 md:-mt-10 w-full"
+            className="flex w-full max-w-lg flex-col items-center md:items-start text-center md:text-left mx-auto md:mx-0 md:-mt-10"
             variants={heroTextGroup}
           >
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight"
+              className="w-full text-center md:text-left text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight"
               variants={slide}
             >
               Hi, I&apos;m{" "}
@@ -164,12 +164,14 @@ export default function Hero({ startAnimation = true }) {
               </span>
             </motion.h1>
 
-            <motion.div
-              className="mb-5 min-h-9 sm:min-h-10 lg:min-h-12 flex items-center text-xl sm:text-2xl lg:text-3xl text-gray-300 overflow-hidden w-full"
-              variants={slide}
-            >
+          <motion.div
+            className="mb-3 md:mb-5 w-full max-w-full flex flex-col items-center md:items-start text-base sm:text-lg md:text-2xl lg:text-3xl text-gray-300 md:min-h-10 lg:min-h-12"
+            variants={slide}
+          >
+            <div className="w-full max-w-full flex justify-center md:justify-start">
               <Typewriter roles={roles} active={typewriterActive} />
-            </motion.div>
+            </div>
+          </motion.div>
 
             <motion.div
               className="min-h-[52px] flex items-center justify-center md:justify-start w-full"
@@ -187,7 +189,10 @@ export default function Hero({ startAnimation = true }) {
               </a>
             </motion.div>
 
-            <motion.div className="mt-4 min-h-[20px] w-full" variants={fade}>
+            <motion.div
+              className="mt-4 min-h-[20px] w-full text-center md:text-left"
+              variants={fade}
+            >
               <p
                 style={{
                   fontFamily: '"Roboto Mono", monospace',

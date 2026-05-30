@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaMedal } from 'react-icons/fa';
 import InteractiveLoopSlider from './InteractiveLoopSlider';
 import { ScrollSection, RevealHeading, Reveal } from './ScrollReveal';
-import { projects } from './ProjectsData.jsx';
 
 const achievements = [
   // {
@@ -74,7 +73,7 @@ function AchievementCard({ achievement }) {
           {!hasMultipleImages ? (
             <div className="absolute inset-0">
               <img
-                src={achievement.images[0]}
+                src={encodeURI(achievement.images[0])}
                 alt={achievement.title}
                 className="object-cover object-center w-full h-full"
                 style={{ borderRadius: '1rem' }}
@@ -93,7 +92,7 @@ function AchievementCard({ achievement }) {
                   transition={{ duration: 0.7, ease: "easeInOut" }}
                 >
                   <img
-                    src={achievement.images[imgIndex]}
+                    src={encodeURI(achievement.images[imgIndex])}
                     alt={achievement.title}
                     className="object-cover object-center w-full h-full"
                     style={{ borderRadius: '1rem' }}
@@ -139,16 +138,13 @@ function AchievementCard({ achievement }) {
   );
 }
 
-const DURATION = 80
+const CAROUSEL_DURATION_MS = 28000
 
 export default function Achievements() {
-  const carouselDuration =
-    DURATION * 1000 * (achievements.length / projects.length)
-
   return (
     <ScrollSection
       id="achievements"
-      className="relative flex flex-col items-center justify-center px-4 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden"
+      className="relative flex flex-col items-center justify-center px-4 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black"
     >
       <RevealHeading className="w-full">
         <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -156,15 +152,13 @@ export default function Achievements() {
         </h2>
       </RevealHeading>
 
-      <Reveal>
-        <div className="relative w-full max-w-7xl py-8">
-          <InteractiveLoopSlider duration={carouselDuration} innerClassName="flex gap-6">
-            {achievements.map((achievement) => (
-              <AchievementCard key={achievement.title} achievement={achievement} />
-            ))}
-          </InteractiveLoopSlider>
-        </div>
-      </Reveal>
+      <div className="relative w-full max-w-7xl py-8 min-h-[380px]">
+        <InteractiveLoopSlider duration={CAROUSEL_DURATION_MS} innerClassName="flex gap-6">
+          {achievements.map((achievement) => (
+            <AchievementCard key={achievement.title} achievement={achievement} />
+          ))}
+        </InteractiveLoopSlider>
+      </div>
 
       <Reveal>
       <div className="mt-6 flex gap-2 items-center text-cyan-400/60 text-sm font-medium">

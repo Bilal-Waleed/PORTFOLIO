@@ -23,7 +23,7 @@ export default function InteractiveLoopSlider({
   const isVisibleRef = useRef(true)
   const resumeTimerRef = useRef(null)
   const rafIdRef = useRef(null)
-  const dragStartRef = useRef({ x: 0, offset: 0 })
+  const dragStartRef = useRef({ x: 0, y: 0, offset: 0 })
   const activePointerIdRef = useRef(null)
   const direction = reverse ? 1 : -1
 
@@ -164,23 +164,31 @@ export default function InteractiveLoopSlider({
     isDraggingRef.current = false
     activePointerIdRef.current = e.pointerId
     if (dragMovedRef) dragMovedRef.current = false
-    pauseAuto()
-    dragStartRef.current = { x: e.clientX, offset: offsetRef.current }
+    dragStartRef.current = { x: e.clientX, y: e.clientY, offset: offsetRef.current }
   }
 
   const onPointerMove = (e) => {
     if (!isPointerDownRef.current || e.pointerId !== activePointerIdRef.current) return
 
-    const delta = e.clientX - dragStartRef.current.x
+    const deltaX = e.clientX - dragStartRef.current.x
+    const deltaY = e.clientY - dragStartRef.current.y
 
     if (!isDraggingRef.current) {
-      if (Math.abs(delta) <= DRAG_THRESHOLD) return
+      if (Math.abs(deltaX) <= DRAG_THRESHOLD && Math.abs(deltaY) <= DRAG_THRESHOLD) return
+      // Vertical scroll intent — let the browser handle it
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        isPointerDownRef.current = false
+        activePointerIdRef.current = null
+        return
+      }
       isDraggingRef.current = true
       if (dragMovedRef) dragMovedRef.current = true
+      pauseAuto()
       trackRef.current?.setPointerCapture(e.pointerId)
       trackRef.current?.classList.add('is-dragging')
     }
 
+    const delta = e.clientX - dragStartRef.current.x
     offsetRef.current = dragStartRef.current.offset + delta
     wrapOffset()
     applyTransform()
@@ -189,6 +197,7 @@ export default function InteractiveLoopSlider({
   const endDrag = (e) => {
     if (!isPointerDownRef.current || e.pointerId !== activePointerIdRef.current) return
 
+    const wasDragging = isDraggingRef.current
     isPointerDownRef.current = false
     activePointerIdRef.current = null
     isDraggingRef.current = false
@@ -197,7 +206,7 @@ export default function InteractiveLoopSlider({
       trackRef.current.releasePointerCapture(e.pointerId)
     }
     trackRef.current?.classList.remove('is-dragging')
-    scheduleResume()
+    if (wasDragging) scheduleResume()
   }
 
   return (
