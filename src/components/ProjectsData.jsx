@@ -53,19 +53,15 @@ export const projects = [
     fullImage: '/wp-rest-1-full.png',
   },
   {
-    title: 'Agency Website',
-    description: 'A full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
-    technologies: ['ReactJs', 'NodeJS', 'MUI', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
-    image: '/agency-web.png',
-    live: 'https://agency-web-client.vercel.app/',
-    github: 'https://github.com/Bilal-Waleed/Agency-web-client.git',
-  },
-  {
     title: 'Islambol - Umrah & Hajj Tour Listing Platform',
     description: 'Islambol - Umrah & Hajj Tour Listing Platform is a full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
-  technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    tagline: 'A tour listing platform for Umrah & Hajj packages with listings, search, and booking-ready flows.',
+    achievements:
+    'Developed the full-stack Next.js and MERN application with tour management, responsive UI, and production deployment for real users exploring pilgrimage packages.',
+    technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
     image: '/islambol.png',
-    live: 'https://islambol.com/'
+    live: 'https://islambol.com/',
+    featured: true,
   },
   {
     title: 'Social Media Web with Firebase',
@@ -78,25 +74,49 @@ export const projects = [
   {
     title: 'Student Cheat Sheet - AI Presentation Builder',
     description: 'Built an AI-powered presentation generation platform where users can create slides from prompts, edit content on an interactive canvas, and customize presentations in real time. Implemented PPTX/PDF export functionality with smooth slide editing and backend file processing for efficient presentation generation.',
+    tagline: 'An AI-powered presentation builder that turns prompts into editable slides with export to PPTX and PDF.',
+    achievements:
+    'Planned and built the MERN platform with prompt-to-slide generation, real-time canvas editing, file export pipelines, and backend processing for fast presentation creation.',
     technologies: ['ReactJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
     image: '/slides-agent.png',
     live: 'https://slides.studentcheatsheet.com/',
+    featured: true,
+  },
+  {
+    title: 'Agency Website',
+    description: 'A full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
+    tagline: 'A full-stack agency platform with admin panel, secure payments, and a modern responsive UI.',
+    achievements:
+      'Built the complete MERN stack application with an admin dashboard to manage services and content, integrated payment flows, and delivered a polished, mobile-first experience for clients.',
+    technologies: ['ReactJs', 'NodeJS', 'MUI', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    image: '/agency-web.png',
+    live: 'https://agency-web-client.vercel.app/',
+    github: 'https://github.com/Bilal-Waleed/Agency-web-client.git',
+    featured: true,
   },
   {
     title: 'HealthMate',
     description: 'HealthMate - Sehat ka Smart Dost | Frontend A bilingual (English + Roman Urdu) React-based health companion app that lets users upload medical reports, view AI-powered summaries, and track vitals all in one place.',
-    technologies: ['ReactJs', 'JavaScript', 'Tailwind', 'MongoDB'],
-    image: './healthmate.png',
+    tagline: 'A bilingual health companion to upload reports, view AI summaries, and track vitals in one place.',
+    achievements:
+      'Developed the React and MongoDB application with Roman Urdu + English UX, report uploads, AI summary views, and vitals tracking for a hackathon-ready health product.',
+    technologies: ['ReactJs', 'JavaScript', 'Tailwind', 'MongoDB', 'Vercel'],
+    image: '/healthmate.png',
     live: 'https://hackathon-client-one.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/Hackathon-Client.git',
+    featured: true,
   },
   {
     title: 'ZCRUM',
     description: 'ZCRUM - A complete project management SaaS like Jira manage teams, projects, and tasks with real-time updates and sprint planning.',
-    technologies: ['JavaScript', 'NextJs', 'NeonDB'],
+    tagline: 'A Jira-style project management SaaS for teams, tasks, and sprint planning with real-time updates.',
+    achievements:
+      'Built the Next.js SaaS with team and project workflows, task boards, sprint planning, and database-backed real-time collaboration features.',
+    technologies: ['NextJs','JavaScript', 'NeonDB', 'Vercel'],
     image: '/zcrum.png',
     live: 'https://zcrum-self.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/ZCRUM.git',
+    featured: true,
   },
   {
     title: 'Quiz App',
@@ -144,4 +164,8 @@ export const projects = [
   //   image: '/n8n.png',
   //   video: '/n8n-video.mp4',
   // },
-]
+];
+
+export const featuredProjects = projects.filter(
+  (p) => p.featured && p.live
+);

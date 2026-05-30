@@ -8,25 +8,35 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+import { useScrollAnimation } from "../context/ScrollAnimationContext";
 
-const navLinks = ["Home", "About", "Skills", "Projects", "Achievements", "Contact"];
+const navLinks = ["About", "Skills", "Projects", "Achievements", "Contact"];
 
-export default function Navbar() {
+export default function Navbar({ startAnimation = true }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { hideHeroForReplay, playHeroReplay } = useScrollAnimation();
 
   const handleSmoothScroll = (e, targetId) => {
     e.preventDefault();
     setMenuOpen(false);
     const targetElement = document.querySelector(`#${targetId}`);
-    if (targetElement) {
-      const headerOffset = 20;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    if (!targetElement) return;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
+    if (targetId === "home") {
+      hideHeroForReplay();
+    }
+
+    const headerOffset = 88;
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+
+    if (targetId === "home") {
+      setTimeout(() => playHeroReplay(), 480);
     }
   };
 
@@ -41,7 +51,12 @@ export default function Navbar() {
   };
 
   return (
-    <header className="navbar-fixed pt-4">
+    <motion.header
+      className="navbar-fixed pt-4"
+      initial={{ opacity: 0, y: -16 }}
+      animate={startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: -16 }}
+      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+    >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative flex items-center justify-between h-16">
         <div className="absolute inset-0 mx-2 sm:mx-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-md rounded-xl border border-white/10 shadow-lg" />
@@ -57,7 +72,7 @@ export default function Navbar() {
 
         <motion.a
           href="#home"
-          onClick={(e) => handleSmoothScroll(e, 'home')}
+          onClick={(e) => handleSmoothScroll(e, "home")}
           className="brand-name brand-name-link cursor-pointer select-none whitespace-nowrap"
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
@@ -97,7 +112,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Updated Social Links */}
         <div className="hidden md:flex items-center space-x-4 relative z-10">
           {[
             { href: "https://www.linkedin.com/in/bilal-waleed-2411172bb/", icon: FaLinkedin, label: "LinkedIn" },
@@ -189,6 +203,6 @@ export default function Navbar() {
           </motion.div>
         </motion.div>
       </nav>
-    </header>
+    </motion.header>
   );
 }

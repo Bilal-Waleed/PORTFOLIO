@@ -248,3 +248,7 @@ section {
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 8px #22d3ee) drop-shadow(0 0 2px #06b6d4);
+}

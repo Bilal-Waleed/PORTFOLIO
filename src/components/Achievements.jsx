@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaMedal } from 'react-icons/fa';
 import InteractiveLoopSlider from './InteractiveLoopSlider';
+import { ScrollSection, RevealHeading, Reveal } from './ScrollReveal';
 import { projects } from './ProjectsData.jsx';
 
 const achievements = [
-  {
-    title: "Saylani Mass IT Training Hackathon 2024",
-    description: "Participated in the Saylani Mass IT Training Hackathon 2024, collaborating on innovative Front-End development challenges to showcase coding skills and problem-solving abilities.",
-    images: ['/achieve1.png', '/achieve2.png', '/achieve3.png'],
-  },
+  // {
+  //   title: "Saylani Mass IT Training Hackathon 2024",
+  //   description: "Participated in the Saylani Mass IT Training Hackathon 2024, collaborating on innovative Front-End development challenges to showcase coding skills and problem-solving abilities.",
+  //   images: ['/achieve1.png', '/achieve2.png', '/achieve3.png'],
+  // },
   {
     title: "Agentic AI level 1 Developer Certificate",
     description: "Completed the Agentic AI level 1 Developer Certificate, working on real-world projects using RAG, Langchain, Crew AI, OpenAI, and other AI technologies.",
@@ -23,7 +24,7 @@ const achievements = [
   {
     title: "Saylani Mass IT Training Hackathon 2025",
     description: "Participated in the Saylani Mass IT Training Hackathon 2025, collaborating on innovative Full-Stack development challenges to showcase coding skills and problem-solving abilities.",
-    images: ['/achieve5 (3).png', '/healthmate.png', '/achieve5 (1).png'],
+    images: ['/achieve5 (3).png'],
   },
   {
     title: "CodSoft Web Development Internship",
@@ -37,13 +38,7 @@ const achievements = [
   }
 ];
 
-const cardVariants = {
-  initial: { opacity: 0, y: 40, scale: 0.96 },
-  animate: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, ease: "easeOut" } },
-  exit: { opacity: 0, y: -40, scale: 0.96, transition: { duration: 0.5, ease: "easeIn" } },
-};
-
-function AchievementCard({ achievement, index }) {
+function AchievementCard({ achievement }) {
   const [imgIndex, setImgIndex] = useState(0);
   const hasMultipleImages = achievement.images.length > 1;
 
@@ -57,15 +52,7 @@ function AchievementCard({ achievement, index }) {
   }, [imgIndex, hasMultipleImages, achievement.images.length]);
 
   return (
-    <motion.div
-      className="relative w-[320px] sm:w-[350px] flex-shrink-0"
-      variants={cardVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      custom={index}
-      transition={{ delay: index * 0.1 }} // Stagger effect
-    >
+    <div className="relative w-[320px] sm:w-[350px] flex-shrink-0">
       <div
         className="relative rounded-2xl overflow-hidden shadow-xl border-2 border-transparent group h-full flex flex-col"
         style={{
@@ -148,7 +135,7 @@ function AchievementCard({ achievement, index }) {
           <p className="text-gray-300 text-sm line-clamp-4">{achievement.description}</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -159,29 +146,27 @@ export default function Achievements() {
     DURATION * 1000 * (achievements.length / projects.length)
 
   return (
-    <motion.section
+    <ScrollSection
       id="achievements"
       className="relative flex flex-col items-center justify-center px-4 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden"
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true, amount: 0.1 }}
     >
-      <motion.h2
-        className="text-4xl sm:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-white"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0, transition: { duration: 0.7 } }}
-      >
-        <span className="bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">Achievements</span>
-      </motion.h2>
+      <RevealHeading className="w-full">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+          Achievements
+        </h2>
+      </RevealHeading>
 
-      <div className="relative w-full max-w-7xl py-8">
-        <InteractiveLoopSlider duration={carouselDuration} innerClassName="flex gap-6">
-          {achievements.map((achievement, idx) => (
-            <AchievementCard key={achievement.title} achievement={achievement} index={idx} />
-          ))}
-        </InteractiveLoopSlider>
-      </div>
+      <Reveal>
+        <div className="relative w-full max-w-7xl py-8">
+          <InteractiveLoopSlider duration={carouselDuration} innerClassName="flex gap-6">
+            {achievements.map((achievement) => (
+              <AchievementCard key={achievement.title} achievement={achievement} />
+            ))}
+          </InteractiveLoopSlider>
+        </div>
+      </Reveal>
 
+      <Reveal>
       <div className="mt-6 flex gap-2 items-center text-cyan-400/60 text-sm font-medium">
         <motion.span
           animate={{ x: [-5, 0, -5] }}
@@ -193,13 +178,7 @@ export default function Achievements() {
           transition={{ duration: 1.5, repeat: Infinity }}
         >→</motion.span>
       </div>
-
-      {/* Custom drop-shadow for medal */}
-      <style jsx global>{`
-        .drop-shadow-glow {
-          filter: drop-shadow(0 0 8px #22d3ee) drop-shadow(0 0 2px #06b6d4);
-        }
-      `}</style>
-    </motion.section>
+      </Reveal>
+    </ScrollSection>
   );
 }

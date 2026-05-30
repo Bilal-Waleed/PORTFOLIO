@@ -1,16 +1,17 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { ScrollSection, RevealHeading, Reveal } from './ScrollReveal'
 import { FaReact, FaNodeJs, FaGithub, FaExternalLinkAlt, FaHtml5, FaCss3 } from 'react-icons/fa'
 import {
   SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit,
   SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase,
-  SiTypescript, SiExpress, SiWordpress, SiShopify, SiN8N, SiWoocommerce, SiNeovim 
+  SiTypescript, SiExpress, SiWordpress, SiShopify, SiN8N, SiWoocommerce, SiNeovim
 } from 'react-icons/si'
 import { BsArrowUpRight } from 'react-icons/bs'
 import { useState, useRef } from 'react'
-import { projects } from './ProjectsData.jsx'
+import { projects, featuredProjects } from './ProjectsData.jsx'
 import InteractiveLoopSlider from './InteractiveLoopSlider'
+import FeaturedProject from './FeaturedProject'
 
-// --- Tech icons map ---
 const technologies = {
   'ReactJs': { icon: <FaReact className="text-[#61DAFB]" />, name: 'React' },
   'NodeJS': { icon: <FaNodeJs className="text-[#339933]" />, name: 'Node.js' },
@@ -42,7 +43,6 @@ const categories = [
   { label: 'MERN/Next.js', value: 'mern' },
   { label: 'Python', value: 'python' },
   { label: 'WordPress', value: 'wordpress' },
-  // { label: 'n8n', value: 'n8n' },
 ]
 
 const getProjectType = (project) => {
@@ -76,140 +76,165 @@ export default function Projects() {
       : 0
 
   return (
-    <motion.section
+    <ScrollSection
       id="projects"
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 sm:px-8 lg:px-12 py-16 bg-gradient-to-br from-black via-gray-900 to-black"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
+      className="relative min-h-screen flex flex-col px-6 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black"
     >
-      <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8">
-        My <span className="text-white">Projects</span>
-      </h2>
+      <RevealHeading className="w-full max-w-6xl mx-auto mb-12 sm:mb-16">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-200 text-left">
+          Projects I&apos;ve Worked On
+        </h2>
+      </RevealHeading>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-row flex-wrap justify-center gap-4 mb-8 max-w-4xl mx-auto">
-        {categories.map((cat) => (
-          <motion.button
-            key={cat.value}
-            onClick={() => setSelectedCategory(cat.value)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 border ${
-              selectedCategory === cat.value
-                ? 'bg-cyan-500 text-white border-cyan-500'
-                : 'bg-white/10 text-cyan-400 border-cyan-500/20 hover:bg-cyan-500/20'
-            }`}
-            whileTap={{ scale: 0.95 }}
-          >
-            {cat.label}
-          </motion.button>
+      <div className="w-full max-w-6xl mx-auto">
+        {featuredProjects.map((project, index) => (
+          <Reveal key={project.title} featured>
+            <FeaturedProject
+              project={project}
+              imageOnRight={index % 2 === 1}
+              technologies={technologies}
+            />
+          </Reveal>
         ))}
       </div>
 
-      {filteredProjects.length > 0 && (
-        <div className="relative w-full max-w-6xl py-10">
-          <InteractiveLoopSlider
-            key={selectedCategory}
-            duration={carouselDuration}
-            dragMovedRef={dragMovedRef}
-            innerClassName="flex items-stretch gap-8"
-            className="py-2"
-          >
-              {filteredProjects.map((project) => (
-              <motion.div
-                key={project.title}
-                className="relative z-0 w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] group transition-all duration-300 hover:z-10 hover:scale-[1.02] hover:border-cyan-400 cursor-pointer"
-                onPointerUp={(e) => {
-                  if (dragMovedRef.current) return
-                  if (e.pointerType === 'mouse' && e.button !== 0) return
-                  if (e.target.closest('a, button')) return
-                  setSelectedProject(project)
-                }}
+      <RevealHeading className="w-full max-w-6xl mx-auto mt-12 sm:mt-16 mb-8 sm:mb-10 text-center">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-200">
+          Other Projects
+        </h2>
+      </RevealHeading>
+
+      <Reveal className="w-full max-w-6xl mx-auto mb-8 sm:mb-10 flex justify-center">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
+            {categories.map((cat) => (
+              <motion.button
+                key={cat.value}
+                onClick={() => setSelectedCategory(cat.value)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 border ${
+                  selectedCategory === cat.value
+                    ? 'bg-cyan-500 text-white border-cyan-500'
+                    : 'bg-white/10 text-cyan-400 border-cyan-500/20 hover:bg-cyan-500/20'
+                }`}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="relative h-44 sm:h-52 overflow-hidden bg-zinc-950/90 flex items-center justify-center p-2">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="max-w-full max-h-full w-auto h-auto object-contain object-center"
-                  />
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/80 to-transparent" />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                    {project.title}
-                    <span className="text-cyan-400 inline-block transition-transform duration-300 group-hover:rotate-45">
-                      <BsArrowUpRight className="inline-block text-sm" />
-                    </span>
-                  </h3>
-                  <p className="text-gray-300 text-sm mb-3 line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.technologies.map((tech) => (
-                      <div
-                        key={tech}
-                        className="flex items-center gap-1 bg-cyan-950/30 px-2 py-0.5 rounded-full border border-cyan-500/20"
-                      >
-                        <span className="text-base">
-                          {technologies[tech].icon}
-                        </span>
-                        <span className="text-xs text-gray-300">
-                          {technologies[tech].name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {project.live && (
-                      <motion.a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
-                        whileTap={{ scale: 0.95 }}
-                        onPointerDown={(e) => e.stopPropagation()}
-                        onPointerUp={(e) => e.stopPropagation()}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <FaExternalLinkAlt className="text-xs" />
-                        Live
-                      </motion.a>
-                    )}
-                    {project.github && (
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-full text-sm font-medium border border-white/10 transition-colors duration-300"
-                        whileTap={{ scale: 0.95 }}
-                        onPointerDown={(e) => e.stopPropagation()}
-                        onPointerUp={(e) => e.stopPropagation()}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <FaGithub className="text-sm" />
-                        Code
-                      </motion.a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-              ))}
-          </InteractiveLoopSlider>
-        </div>
-      )}
+                {cat.label}
+              </motion.button>
+            ))}
+          </div>
+      </Reveal>
 
-      <div className="mt-6 flex gap-2 items-center text-cyan-400/60 text-sm font-medium">
-        <motion.span
-          animate={{ x: [-5, 0, -5] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >←</motion.span>
-        Auto-scrolling carousel
-        <motion.span
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >→</motion.span>
-      </div>
+      <Reveal className="w-full max-w-6xl mx-auto flex flex-col items-center">
+        {filteredProjects.length > 0 && (
+          <div className="relative w-full max-w-6xl py-6">
+            <InteractiveLoopSlider
+              key={selectedCategory}
+              duration={carouselDuration}
+              dragMovedRef={dragMovedRef}
+              innerClassName="flex items-stretch gap-8"
+              className="py-2"
+            >
+              {filteredProjects.map((project) => (
+                <motion.div
+                  key={project.title}
+                  className="relative z-0 w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] group transition-all duration-300 hover:z-10 hover:scale-[1.02] hover:border-cyan-400 cursor-pointer"
+                  onPointerUp={(e) => {
+                    if (dragMovedRef.current) return
+                    if (e.pointerType === 'mouse' && e.button !== 0) return
+                    if (e.target.closest('a, button')) return
+                    setSelectedProject(project)
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="relative h-44 sm:h-52 overflow-hidden bg-zinc-950/90 flex items-center justify-center p-2">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="max-w-full max-h-full w-auto h-auto object-contain object-center"
+                    />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/80 to-transparent" />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                      {project.title}
+                      <span className="text-cyan-400 inline-block transition-transform duration-300 group-hover:rotate-45">
+                        <BsArrowUpRight className="inline-block text-sm" />
+                      </span>
+                    </h3>
+                    <p className="text-gray-300 text-sm mb-3 line-clamp-2">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.technologies.map((tech) => (
+                        <div
+                          key={tech}
+                          className="flex items-center gap-1 bg-cyan-950/30 px-2 py-0.5 rounded-full border border-cyan-500/20"
+                        >
+                          <span className="text-base">
+                            {technologies[tech]?.icon}
+                          </span>
+                          <span className="text-xs text-gray-300">
+                            {technologies[tech]?.name ?? tech}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {project.live && (
+                        <motion.a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
+                          whileTap={{ scale: 0.95 }}
+                          onPointerDown={(e) => e.stopPropagation()}
+                          onPointerUp={(e) => e.stopPropagation()}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaExternalLinkAlt className="text-xs" />
+                          Live
+                        </motion.a>
+                      )}
+                      {project.github && (
+                        <motion.a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-full text-sm font-medium border border-white/10 transition-colors duration-300"
+                          whileTap={{ scale: 0.95 }}
+                          onPointerDown={(e) => e.stopPropagation()}
+                          onPointerUp={(e) => e.stopPropagation()}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaGithub className="text-sm" />
+                          Code
+                        </motion.a>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </InteractiveLoopSlider>
+          </div>
+        )}
+
+        <div className="mt-6 w-full flex gap-2 items-center justify-center text-center text-cyan-400/60 text-sm font-medium">
+          <motion.span
+            animate={{ x: [-5, 0, -5] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            ←
+          </motion.span>
+          Auto-scrolling carousel
+          <motion.span
+            animate={{ x: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            →
+          </motion.span>
+        </div>
+      </Reveal>
 
       <AnimatePresence>
         {selectedProject && (
@@ -253,15 +278,6 @@ export default function Projects() {
                       View Full Page
                     </motion.button>
                   )}
-                  {/* {getProjectType(selectedProject) === 'n8n' && selectedProject.video && (
-                    <motion.button
-                      className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-full"
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => setFullScreenMedia({ type: 'video', url: selectedProject.video })}
-                    >
-                      View Video
-                    </motion.button>
-                  )} */}
                 </div>
               </div>
 
@@ -275,8 +291,8 @@ export default function Projects() {
                         key={tech}
                         className="flex items-center gap-1 bg-cyan-950/30 px-3 py-1 rounded-full border border-cyan-500/20"
                       >
-                        <span className="text-lg">{technologies[tech].icon}</span>
-                        <span className="text-sm text-gray-300">{technologies[tech].name}</span>
+                        <span className="text-lg">{technologies[tech]?.icon}</span>
+                        <span className="text-sm text-gray-300">{technologies[tech]?.name ?? tech}</span>
                       </div>
                     ))}
                   </div>
@@ -345,6 +361,6 @@ export default function Projects() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.section>
+    </ScrollSection>
   )
 }

@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import InteractiveLoopSlider from './InteractiveLoopSlider'
+import { ScrollSection, RevealHeading, Reveal, StaggerGroup } from './ScrollReveal'
 import { FaPython, FaRobot, FaReact, FaNodeJs, FaGitAlt, FaFigma, FaJsSquare } from 'react-icons/fa'
-import { 
-  SiTailwindcss, SiMongodb, SiNextdotjs, SiBootstrap, SiAdobexd, 
+import {
+  SiTailwindcss, SiMongodb, SiNextdotjs, SiBootstrap, SiAdobexd,
   SiGooglecolab, SiStreamlit, SiFirebase, SiTypescript,
   SiWordpress, SiWoocommerce, SiShopify, SiN8N
 } from 'react-icons/si'
@@ -31,35 +32,18 @@ const technologies = [
   { name: 'n8n', icon: <SiN8N /> },
 ]
 
-
-const skillVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.3,
-    },
-  },
-}
-
-const skillItemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-}
-
 const SkillCard = ({ name, icon }) => {
   return (
     <motion.div
       className="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-xl border-2 border-cyan-500/10 hover:border-cyan-500/30 transition-all duration-300"
-      whileHover={{ 
+      whileHover={{
         scale: 1.02,
         boxShadow: "0 0 25px rgba(6, 182, 212, 0.2)",
       }}
     >
       <motion.div
         className="text-4xl text-cyan-400 mb-2"
-        whileHover={{ 
+        whileHover={{
           rotate: [0, -10, 10, 0],
           transition: { duration: 0.5 }
         }}
@@ -76,52 +60,40 @@ export default function Skills() {
   const row2 = technologies.slice(7, 14)
   const row3 = technologies.slice(14, 21)
 
+  const rows = [
+    { key: 'row1', duration: 25000, reverse: false, items: row1 },
+    { key: 'row2', duration: 30000, reverse: true, items: row2 },
+    { key: 'row3', duration: 20000, reverse: false, items: row3 },
+  ]
+
   return (
-    <motion.section
+    <ScrollSection
       id="skills"
       className="relative min-h-screen flex flex-col items-center justify-center px-6 sm:px-8 lg:px-12 pt-20 pb-24 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black"
-      variants={skillVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
     >
-      <motion.h2
-        className="text-4xl sm:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-16"
-        variants={skillItemVariants}
-      >
-        Tech <span className="text-white">Stack</span>
-      </motion.h2>
+      <RevealHeading className="w-full">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-16">
+          Tech <span className="text-white">Stack</span>
+        </h2>
+      </RevealHeading>
 
-      <div className="w-full max-w-5xl">
-        <motion.div 
-          className="relative w-full flex flex-col gap-4"
-          variants={skillItemVariants}
-        >
-          <InteractiveLoopSlider duration={25000} innerClassName="flex gap-4 px-4">
-            {row1.map((tech) => (
-              <div key={tech.name} className="flex-shrink-0 w-48">
-                <SkillCard {...tech} />
-              </div>
-            ))}
-          </InteractiveLoopSlider>
-
-          <InteractiveLoopSlider duration={30000} reverse innerClassName="flex gap-4 px-4">
-            {row2.map((tech) => (
-              <div key={tech.name} className="flex-shrink-0 w-48">
-                <SkillCard {...tech} />
-              </div>
-            ))}
-          </InteractiveLoopSlider>
-
-          <InteractiveLoopSlider duration={20000} innerClassName="flex gap-4 px-4">
-            {row3.map((tech) => (
-              <div key={tech.name} className="flex-shrink-0 w-48">
-                <SkillCard {...tech} />
-              </div>
-            ))}
-          </InteractiveLoopSlider>
-        </motion.div>
-      </div>
-    </motion.section>
+      <StaggerGroup className="w-full max-w-5xl flex flex-col gap-4">
+        {rows.map(({ key, duration, reverse, items }) => (
+          <Reveal key={key} className="w-full">
+            <InteractiveLoopSlider
+              duration={duration}
+              reverse={reverse}
+              innerClassName="flex gap-4 px-4"
+            >
+              {items.map((tech) => (
+                <div key={tech.name} className="flex-shrink-0 w-48">
+                  <SkillCard {...tech} />
+                </div>
+              ))}
+            </InteractiveLoopSlider>
+          </Reveal>
+        ))}
+      </StaggerGroup>
+    </ScrollSection>
   )
 }

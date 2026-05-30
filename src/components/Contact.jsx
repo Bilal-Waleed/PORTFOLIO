@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import emailjs from '@emailjs/browser';
-import { motion } from 'framer-motion';
+import { ScrollSection, RevealHeading, Reveal } from './ScrollReveal';
 import { TextField, Button, Alert, CircularProgress } from '@mui/material';
 
 const schema = yup.object().shape({
@@ -67,15 +67,12 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative flex flex-col items-center justify-center min-h-screen px-6 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          viewport={{ once: true }}
-        >
+    <ScrollSection id="contact" className="relative flex flex-col items-center justify-center min-h-screen px-6 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black">
+        <RevealHeading className="w-full container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12 text-cyan-400">Get In Touch</h2>
+        </RevealHeading>
+
+        <Reveal className="w-full container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -241,9 +238,8 @@ const Contact = () => {
               </Button>
             </form>
           </div>
-        </motion.div>
-      </div>
-    </section>
+        </Reveal>
+    </ScrollSection>
   );
 };
 
