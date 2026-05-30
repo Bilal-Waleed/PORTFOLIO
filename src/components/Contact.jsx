@@ -69,7 +69,12 @@ const Contact = () => {
   return (
     <ScrollSection id="contact" className="relative flex flex-col items-center justify-center min-h-screen px-6 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black">
         <RevealHeading className="w-full container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12 text-cyan-400">Get In Touch</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-12 text-slate-200">
+            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              Get
+            </span>
+            <span className="text-slate-200"> In Touch</span>
+          </h2>
         </RevealHeading>
 
         <Reveal className="w-full container mx-auto px-4">

@@ -38,6 +38,12 @@ const technologies = {
 
 const DURATION = 80
 
+const PROJECTS_SECTION_TITLE =
+  'text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-200'
+
+const HEADING_ACCENT_GRADIENT =
+  'bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'
+
 const categories = [
   { label: 'All', value: 'all' },
   { label: 'MERN/Next.js', value: 'mern' },
@@ -95,8 +101,9 @@ export default function Projects() {
       className="relative min-h-screen flex flex-col px-6 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black"
     >
       <RevealHeading className="w-full max-w-6xl mx-auto mb-12 sm:mb-16">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-200 text-left">
-          Projects I&apos;ve Worked On
+        <h2 className={`${PROJECTS_SECTION_TITLE} text-left`}>
+          <span className={HEADING_ACCENT_GRADIENT}>Projects</span>
+          {" I've Worked On"}
         </h2>
       </RevealHeading>
 
@@ -113,8 +120,9 @@ export default function Projects() {
       </div>
 
       <RevealHeading className="w-full max-w-6xl mx-auto mt-12 sm:mt-16 mb-8 sm:mb-10 text-center">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-200">
-          Other Projects
+        <h2 className={`${PROJECTS_SECTION_TITLE} text-center`}>
+          <span className={HEADING_ACCENT_GRADIENT}>Other</span>
+          {' Projects'}
         </h2>
       </RevealHeading>
 
@@ -150,7 +158,7 @@ export default function Projects() {
               {filteredProjects.map((project) => (
                 <motion.div
                   key={project.title}
-                  className="relative z-0 w-[280px] sm:w-[300px] flex-shrink-0 bg-[#000000]/90 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] group transition-all duration-300 hover:z-10 hover:scale-[1.02] hover:border-cyan-400 cursor-pointer"
+                  className="relative z-0 w-[280px] sm:w-[300px] flex-shrink-0 bg-[#112240]/95 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] group transition-all duration-300 hover:z-10 hover:scale-[1.02] hover:border-cyan-400 cursor-pointer"
                   onPointerUp={(e) => {
                     if (dragMovedRef.current) return
                     if (e.pointerType === 'mouse' && e.button !== 0) return
@@ -159,15 +167,14 @@ export default function Projects() {
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <div className="relative h-44 sm:h-52 overflow-hidden bg-zinc-950/90 flex items-center justify-center p-2">
+                  <div className="project-image-surface relative h-44 sm:h-52 overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.title}
                       loading="lazy"
                       decoding="async"
-                      className="max-w-full max-h-full w-auto h-auto object-contain object-center"
+                      className="w-full h-full object-cover object-top"
                     />
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/80 to-transparent" />
                   </div>
                   <div className="p-4">
                     <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
@@ -260,7 +267,7 @@ export default function Projects() {
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              className="relative bg-[#000000]/90 border-2 border-cyan-500/30 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.2)] max-w-4xl w-full mx-4 md:mx-0 flex flex-col md:flex-row"
+              className="relative bg-[#112240]/95 border-2 border-cyan-500/30 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.2)] max-w-4xl w-full mx-4 md:mx-0 flex flex-col md:flex-row"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
@@ -276,11 +283,11 @@ export default function Projects() {
                 ✕
               </motion.button>
 
-              <div className="relative w-full md:w-1/2 shrink-0 min-h-[220px] md:min-h-[320px] bg-zinc-950 flex items-center justify-center p-4 sm:p-5 overflow-hidden group">
+              <div className="project-image-surface relative w-full md:w-1/2 shrink-0 min-h-[220px] md:min-h-[320px] overflow-hidden group">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="max-w-full max-h-[200px] sm:max-h-[240px] md:max-h-[min(420px,65vh)] w-auto h-auto object-contain object-center"
+                  className="w-full h-full min-h-[220px] md:min-h-[320px] object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   {getProjectType(selectedProject) === 'wordpress' && selectedProject.fullImage && (

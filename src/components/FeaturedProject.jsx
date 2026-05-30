@@ -20,7 +20,7 @@ export default function FeaturedProject({ project, imageOnRight, technologies })
             className="group block h-full rounded-lg overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/10 transition-transform duration-300 hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
             aria-label={`Open ${project.title} live site`}
           >
-            <div className="relative w-full h-[240px] sm:h-[300px] lg:h-[360px] bg-[#0a192f] rounded-lg overflow-hidden">
+            <div className="project-image-surface relative w-full h-[240px] sm:h-[300px] lg:h-[360px] rounded-lg overflow-hidden">
               <img
                 src={project.image}
                 alt={project.title}

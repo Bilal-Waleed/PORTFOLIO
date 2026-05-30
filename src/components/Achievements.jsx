@@ -147,31 +147,35 @@ export default function Achievements() {
       className="relative flex flex-col items-center justify-center px-4 sm:px-8 lg:px-12 py-20 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black"
     >
       <RevealHeading className="w-full">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-16">
           Achievements
         </h2>
       </RevealHeading>
 
-      <div className="relative w-full max-w-7xl py-8 min-h-[380px]">
-        <InteractiveLoopSlider duration={CAROUSEL_DURATION_MS} innerClassName="flex gap-6">
-          {achievements.map((achievement) => (
-            <AchievementCard key={achievement.title} achievement={achievement} />
-          ))}
-        </InteractiveLoopSlider>
-      </div>
+      <Reveal className="w-full max-w-7xl flex flex-col items-center">
+        <div className="w-full py-4">
+          <InteractiveLoopSlider duration={CAROUSEL_DURATION_MS} innerClassName="flex gap-6">
+            {achievements.map((achievement) => (
+              <AchievementCard key={achievement.title} achievement={achievement} />
+            ))}
+          </InteractiveLoopSlider>
+        </div>
 
-      <Reveal>
-      <div className="mt-6 flex gap-2 items-center text-cyan-400/60 text-sm font-medium">
-        <motion.span
-          animate={{ x: [-5, 0, -5] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >←</motion.span>
-        Auto-scrolling carousel
-        <motion.span
-          animate={{ x: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >→</motion.span>
-      </div>
+        <div className="mt-6 flex gap-2 items-center justify-center text-cyan-400/60 text-sm font-medium">
+          <motion.span
+            animate={{ x: [-5, 0, -5] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            ←
+          </motion.span>
+          Auto-scrolling carousel
+          <motion.span
+            animate={{ x: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            →
+          </motion.span>
+        </div>
       </Reveal>
     </ScrollSection>
   );
