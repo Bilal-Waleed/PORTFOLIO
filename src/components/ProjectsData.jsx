@@ -53,6 +53,28 @@ export const projects = [
     fullImage: '/wp-rest-1-full.png',
   },
   {
+    title: 'TrioClear Aligner',
+    description: 'A responsive dental web app developed for a client, connecting patients and doctors through appointments, treatment information, and dedicated user journeys.',
+    tagline: 'A dentist web app for patients and doctors - bookings, treatment guidance, and aligner care in one place.',
+    achievements:
+    'Built separate patient and doctor experiences with appointment flows, treatment content, and a clean, trust-focused UI for TrioClear.',
+    technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    image: '/trioclear.png',
+    live: 'https://www.trioclear.com/',
+    featured: true,
+  },
+  {
+    title: 'Sociair - Super App for business',
+    description: 'A complete business super app developed for a client to manage orders, deliveries, payments, customer engagement, e-commerce, and analytics in one platform.',
+    tagline: 'Super app for your business - orders, deliveries, payments, and growth, all in one place.',
+    achievements:
+      'Developed core modules for order management, delivery tracking, payments, and business dashboards to help teams work smarter and scale seamlessly.',
+    technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    image: '/sociair.png',
+    live: 'https://sociair.com/',
+    featured: true,
+  },
+  {
     title: 'Islambol - Umrah & Hajj Tour Listing Platform',
     description: 'Islambol - Umrah & Hajj Tour Listing Platform is a full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
     tagline: 'A tour listing platform for Umrah & Hajj packages with listings, search, and booking-ready flows.',
@@ -70,6 +92,17 @@ export const projects = [
     image: '/social-media-web.png',
     live: 'https://bw-web.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/Complete-web-with-firebase.git',
+  },
+  {
+    title: 'Tokma - All in One local service App',
+    description: 'A full-stack local services platform developed for a client, covering rides, guidance, support, and safety across mobile and web.',
+    tagline: 'All-in-one local service app for rides, guidance, support, and safety - everything you need, right from your phone.',
+    achievements:
+      'Delivered the production MERN/Next.js app with service flows, user dashboards, and a responsive UI for on-the-go local assistance.',
+    technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    image: '/tokma.png',
+    live: 'https://tokma.ai/',
+    featured: true,
   },
   {
     title: 'Student Cheat Sheet - AI Presentation Builder',
@@ -104,6 +137,17 @@ export const projects = [
     image: '/healthmate.png',
     live: 'https://hackathon-client-one.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/Hackathon-Client.git',
+    featured: true,
+  },
+  {
+    title: 'Tutora Academy',
+    description: 'An online Quranic tutor academy developed for a client, featuring learning programs, qualified teacher profiles, and clear enrollment paths.',
+    tagline: 'Online Quranic tutor academy - learn, connect, and grow with qualified teachers.',
+    achievements:
+      'Designed and shipped a responsive academy platform with course showcases, tutor profiles, and enrollment flows for Tutora Online.',
+    technologies: ['JavaScript', 'HTML', 'Bootstrap', 'Vercel'],
+    image: '/tutoracademy.png',
+    live: 'https://www.tutoraonline.com/',
     featured: true,
   },
   {

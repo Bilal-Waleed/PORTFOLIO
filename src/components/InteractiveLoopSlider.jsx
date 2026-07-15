@@ -20,6 +20,7 @@ export default function InteractiveLoopSlider({
   const isPausedRef = useRef(false)
   const isDraggingRef = useRef(false)
   const isPointerDownRef = useRef(false)
+  const isHoverRef = useRef(false)
   const isVisibleRef = useRef(true)
   const resumeTimerRef = useRef(null)
   const rafIdRef = useRef(null)
@@ -102,6 +103,8 @@ export default function InteractiveLoopSlider({
   const scheduleResume = useCallback(() => {
     clearResumeTimer()
     resumeTimerRef.current = setTimeout(() => {
+      // Still hovering or interacting — stay paused; resume gets rescheduled on leave/release
+      if (isHoverRef.current || isDraggingRef.current || isPointerDownRef.current) return
       isPausedRef.current = false
       startAnimation()
     }, RESUME_DELAY_MS)
@@ -164,7 +167,20 @@ export default function InteractiveLoopSlider({
     isDraggingRef.current = false
     activePointerIdRef.current = e.pointerId
     if (dragMovedRef) dragMovedRef.current = false
+    pauseAuto()
     dragStartRef.current = { x: e.clientX, y: e.clientY, offset: offsetRef.current }
+  }
+
+  const onPointerEnter = (e) => {
+    if (e.pointerType !== 'mouse') return
+    isHoverRef.current = true
+    pauseAuto()
+  }
+
+  const onPointerLeave = (e) => {
+    if (e.pointerType !== 'mouse') return
+    isHoverRef.current = false
+    scheduleResume()
   }
 
   const onPointerMove = (e) => {
@@ -179,11 +195,11 @@ export default function InteractiveLoopSlider({
       if (Math.abs(deltaY) > Math.abs(deltaX)) {
         isPointerDownRef.current = false
         activePointerIdRef.current = null
+        scheduleResume()
         return
       }
       isDraggingRef.current = true
       if (dragMovedRef) dragMovedRef.current = true
-      pauseAuto()
       trackRef.current?.setPointerCapture(e.pointerId)
       trackRef.current?.classList.add('is-dragging')
     }
@@ -197,7 +213,6 @@ export default function InteractiveLoopSlider({
   const endDrag = (e) => {
     if (!isPointerDownRef.current || e.pointerId !== activePointerIdRef.current) return
 
-    const wasDragging = isDraggingRef.current
     isPointerDownRef.current = false
     activePointerIdRef.current = null
     isDraggingRef.current = false
@@ -206,7 +221,7 @@ export default function InteractiveLoopSlider({
       trackRef.current.releasePointerCapture(e.pointerId)
     }
     trackRef.current?.classList.remove('is-dragging')
-    if (wasDragging) scheduleResume()
+    scheduleResume()
   }
 
   return (
@@ -217,6 +232,8 @@ export default function InteractiveLoopSlider({
       onPointerMove={onPointerMove}
       onPointerUp={endDrag}
       onPointerCancel={endDrag}
+      onPointerEnter={onPointerEnter}
+      onPointerLeave={onPointerLeave}
     >
       <div ref={innerRef} className={`tech-stack-inner ${innerClassName}`.trim()}>
         {items.map((child, idx) =>
