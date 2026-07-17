@@ -52,28 +52,28 @@ export const projects = [
     image: '/wp-rest-1.png',
     fullImage: '/wp-rest-1-full.png',
   },
-  {
-    title: 'TrioClear Aligner',
-    description: 'A responsive dental web app developed for a client, connecting patients and doctors through appointments, treatment information, and dedicated user journeys.',
-    tagline: 'A dentist web app for patients and doctors - bookings, treatment guidance, and aligner care in one place.',
-    achievements:
-    'Built separate patient and doctor experiences with appointment flows, treatment content, and a clean, trust-focused UI for TrioClear.',
-    technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
-    image: '/trioclear.png',
-    live: 'https://www.trioclear.com/',
-    featured: true,
-  },
-  {
-    title: 'Sociair - Super App for business',
-    description: 'A complete business super app developed for a client to manage orders, deliveries, payments, customer engagement, e-commerce, and analytics in one platform.',
-    tagline: 'Super app for your business - orders, deliveries, payments, and growth, all in one place.',
-    achievements:
-      'Developed core modules for order management, delivery tracking, payments, and business dashboards to help teams work smarter and scale seamlessly.',
-    technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
-    image: '/sociair.png',
-    live: 'https://sociair.com/',
-    featured: true,
-  },
+  // {
+  //   title: 'TrioClear Aligner',
+  //   description: 'A responsive dental web app developed for a client, connecting patients and doctors through appointments, treatment information, and dedicated user journeys.',
+  //   tagline: 'A dentist web app for patients and doctors - bookings, treatment guidance, and aligner care in one place.',
+  //   achievements:
+  //   'Built separate patient and doctor experiences with appointment flows, treatment content, and a clean, trust-focused UI for TrioClear.',
+  //   technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+  //   image: '/trioclear.png',
+  //   live: 'https://www.trioclear.com/',
+  //   featured: true,
+  // },
+  // {
+  //   title: 'Sociair - Super App for business',
+  //   description: 'A complete business super app developed for a client to manage orders, deliveries, payments, customer engagement, e-commerce, and analytics in one platform.',
+  //   tagline: 'Super app for your business - orders, deliveries, payments, and growth, all in one place.',
+  //   achievements:
+  //     'Developed core modules for order management, delivery tracking, payments, and business dashboards to help teams work smarter and scale seamlessly.',
+  //   technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+  //   image: '/sociair.png',
+  //   live: 'https://sociair.com/',
+  //   featured: true,
+  // },
   {
     title: 'Islambol - Umrah & Hajj Tour Listing Platform',
     description: 'Islambol - Umrah & Hajj Tour Listing Platform is a full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
