@@ -75,25 +75,6 @@ export const projects = [
   //   featured: true,
   // },
   {
-    title: 'Islambol - Umrah & Hajj Tour Listing Platform',
-    description: 'Islambol - Umrah & Hajj Tour Listing Platform is a full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
-    tagline: 'A tour listing platform for Umrah & Hajj packages with listings, search, and booking-ready flows.',
-    achievements:
-    'Developed the full-stack Next.js and MERN application with tour management, responsive UI, and production deployment for real users exploring pilgrimage packages.',
-    technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
-    image: '/islambol.png',
-    live: 'https://islambol.com/',
-    featured: true,
-  },
-  {
-    title: 'Social Media Web with Firebase',
-    description: 'A mini social media web app built using Firebase, HTML, CSS, and JavaScript. Users can create posts, send friend requests, chat, comment, and like posts. Fully responsive and many more features',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Firebase'],
-    image: '/social-media-web.png',
-    live: 'https://bw-web.vercel.app/',
-    github: 'https://github.com/Bilal-Waleed/Complete-web-with-firebase.git',
-  },
-  {
     title: 'Tokma - All in One local service App',
     description: 'A full-stack local services platform developed for a client, covering rides, guidance, support, and safety across mobile and web.',
     tagline: 'All-in-one local service app for rides, guidance, support, and safety - everything you need, right from your phone.',
@@ -105,14 +86,33 @@ export const projects = [
     featured: true,
   },
   {
+    title: 'Social Media Web with Firebase',
+    description: 'A mini social media web app built using Firebase, HTML, CSS, and JavaScript. Users can create posts, send friend requests, chat, comment, and like posts. Fully responsive and many more features',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Firebase'],
+    image: '/social-media-web.png',
+    live: 'https://bw-web.vercel.app/',
+    github: 'https://github.com/Bilal-Waleed/Complete-web-with-firebase.git',
+  },
+  {
     title: 'Student Cheat Sheet - AI Presentation Builder',
     description: 'Built an AI-powered presentation generation platform where users can create slides from prompts, edit content on an interactive canvas, and customize presentations in real time. Implemented PPTX/PDF export functionality with smooth slide editing and backend file processing for efficient presentation generation.',
     tagline: 'An AI-powered presentation builder that turns prompts into editable slides with export to PPTX and PDF.',
     achievements:
     'Planned and built the MERN platform with prompt-to-slide generation, real-time canvas editing, file export pipelines, and backend processing for fast presentation creation.',
     technologies: ['ReactJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
-    image: '/slides-agent.png',
+    image: '/slide-agent.png',
     live: 'https://slides.studentcheatsheet.com/',
+    featured: true,
+  },
+  {
+    title: 'Islambol - Umrah & Hajj Tour Listing Platform',
+    description: 'Islambol - Umrah & Hajj Tour Listing Platform is a full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
+    tagline: 'A tour listing platform for Umrah & Hajj packages with listings, search, and booking-ready flows.',
+    achievements:
+    'Developed the full-stack Next.js and MERN application with tour management, responsive UI, and production deployment for real users exploring pilgrimage packages.',
+    technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    image: '/islambol.png',
+    live: 'https://islambol.com/',
     featured: true,
   },
   {
