@@ -74,17 +74,17 @@ export const projects = [
   //   live: 'https://sociair.com/',
   //   featured: true,
   // },
-  {
-    title: 'Tokma - All in One local service App',
-    description: 'A full-stack local services platform developed for a client, covering rides, guidance, support, and safety across mobile and web.',
-    tagline: 'All-in-one local service app for rides, guidance, support, and safety - everything you need, right from your phone.',
-    achievements:
-      'Delivered the production MERN/Next.js app with service flows, user dashboards, and a responsive UI for on-the-go local assistance.',
-    technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
-    image: '/tokma.png',
-    live: 'https://tokma.ai/',
-    featured: true,
-  },
+  // {
+  //   title: 'Tokma - All in One local service App',
+  //   description: 'A full-stack local services platform developed for a client, covering rides, guidance, support, and safety across mobile and web.',
+  //   tagline: 'All-in-one local service app for rides, guidance, support, and safety - everything you need, right from your phone.',
+  //   achievements:
+  //     'Delivered the production Next.js app with service flows, user dashboards, and a responsive UI for on-the-go local assistance.',
+  //   technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+  //   image: '/tokma.png',
+  //   live: 'https://tokma.ai/',
+  //   featured: true,
+  // },
   {
     title: 'Social Media Web with Firebase',
     description: 'A mini social media web app built using Firebase, HTML, CSS, and JavaScript. Users can create posts, send friend requests, chat, comment, and like posts. Fully responsive and many more features',
