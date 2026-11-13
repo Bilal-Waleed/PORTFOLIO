@@ -25,7 +25,7 @@ export default defineConfig({
           react: ['react', 'react-dom'],
           motion: ['framer-motion'],
           particles: ['react-tsparticles', 'tsparticles-slim'],
-          forms: ['react-hook-form', '@hookform/resolvers', 'yup', '@emailjs/browser'],
+          forms: ['react-hook-form', '@hookform/resolvers', 'yup'],
         },
       },
     },

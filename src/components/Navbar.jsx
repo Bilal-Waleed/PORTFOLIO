@@ -15,7 +15,7 @@ const navLinks = ["About", "Services", "Projects", "Skills", "Achievements", "Co
 
 const WHATSAPP_URL = "https://wa.me/923292109096";
 const UPWORK_URL = "#";
-const FIVERR_URL = "#";
+const FIVERR_URL = "https://www.fiverr.com/bilal_waleed";
 
 const desktopSocials = [
   { href: "https://www.linkedin.com/in/bilal-waleed-2411172bb/", icon: FaLinkedin, label: "LinkedIn" },

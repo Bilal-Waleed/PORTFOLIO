@@ -2,18 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import emailjs from '@emailjs/browser';
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { SiUpwork, SiFiverr } from 'react-icons/si';
 import { ScrollSection, Reveal } from './ScrollReveal';
 
 const EMAIL = 'bilalwaleed01@gmail.com';
+const WEB3FORMS_ACCESS_KEY = 'cfe98c03-f7ab-4235-b9b9-29d2e3e3ac93';
 
 const CAL_BOOKING_URL = 'https://cal.com/bilal-waleed-vefcxb/intro-call';
 
 /** Replace these with your profile URLs when you have them. */
 const UPWORK_URL = '#';
-const FIVERR_URL = '#';
+const FIVERR_URL = 'https://www.fiverr.com/bilal_waleed';
 /** Digits only, with country code. Example: 923001234567 */
 const WHATSAPP_NUMBER = '923292109096';
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
@@ -190,25 +190,36 @@ export default function Contact() {
     const country = countryCodes.find((item) => item.id === data.countryId);
     const phone = `${country?.dial || ''} ${data.phone}`;
 
-    const emailParams = {
-      from_name: data.name,
-      from_email: data.email,
-      to_email: 'enemyop123456789@gmail.com',
-      reply_to: data.email,
-      name: data.name,
-      email: data.email,
-      phone,
-      message: `Project type: ${data.projectType}\nBudget: ${data.budget}\n\n${data.message}`,
-      project_source: 'Portfolio Contact Form Message',
-    };
-
     try {
-      await emailjs.send('service_5s9rybe', 'template_skdaqm7', emailParams, 'mJNe4k8LuOfkw5FHc');
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Portfolio inquiry — ${data.projectType}`,
+          from_name: data.name,
+          name: data.name,
+          email: data.email,
+          phone,
+          project_type: data.projectType,
+          budget: data.budget,
+          message: data.message,
+        }),
+      });
+
+      const result = await response.json();
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Form submission failed');
+      }
+
       setShowSuccess(true);
       reset({ countryId: 'PK' });
       setTimeout(() => setShowSuccess(false), 10000);
     } catch (error) {
-      console.error('Failed to send email:', error?.text || error);
+      console.error('Failed to send form:', error);
       setShowError(true);
       setTimeout(() => setShowError(false), 5000);
     } finally {
