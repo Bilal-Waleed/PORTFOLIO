@@ -1,6 +1,8 @@
 /** Shared motion variants */
 
 export const EASE_SMOOTH = [0.22, 1, 0.36, 1];
+/** Soft ease-out for hero entry — no bounce, no pop. */
+export const EASE_HERO = [0.16, 1, 0.3, 1];
 
 /** Per-item: triggers when element is well into viewport (not at section top). */
 export const itemInView = {
@@ -51,8 +53,8 @@ export const heroContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.04,
+      staggerChildren: 0.05,
+      delayChildren: 0,
     },
   },
 };
@@ -61,18 +63,18 @@ export const heroTextGroup = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.3,
-      delayChildren: 0.05,
+      staggerChildren: 0.08,
+      delayChildren: 0,
     },
   },
 };
 
 export const heroSlide = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.42, ease: EASE_SMOOTH },
+    transition: { duration: 0.58, ease: EASE_HERO },
   },
 };
 
@@ -80,16 +82,16 @@ export const heroFade = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.38, ease: EASE_SMOOTH },
+    transition: { duration: 0.52, ease: EASE_HERO },
   },
 };
 
 export const heroSlideReduced = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.35 } },
+  visible: { opacity: 1, transition: { duration: 0.3 } },
 };
 
 export const heroFadeReduced = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.35 } },
+  visible: { opacity: 1, transition: { duration: 0.3 } },
 };

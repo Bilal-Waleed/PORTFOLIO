@@ -78,9 +78,9 @@ export default function Navbar({ startAnimation = true }) {
   return (
     <motion.header
       className="navbar-fixed pt-3 sm:pt-4"
-      initial={{ opacity: 0, y: -16 }}
-      animate={startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: -16 }}
-      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: -8 }}
+      animate={startAnimation ? { opacity: 1, y: 0 } : { opacity: 0, y: -8 }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
     >
       <nav className="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative flex items-center justify-between h-14 sm:h-16">
         <div className="absolute inset-0 mx-1 sm:mx-2">
@@ -94,9 +94,9 @@ export default function Navbar({ startAnimation = true }) {
           href="#home"
           onClick={(e) => handleSmoothScroll(e, "home")}
           className="brand-name brand-name-link cursor-pointer select-none whitespace-nowrap"
-          initial={{ opacity: 0, x: -12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           whileHover="hover"
           whileTap="hover"
         >

@@ -166,7 +166,7 @@ export default function Hero({ startAnimation = true }) {
               <motion.h1
                 variants={slide}
                 aria-label="Developer"
-                className="hero-wordmark pointer-events-none absolute inset-x-0 top-[6%] w-full text-center font-[Syne,sans-serif] font-extrabold leading-none text-white/[0.055] select-none uppercase z-0 whitespace-nowrap"
+                className="hero-wordmark pointer-events-none absolute inset-x-0 top-[6%] w-full text-center font-[Syne,sans-serif] font-extrabold leading-none text-white/[0.1] select-none uppercase z-0 whitespace-nowrap"
               >
                 Developer
               </motion.h1>

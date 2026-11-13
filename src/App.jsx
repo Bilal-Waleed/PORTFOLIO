@@ -68,7 +68,9 @@ export default function App() {
 
         {showContent && (
           <div
-            className={`w-full relative ${animateNow ? 'opacity-100' : 'opacity-0'}`}
+            className={`w-full relative transition-opacity duration-500 ease-out ${
+              animateNow ? 'opacity-100' : 'opacity-0'
+            }`}
             aria-hidden={intro !== 'done'}
           >
             <Navbar startAnimation={animateNow} />

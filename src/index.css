@@ -34,11 +34,11 @@
 @media (max-width: 879px) {
   .brand-name-link {
     height: auto;
-    padding: 0.7rem 0.7.5rem 0.35rem;
+    padding: 0.9.5rem 0.75rem 0.2rem;
   }
 
   .brand-name-underline {
-    bottom: 0.28em;
+    bottom: 0.22em;
   }
 }
 
