@@ -1,20 +1,23 @@
+import { lazy, Suspense, useState, useEffect } from 'react';
+import { FaArrowUp } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import { FaArrowUp } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
-import CursorTrail from './components/CursorTrail';
-import { motion, AnimatePresence } from 'framer-motion';
 import LoadingScreen from './components/LoadingScreen';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Achievements from './components/Achievements';
-import Contact from './components/Contact';
 import { ScrollAnimationProvider } from './context/ScrollAnimationContext';
+
+const About = lazy(() => import('./components/About'));
+const Services = lazy(() => import('./components/Services'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const Achievements = lazy(() => import('./components/Achievements'));
+const Contact = lazy(() => import('./components/Contact'));
+
+let introFinished = false;
 
 export default function App() {
   const [showButton, setShowButton] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [intro, setIntro] = useState(introFinished ? 'done' : 'play');
 
   useEffect(() => {
     let ticking = false;
@@ -33,16 +36,20 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisited');
-    if (hasVisited) {
-      setLoading(false);
-    }
-  }, []);
+    if (introFinished) return undefined;
 
-  const finishLoading = () => {
-    setLoading(false);
-    localStorage.setItem('hasVisited', 'true');
-  };
+    // Shorter intro — content mounts underneath so first paint is ready.
+    const leaveTimer = setTimeout(() => setIntro('leave'), 700);
+    const doneTimer = setTimeout(() => {
+      introFinished = true;
+      setIntro('done');
+    }, 980);
+
+    return () => {
+      clearTimeout(leaveTimer);
+      clearTimeout(doneTimer);
+    };
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -51,42 +58,49 @@ export default function App() {
     });
   };
 
+  const showContent = intro === 'leave' || intro === 'done';
+  const animateNow = intro === 'done';
+
   return (
     <ScrollAnimationProvider>
       <div>
-        <CursorTrail />
-        <AnimatePresence mode="wait">
-          {loading ? (
-            <LoadingScreen finishLoading={finishLoading} key="loading" />
-          ) : (
-            <div key="content" className="w-full relative">
-              <Navbar startAnimation={!loading} />
-              <main>
-                <Hero startAnimation={!loading} />
+        {intro !== 'done' && <LoadingScreen leaving={intro === 'leave'} />}
+
+        {showContent && (
+          <div
+            className={`w-full relative ${animateNow ? 'opacity-100' : 'opacity-0'}`}
+            aria-hidden={intro !== 'done'}
+          >
+            <Navbar startAnimation={animateNow} />
+            <main>
+              <Hero startAnimation={animateNow} />
+              <Suspense fallback={null}>
                 <About />
-                <Skills />
+                <Services />
                 <Projects />
+                <Skills />
                 <Achievements />
                 <Contact />
-              </main>
+              </Suspense>
+            </main>
 
-              <AnimatePresence>
-                {showButton && (
-                  <motion.button
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.5 }}
-                    onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 bg-cyan-400 text-black p-3 rounded-full shadow-lg hover:bg-cyan-500 transition-all duration-300 focus:outline-none z-50"
-                    aria-label="Scroll to top"
-                  >
-                    <FaArrowUp className="text-xl" />
-                  </motion.button>
-                )}
-              </AnimatePresence>
-            </div>
-          )}
-        </AnimatePresence>
+            <AnimatePresence>
+              {showButton && (
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.25 }}
+                  onClick={scrollToTop}
+                  className="fixed bottom-8 right-8 bg-cyan-400 text-black p-3 rounded-full shadow-lg hover:bg-cyan-500 transition-all duration-300 focus:outline-none z-50"
+                  aria-label="Scroll to top"
+                >
+                  <FaArrowUp className="text-xl" />
+                </motion.button>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
       </div>
     </ScrollAnimationProvider>
   );

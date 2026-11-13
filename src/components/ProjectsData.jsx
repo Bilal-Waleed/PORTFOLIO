@@ -1,7 +1,7 @@
 export const projects = [
  {
     title: 'Growth Mindset Mastery',
-    description: 'An interactive Growth Mindset Mastery app built with Python and Streamlit. It offers motivational content, self-assessment tools, and habit tracking to boost personal development',
+    description: 'A Python and Streamlit app with mindset lessons, self-checks, and habit tracking so people can practice better habits every day.',
     technologies: ['Python', 'Streamlit'],
     image: '/growth-mindset.png',
     live: 'https://growth-mindset-bw.streamlit.app/',
@@ -9,7 +9,7 @@ export const projects = [
   },
   {
     title: 'Personal Library Manager',
-    description: 'A digital Personal Library system developed using Python and Streamlit. Users can add, search, and manage their book collection with a clean and user-friendly interface.',
+    description: 'A Streamlit library app to add books, search the shelf, and manage a personal collection from one clean and simple screen.',
     technologies: ['Python', 'Streamlit'],
     image: '/library.png',
     live: 'https://personal-library-bw.streamlit.app/',
@@ -17,21 +17,21 @@ export const projects = [
   },
   {
     title: 'Realand Real Estate Website',
-    description: 'I created a modern and professional Realand Real Estate Website designed to help agencies and property dealers showcase their listings in the best possible way. The website is fully responsive, fast-loading, and SEO-friendly, making it easy for buyers and investors to explore properties on any device. With features like property listings, detailed descriptions, images, and contact forms, the website gives clients a seamless experience to find their dream property. For real estate businesses, having a website is essential to build trust, generate leads, and stand out from competitors in today’s digital market.',
+    description: 'A responsive real estate site for property listings, photos, and details, so buyers can inquire about a home on any device.',
     technologies: ['WordPress'],
     image: '/wp-real-estate.png',
     fullImage: '/wp-real-estate-full.png',
   },
   {
     title: 'Stradale Cafe Website',
-    description: 'This project involved designing a Café Website that reflects a warm, inviting, and modern style. The website features digital menus, café specialties, gallery images, and location maps, making it easier for customers to explore and visit. In the food and beverage industry, having a professional website is essential for visibility. It allows cafés to showcase their ambiance, attract local customers, and provide updates on new offers or events. A website like this helps transform a café into a recognized brand in its area.',
+    description: 'A café website with digital menus, a photo gallery, and location details so guests can plan a visit before they arrive.',
     technologies: ['WordPress'],
     image: '/wp-cafe.png',
     fullImage: '/wp-cafe-full.png',
   },
   {
     title: 'Salt-n-Pepper-web',
-    description: 'Developed a responsive website for Salt n Pepper featuring a dynamic carousel, franchise listings, and social feeds. Crafted using HTML, CSS, and Bootstrap for a modern, user-friendly experience',
+    description: 'A responsive Salt n Pepper site with a homepage carousel, franchise listings, and social feeds for a modern brand feel.',
     technologies: ['HTML', 'CSS', 'Bootstrap'],
     image: '/saltnpepper.png',
     live: 'https://saltnpepper-bw.netlify.app/',
@@ -39,7 +39,7 @@ export const projects = [
   },
   {
     title: 'Tomato.',
-    description: 'Tomato is a sleek food delivery web app built with React.js and CSS. It offers a user-friendly interface to browse, select, and order food quickly and efficiently',
+    description: 'A React food delivery app to browse dishes, choose a meal, and place an order quickly from a phone or desktop.',
     technologies: ['ReactJs', 'Tailwind', 'CSS', 'JavaScript'],
     image: '/tomato.png',
     live: 'https://tomato-food-delivery-app-nine.vercel.app/',
@@ -47,7 +47,7 @@ export const projects = [
   },
   {
     title: 'Modern Restaurant Website',
-    description: 'I designed and developed a fully responsive restaurant website using WordPress and Elementor with a strong focus on speed, design, and user experience. The website is optimized for fast reloading and works seamlessly across all devices, including mobile, tablet, and desktop. The purpose of this project was to help restaurant businesses establish a strong digital presence and attract more customers through an engaging online experience. By creating a visually appealing and easy-to-navigate platform, the website makes it simple for customers to explore offerings and connect with the business.',
+    description: 'A fast restaurant website so guests can browse the menu, check offers, and contact the business without extra steps.',
     technologies: ['WordPress'],
     image: '/wp-rest-1.png',
     fullImage: '/wp-rest-1-full.png',
@@ -87,7 +87,7 @@ export const projects = [
   // },
   {
     title: 'Social Media Web with Firebase',
-    description: 'A mini social media web app built using Firebase, HTML, CSS, and JavaScript. Users can create posts, send friend requests, chat, comment, and like posts. Fully responsive and many more features',
+    description: 'A Firebase social app where people can post, send friend requests, chat, comment, and like updates on any screen.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'Firebase'],
     image: '/social-media-web.png',
     live: 'https://bw-web.vercel.app/',
@@ -95,7 +95,7 @@ export const projects = [
   },
   {
     title: 'Student Cheat Sheet - AI Presentation Builder',
-    description: 'Built an AI-powered presentation generation platform where users can create slides from prompts, edit content on an interactive canvas, and customize presentations in real time. Implemented PPTX/PDF export functionality with smooth slide editing and backend file processing for efficient presentation generation.',
+    description: 'An AI tool that turns a written prompt into editable slides, then lets you export the finished deck as PPTX or PDF.',
     tagline: 'An AI-powered presentation builder that turns prompts into editable slides with export to PPTX and PDF.',
     achievements:
     'Planned and built the MERN platform with prompt-to-slide generation, real-time canvas editing, file export pipelines, and backend processing for fast presentation creation.',
@@ -106,7 +106,7 @@ export const projects = [
   },
   {
     title: 'Islambol - Umrah & Hajj Tour Listing Platform',
-    description: 'Islambol - Umrah & Hajj Tour Listing Platform is a full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
+    description: 'A tour platform for Umrah and Hajj packages, with package listings, admin tools, and secure payments for bookings.',
     tagline: 'A tour listing platform for Umrah & Hajj packages with listings, search, and booking-ready flows.',
     achievements:
     'Developed the full-stack Next.js and MERN application with tour management, responsive UI, and production deployment for real users exploring pilgrimage packages.',
@@ -117,7 +117,7 @@ export const projects = [
   },
   {
     title: 'Agency Website',
-    description: 'A full-stack MERN agency website with a modern UI, featuring an admin panel to manage content and services, Integrated secure payment methods and fully responsive design',
+    description: 'A MERN agency website with an admin panel, service pages, and secure payments so clients can manage the site.',
     tagline: 'A full-stack agency platform with admin panel, secure payments, and a modern responsive UI.',
     achievements:
       'Built the complete MERN stack application with an admin dashboard to manage services and content, integrated payment flows, and delivered a polished, mobile-first experience for clients.',
@@ -129,7 +129,7 @@ export const projects = [
   },
   {
     title: 'HealthMate',
-    description: 'HealthMate - Sehat ka Smart Dost | Frontend A bilingual (English + Roman Urdu) React-based health companion app that lets users upload medical reports, view AI-powered summaries, and track vitals all in one place.',
+    description: 'A bilingual health app to upload medical reports, read AI summaries, and track daily vitals in one place.',
     tagline: 'A bilingual health companion to upload reports, view AI summaries, and track vitals in one place.',
     achievements:
       'Developed the React and MongoDB application with Roman Urdu + English UX, report uploads, AI summary views, and vitals tracking for a hackathon-ready health product.',
@@ -141,7 +141,7 @@ export const projects = [
   },
   {
     title: 'Tutora Academy',
-    description: 'An online Quranic tutor academy developed for a client, featuring learning programs, qualified teacher profiles, and clear enrollment paths.',
+    description: 'An online Quran academy with learning programs, tutor profiles, and a clear path for new students to enroll.',
     tagline: 'Online Quranic tutor academy - learn, connect, and grow with qualified teachers.',
     achievements:
       'Designed and shipped a responsive academy platform with course showcases, tutor profiles, and enrollment flows for Tutora Online.',
@@ -152,7 +152,7 @@ export const projects = [
   },
   {
     title: 'ZCRUM',
-    description: 'ZCRUM - A complete project management SaaS like Jira manage teams, projects, and tasks with real-time updates and sprint planning.',
+    description: 'A Jira-style SaaS where teams manage projects, tasks, and sprints, with updates that stay in sync in real time.',
     tagline: 'A Jira-style project management SaaS for teams, tasks, and sprint planning with real-time updates.',
     achievements:
       'Built the Next.js SaaS with team and project workflows, task boards, sprint planning, and database-backed real-time collaboration features.',
@@ -164,7 +164,7 @@ export const projects = [
   },
   {
     title: 'Quiz App',
-    description: 'A simple quiz app built using HTML, CSS, and JavaScript. Users can answer questions and see their scores. Fully responsive and many more features',
+    description: 'A responsive quiz app where users answer each question and see their final score as soon as the quiz ends.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     image: '/quiz-app.png',
     live: 'https://bilal-waleed.github.io/Quiz-App/',
@@ -172,14 +172,14 @@ export const projects = [
   },
   {
     title: 'Dentlab Dental Website',
-    description: 'This project was built for a Dentlab Dental Clinic, focusing on a clean, professional, and trustworthy design. The website highlights services, doctor profiles, appointment booking, and patient testimonials, ensuring that new patients can easily connect with the clinic. In healthcare, first impressions matter and a website helps create credibility. By providing all the important details online, dental practices can gain patient trust, simplify appointment booking, and grow their client base.',
+    description: 'A clinic website with services, doctor profiles, appointment booking, and patient reviews for new visitors.',
     technologies: ['WordPress'],
     image: '/wp-dentist-1-dentlab.png',
     fullImage: '/wp-dentlab-full.png',
   },
   {
     title: 'Cryptex Web Clone',
-    description: 'A fully responsive Cryptex website clone built with HTML, CSS, and JavaScript. It replicates the sleek design and layout of the original for a modern crypto platform look.',
+    description: 'A responsive crypto website clone that follows the original layout, spacing, and visual style across devices.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     image: '/cryptex-web.png',
     live: 'https://bilal-waleed.github.io/Cryptex-Web-Clone/',
@@ -187,7 +187,7 @@ export const projects = [
   },
   {
     title: 'Quantum Vault',
-    description: 'A secure data encryption system built using Python and Streamlit. It allows users to encrypt and decrypt sensitive information through a simple and interactive web interface.',
+    description: 'A Streamlit tool that lets you encrypt and decrypt sensitive data through a simple form in the browser.',
     technologies: ['Python', 'Streamlit'],
     image: '/Quantum.png',
     live: 'https://data-encrypted-system.streamlit.app/',
@@ -195,7 +195,7 @@ export const projects = [
   },
   {
     title: 'Finovate Financial Website',
-    description: 'I developed a Finovate Financial Services Website aimed at professionals and firms offering accounting, investment, and advisory services. The website features a modern corporate design, service sections, client testimonials, and a contact portal for easy communication.For financial businesses, trust and professionalism are key. A website not only represents credibility but also helps attract new clients by showcasing services, expertise, and success stories. In a competitive market, this kind of online presence is vital for growth and client trust.',
+    description: 'A finance website for services, client stories, and a contact form that firms can use to hear from new clients.',
     technologies: ['WordPress'],
     image: '/wp-finovate.png',
     fullImage: '/wp-finovate-full.png',

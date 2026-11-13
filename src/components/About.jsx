@@ -1,117 +1,72 @@
-import { motion } from 'framer-motion';
-import { FaGraduationCap, FaLaptopCode, FaSchool } from 'react-icons/fa';
-import { ScrollSection, RevealHeading, Reveal, StaggerGroup } from './ScrollReveal';
-
-const cards = [
-  {
-    icon: <FaSchool />,
-    title: 'University of Karachi',
-    subtitle: "I'm doing bachelor's in software engineering from UBIT",
-    details: ' 2026 - Present',
-  },
-  {
-    icon: <FaLaptopCode />,
-    title: 'Cloud Applied Generative AI Engineer',
-    subtitle: 'Generative AI Engineer from PIAIC',
-    details: ' 2024 - Present',
-  },
-  {
-    icon: <FaGraduationCap />,
-    title: 'Web and App Development',
-    subtitle: 'MERN-Stack & Next.js Development from SMIT ',
-    details: ' 2024 - 2025',
-  },
-];
-
-const cardVariants = {
-  initial: {
-    scale: 1,
-    y: 0,
-    boxShadow: "0 4px 24px 0 rgba(6,182,212,0.10)",
-  },
-  hover: {
-    scale: 1.04,
-    y: -8,
-    transition: { duration: 0.33, ease: "easeOut" }
-  },
-  float: {
-    y: [0, -6, 0, 6, 0],
-    transition: {
-      repeat: Infinity,
-      duration: 5,
-      ease: "easeInOut"
-    }
-  }
-};
-
-const iconVariants = {
-  initial: { scale: 1, filter: 'drop-shadow(0 0 0 #22d3ee)' },
-  hover: {
-    scale: 1.19,
-    filter: 'drop-shadow(0 0 12px #22d3ee)',
-    transition: { duration: 0.38, ease: "easeInOut" }
-  }
-};
+import { ScrollSection, RevealHeading, Reveal } from './ScrollReveal';
 
 export default function About() {
   return (
     <ScrollSection
       id="about"
-      className="relative flex flex-col items-center justify-center min-h-screen text-white px-6 sm:px-8 lg:px-12 pt-20 pb-24 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black"
+      className="relative text-white pt-20 pb-24 scroll-mt-24 bg-gradient-to-br from-black via-gray-900 to-black"
     >
       <RevealHeading className="w-full">
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">
+        <h2 className="text-4xl sm:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-16">
           About <span className="text-white">Me</span>
         </h2>
       </RevealHeading>
 
-      <Reveal className="w-full">
-        <p className="max-w-4xl mx-auto text-center text-gray-300 text-lg sm:text-xl mb-16 font-light tracking-wide leading-relaxed">
-          I am Bilal, a passionate MERN-Stack Developer, Next.js developer or AI web developer and SaaS website developer or exploring generative AI. I thrive on building scalable web applications and exploring the latest technologies.
-        </p>
-      </Reveal>
-
-      <StaggerGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-4xl">
-      {cards.map((card) => (
-        <Reveal key={card.title}>
-            <motion.div
-              className="relative group cursor-pointer overflow-hidden rounded-2xl border-2 border-transparent px-7 py-8 flex flex-col items-center justify-center text-center transition-all duration-300 bg-gradient-to-br from-cyan-900/20 to-blue-900/10 backdrop-blur-xl h-full"
-              variants={cardVariants}
-              initial="initial"
-              whileHover="hover"
-              animate="float"
-            >
-              <span
-                className="pointer-events-none absolute inset-0 z-10 rounded-2xl border-2 border-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{
-                  boxShadow: '0 0 24px 0 #22d3ee88, 0 0 0 4px #22d3ee22',
-                  borderImage: 'linear-gradient(100deg, #06b6d4 0%, #3b82f6 100%) 1'
-                }}
-              />
-              <span className="absolute inset-0 pointer-events-none z-0 animate-shimmer opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
-
-              <motion.div
-                variants={iconVariants}
-                className="relative z-20 flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-gradient-to-br from-cyan-500/30 to-blue-500/20 shadow-lg group-hover:shadow-cyan-400/30 transition-all duration-300"
-              >
-                <span className="text-cyan-300 text-3xl group-hover:text-cyan-100 transition-all duration-300">
-                  {card.icon}
-                </span>
-              </motion.div>
-
-              <h3 className="text-xl font-bold text-white mb-1 relative z-20 drop-shadow">
-                {card.title}
-              </h3>
-              <p className="text-sm text-gray-300 mb-1.5 relative z-20 font-medium">
-                {card.subtitle}
-              </p>
-              <p className="text-xs font-semibold text-cyan-400 relative z-20">
-                {card.details}
-              </p>
-            </motion.div>
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-20 items-start">
+        <Reveal className="w-full">
+          <p className="text-[11px] sm:text-xs tracking-[0.22em] uppercase text-cyan-400/80 font-medium mb-4">
+            A developer who thinks beyond the code
+          </p>
+          <h3 className="mt-6 sm:mt-8 font-[Inter,sans-serif] font-black uppercase leading-[0.92] tracking-[-0.04em] text-white text-[clamp(3rem,5.6vw,4.85rem)]">
+            <span className="block whitespace-nowrap">More than</span>
+            <span className="mt-4 sm:mt-5 block whitespace-nowrap">
+              just{' '}
+              <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                code.
+              </span>
+            </span>
+          </h3>
         </Reveal>
-      ))}
-      </StaggerGroup>
+
+        <Reveal className="w-full">
+          <div className="max-w-xl lg:ml-auto">
+            <p className="text-xl sm:text-2xl font-semibold text-white leading-snug mb-6">
+              I&apos;m Bilal, a MERN and Next.js developer who builds SaaS products, web apps, and AI tools that teams can run day to day.
+            </p>
+            <p className="text-gray-400 text-base sm:text-[17px] leading-relaxed mb-5">
+              Most of my work is full-stack: React, Next.js, Node, and MongoDB, plus AI features and n8n workflows. I build products like SaaS platforms, CRMs, ERPs, and POS systems - the tools a business actually operates on.
+            </p>
+            <p className="text-gray-400 text-base sm:text-[17px] leading-relaxed mb-8">
+              I keep the scope clear, build what the project needs, and leave it responsive, fast, and easy to hand over.
+            </p>
+            <a
+              href="#contact"
+              className="inline-block text-cyan-400 font-medium underline underline-offset-4 decoration-cyan-400/70 hover:text-cyan-300 transition-colors"
+            >
+              Let&apos;s build your project
+            </a>
+          </div>
+        </Reveal>
+      </div>
+
+      <Reveal className="w-full max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-16">
+        <a
+          href="#contact"
+          className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 border border-white/10 bg-[#0b1220] px-6 sm:px-8 py-6 sm:py-7 transition-colors duration-300 hover:border-cyan-400/50 hover:bg-cyan-400/[0.06]"
+        >
+          <p className="font-[Inter,sans-serif] text-4xl sm:text-5xl font-black tracking-tight text-white shrink-0">
+            BW<span className="text-cyan-400">.</span>
+          </p>
+          <div>
+            <p className="text-lg sm:text-xl font-semibold text-white">
+              Built for businesses that need it to work.
+            </p>
+            <p className="mt-1 text-base sm:text-lg text-gray-400">
+              Clear products. Fast delivery. Something your clients will trust.
+            </p>
+          </div>
+        </a>
+      </Reveal>
     </ScrollSection>
   );
 }

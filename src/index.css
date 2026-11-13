@@ -3,7 +3,7 @@
 :root {
   --background: #000000;
   --foreground: #ededed;
-  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
   --font-brand: agustina, sans-serif;
   --color-brand: rgb(56, 189, 248);
@@ -11,7 +11,7 @@
 
 .brand-name {
   font-family: var(--font-brand);
-  font-size: 24px;
+  font-size: clamp(18px, 2.2vw, 22px);
   font-weight: 400;
   line-height: 1;
   color: var(--color-brand);
@@ -24,21 +24,40 @@
   align-items: center;
   align-self: stretch;
   height: 4rem;
-  padding:  1rem 0.75rem 0 0.75rem;
+  padding: 1rem 0.75rem 0 0.75rem;
   line-height: 1.15;
   color: var(--color-brand);
-  transform: translateY(3px);
+}
+
+/* Mobile / tablet only — keep name + underline in vertical mid.
+   Large screens keep the manual padding above. */
+@media (max-width: 879px) {
+  .brand-name-link {
+    height: auto;
+    padding: 0.7rem 0.7.5rem 0.35rem;
+  }
+
+  .brand-name-underline {
+    bottom: 0.28em;
+  }
 }
 
 .brand-name-underline {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 0.75rem;
+  right: 0.75rem;
   height: 1.5px;
-  bottom: 0.6em;
+  bottom: 0.55em;
   background-color: var(--color-brand);
   transform-origin: center;
   pointer-events: none;
+}
+
+/* Touch devices: show brand underline while pressing */
+@media (hover: none) {
+  .brand-name-link:active .brand-name-underline {
+    transform: scaleX(1) !important;
+  }
 }
 
 .brand-name-lg {
@@ -81,6 +100,13 @@ section {
   position: relative;
   min-height: 100vh;
   isolation: isolate;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
+
+section#home {
+  content-visibility: visible;
+  contain-intrinsic-size: auto;
 }
 
 
@@ -91,23 +117,202 @@ section {
   left: 0;
   right: 0;
   z-index: 50;
-  transition: all 0.3s ease;
+}
+
+.navbar-glass {
+  background: rgba(0, 0, 0, 0.62);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.navbar-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.45), transparent);
+  transform: translate3d(-100%, 0, 0);
+  animation: navbarShine 4.5s linear infinite;
+}
+
+@keyframes navbarShine {
+  to { transform: translate3d(100%, 0, 0); }
+}
+
+.process-row {
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-row > * {
+  position: relative;
+  z-index: 1;
+}
+
+.process-row::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: -0.85rem;
+  right: 0;
+  background-color: rgba(34, 211, 238, 0.1);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.process-row:hover {
+  transform: translate3d(0.85rem, 0, 0);
+}
+
+.process-row:hover::before {
+  opacity: 1;
+}
+
+.loading-bar {
+  width: 0;
+  animation: loadBar 0.6s ease-out forwards;
+}
+
+@keyframes loadBar {
+  to { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar-shine,
+  .loading-bar {
+    animation: none;
+  }
+  .loading-bar { width: 100%; }
+  .process-row { transition: none; }
+}
+
+.service-card {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 1023px) {
+  .service-card:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  .service-card:hover .service-icon {
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #67e8f9;
+  }
+
+  .service-card:hover .service-num {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .service-card:hover .service-copy {
+    color: #9ca3af;
+  }
+
+  .service-card.is-on,
+  .service-card.is-on:hover {
+    background-color: #22d3ee;
+    color: #000;
+  }
+
+  .service-card.is-on .service-icon,
+  .service-card.is-on:hover .service-icon {
+    border-color: rgba(0, 0, 0, 0.3);
+    color: #000;
+  }
+
+  .service-card.is-on .service-num,
+  .service-card.is-on:hover .service-num {
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .service-card.is-on h3,
+  .service-card.is-on:hover h3 {
+    color: #000;
+  }
+
+  .service-card.is-on .service-copy,
+  .service-card.is-on:hover .service-copy {
+    color: rgba(0, 0, 0, 0.75);
+  }
+}
+
+.service-card.is-on {
+  background-color: #22d3ee;
+  color: #000;
+}
+
+.service-card.is-on .service-icon {
+  border-color: rgba(0, 0, 0, 0.3);
+  color: #000;
+}
+
+.service-card.is-on .service-num {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.service-card.is-on .service-copy {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.theme-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #22d3ee #111827;
+}
+
+.theme-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.theme-scroll::-webkit-scrollbar-track {
+  background: #111827;
+}
+
+.theme-scroll::-webkit-scrollbar-thumb {
+  background: #22d3ee;
+  border-radius: 999px;
 }
 
 #tsparticles {
   z-index: 0;
 }
 
+.hero-portrait {
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+}
+
+/*
+  Locked hero stage height so laptop + large monitors keep the same composition.
+  Tall/ultrawide screens get letterboxed space instead of stretched card gaps.
+*/
+.hero-stage {
+  height: clamp(360px, 54svh, 560px);
+  container-type: inline-size;
+}
+
+@media (min-width: 1024px) {
+  .hero-stage {
+    height: clamp(420px, 56svh, 580px);
+  }
+}
+
+@media (min-width: 1536px) {
+  .hero-stage {
+    height: clamp(460px, 52svh, 600px);
+  }
+}
+
+/* Scale DEVELOPER to the hero frame so the last letters stay inside on phones */
+.hero-wordmark {
+  font-size: clamp(1.45rem, 9.5cqi, 7.25rem);
+  letter-spacing: -0.045em;
+}
+
 .section-content {
   position: relative;
   z-index: 1;
-}
-
-/* Cursor trail */
-.cursor-trail-dot {
-  will-change: transform, opacity;
-  transition: background 0.2s, opacity 0.2s;
-  mix-blend-mode: lighten;
 }
 
 /* Animation keyframes */
@@ -234,6 +439,8 @@ section {
 .tech-stack-inner {
   display: flex;
   width: fit-content;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 /* Hide scrollbar but keep functionality */

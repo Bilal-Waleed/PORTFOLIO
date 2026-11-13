@@ -1,108 +1,36 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FaCode } from 'react-icons/fa'
 
-export default function LoadingScreen({ finishLoading }) {
-  const [counter, setCounter] = useState(0)
-  const [iconPositions, setIconPositions] = useState([])
-
-  useEffect(() => {
-    const positions = Array.from({ length: 15 }, () => ({
-      x: Math.random() * 400 - 200,
-      y: Math.random() * 400 - 200,
-    }))
-    setIconPositions(positions)
-  }, [])
-
-  useEffect(() => {
-    const timer = setTimeout(() => finishLoading(), 2500)
-    return () => clearTimeout(timer)
-  }, [finishLoading])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCounter((prevCounter) => {
-        if (prevCounter >= 100) {
-          clearInterval(interval)
-          return 100
-        }
-        return prevCounter + 5
-      })
-    }, 100)
-
-    return () => clearInterval(interval)
-  }, [])
-
+export default function LoadingScreen({ leaving = false }) {
   return (
-    <motion.div
-      className="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center"
-      initial={{ opacity: 1 }}
-      exit={{
-        opacity: 0,
-        transition: { duration: 0.8, ease: 'easeInOut' },
-      }}
+    <div
+      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-black transition-opacity duration-300 ${
+        leaving ? 'opacity-0' : 'opacity-100'
+      }`}
     >
       <motion.div
-        className="loading-brand-stack relative"
+        className="loading-brand-stack"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.4 }}
       >
         <motion.h1
           className="brand-name-lg text-center whitespace-nowrap"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+          transition={{ delay: 0.05, duration: 0.32 }}
         >
           M Bilal Waleed
         </motion.h1>
 
-        <div className="w-full h-2.5 bg-gray-800 rounded-full mt-6 overflow-hidden">
+        <div className="mt-6 h-2.5 w-full overflow-hidden rounded-full bg-gray-800">
           <motion.div
-            className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
+            className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
             initial={{ width: 0 }}
-            animate={{ width: `${counter}%` }}
-            transition={{ duration: 0.05 }}
+            animate={{ width: '100%' }}
+            transition={{ duration: 0.55, ease: 'easeOut', delay: 0.08 }}
           />
         </div>
-
-        <motion.div
-          className="mt-3 text-center text-sm text-gray-400"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          {counter}% loaded
-        </motion.div>
-
-        {/* Floating code particles */}
-        <div className="absolute inset-0 -z-10">
-          {iconPositions.map((pos, i) => (
-            <motion.div
-              key={i}
-              className="absolute text-cyan-400/30"
-              initial={{
-                x: pos.x,
-                y: pos.y,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                y: 0,
-                opacity: [0, 0.6, 0],
-              }}
-              transition={{
-                duration: 2,
-                delay: i * 0.1,
-                repeat: Infinity,
-                repeatDelay: 1,
-              }}
-            >
-              <FaCode className="w-4 h-4" />
-            </motion.div>
-          ))}
-        </div>
       </motion.div>
-    </motion.div>
+    </div>
   )
 }

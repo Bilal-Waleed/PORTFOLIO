@@ -17,7 +17,7 @@ export default function FeaturedProject({ project, imageOnRight, technologies })
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="group block h-full rounded-lg overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/10 transition-transform duration-300 hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+            className="group block h-full rounded-lg overflow-hidden shadow-2xl shadow-black/50 ring-1 ring-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
             aria-label={`Open ${project.title} live site`}
           >
             <div className="project-image-surface relative w-full h-[240px] sm:h-[300px] lg:h-[360px] rounded-lg overflow-hidden">
@@ -50,7 +50,7 @@ export default function FeaturedProject({ project, imageOnRight, technologies })
           </h3>
 
           <div
-            className={`bg-[#112240]/95 backdrop-blur-sm rounded-md p-6 sm:p-7 shadow-xl border border-white/5 text-left w-full max-w-xl ${
+            className={`bg-[#112240] rounded-md p-6 sm:p-7 shadow-xl border border-white/5 text-left w-full max-w-xl ${
               imageOnRight ? "lg:-mr-10 xl:-mr-16" : "lg:-ml-10 xl:-ml-16"
             }`}
           >
