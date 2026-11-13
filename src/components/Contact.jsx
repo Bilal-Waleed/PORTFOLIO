@@ -5,18 +5,16 @@ import * as yup from 'yup';
 import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { SiUpwork, SiFiverr } from 'react-icons/si';
 import { ScrollSection, Reveal } from './ScrollReveal';
-
-const EMAIL = 'bilalwaleed01@gmail.com';
-const WEB3FORMS_ACCESS_KEY = 'cfe98c03-f7ab-4235-b9b9-29d2e3e3ac93';
-
-const CAL_BOOKING_URL = 'https://cal.com/bilal-waleed-vefcxb/intro-call';
-
-/** Replace these with your profile URLs when you have them. */
-const UPWORK_URL = '#';
-const FIVERR_URL = 'https://www.fiverr.com/bilal_waleed';
-/** Digits only, with country code. Example: 923001234567 */
-const WHATSAPP_NUMBER = '923292109096';
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
+import {
+  WEB3FORMS_ACCESS_KEY,
+  CONTACT_EMAIL,
+  CAL_BOOKING_URL,
+  UPWORK_URL,
+  FIVERR_URL,
+  WHATSAPP_URL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from '../config/site';
 
 const countryCodes = [
   { id: 'PK', dial: '+92', name: 'Pakistan' },
@@ -251,8 +249,8 @@ export default function Contact() {
 
         <Reveal className="order-2 w-full lg:order-none">
           <div className="flex flex-wrap items-center gap-4">
-            <a href={`mailto:${EMAIL}`} className="text-sm text-white underline underline-offset-4 decoration-white/30 hover:text-cyan-300">
-              {EMAIL}
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-sm text-white underline underline-offset-4 decoration-white/30 hover:text-cyan-300">
+              {CONTACT_EMAIL}
             </a>
             <a
               href={CAL_BOOKING_URL}
@@ -268,10 +266,10 @@ export default function Contact() {
 
         <Reveal className="order-4 w-full lg:order-none">
           <div className="flex flex-wrap gap-x-5 gap-y-3 text-xs tracking-[0.14em] uppercase text-white/55">
-            <a href="https://github.com/Bilal-Waleed" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">
               <FaGithub /> GitHub
             </a>
-            <a href="https://www.linkedin.com/in/bilal-waleed-2411172bb/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">
               <FaLinkedin /> LinkedIn
             </a>
             <a href={UPWORK_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">

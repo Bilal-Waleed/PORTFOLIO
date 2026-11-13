@@ -10,23 +10,27 @@ import {
 } from "react-icons/fa";
 import { SiUpwork, SiFiverr } from "react-icons/si";
 import { useScrollAnimation } from "../context/ScrollAnimationContext";
+import {
+  CONTACT_EMAIL,
+  WHATSAPP_URL,
+  UPWORK_URL,
+  FIVERR_URL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from "../config/site";
 
 const navLinks = ["About", "Services", "Projects", "Skills", "Achievements", "Contact"];
 
-const WHATSAPP_URL = "https://wa.me/923292109096";
-const UPWORK_URL = "#";
-const FIVERR_URL = "https://www.fiverr.com/bilal_waleed";
-
 const desktopSocials = [
-  { href: "https://www.linkedin.com/in/bilal-waleed-2411172bb/", icon: FaLinkedin, label: "LinkedIn" },
-  { href: "https://github.com/Bilal-Waleed", icon: FaGithub, label: "GitHub" },
-  { href: "mailto:bilalwaleed01@gmail.com", icon: FaEnvelope, label: "Email" },
+  { href: LINKEDIN_URL, icon: FaLinkedin, label: "LinkedIn" },
+  { href: GITHUB_URL, icon: FaGithub, label: "GitHub" },
+  { href: `mailto:${CONTACT_EMAIL}`, icon: FaEnvelope, label: "Email" },
   { href: WHATSAPP_URL, icon: FaWhatsapp, label: "WhatsApp" },
 ];
 
 const mobileSocials = [
-  { href: "https://github.com/Bilal-Waleed", icon: FaGithub, label: "GitHub" },
-  { href: "https://www.linkedin.com/in/bilal-waleed-2411172bb/", icon: FaLinkedin, label: "LinkedIn" },
+  { href: GITHUB_URL, icon: FaGithub, label: "GitHub" },
+  { href: LINKEDIN_URL, icon: FaLinkedin, label: "LinkedIn" },
   { href: UPWORK_URL, icon: SiUpwork, label: "Upwork" },
   { href: FIVERR_URL, icon: SiFiverr, label: "Fiverr" },
   { href: WHATSAPP_URL, icon: FaWhatsapp, label: "WhatsApp" },

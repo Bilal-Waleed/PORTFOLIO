@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bilalwaleed.dev/sitemap.xml
+Sitemap: https://portfolio-bilal-waleeds-projects.vercel.app/sitemap.xml
