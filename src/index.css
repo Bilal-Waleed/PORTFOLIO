@@ -42,7 +42,7 @@
   transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Mobile / tablet — only fix: name was too high */
+/* Mobile / tablet — name mid; underline closer under text */
 @media (max-width: 879px) {
   .brand-name-link {
     height: auto;
@@ -50,7 +50,7 @@
   }
 
   .brand-name-underline {
-    bottom: 0.32rem;
+    bottom: 0.95rem;
   }
 }
 
