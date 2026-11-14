@@ -74,11 +74,6 @@ export default function Navbar({ startAnimation = true }) {
     hover: { scale: 1.2, rotate: 5 },
   };
 
-  const brandUnderlineVariants = {
-    rest: { scaleX: 0 },
-    hover: { scaleX: 1 },
-  };
-
   return (
     <motion.header
       className="navbar-fixed pt-3 sm:pt-4"
@@ -101,16 +96,9 @@ export default function Navbar({ startAnimation = true }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          whileHover="hover"
-          whileTap="hover"
         >
           M Bilal Waleed
-          <motion.span
-            className="brand-name-underline"
-            initial="rest"
-            variants={brandUnderlineVariants}
-            transition={{ duration: 0.3 }}
-          />
+          <span className="brand-name-underline" aria-hidden="true" />
         </motion.a>
 
         <ul className="hidden min-[880px]:flex items-center gap-1 lg:gap-2 relative z-10">
