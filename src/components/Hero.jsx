@@ -25,13 +25,13 @@ function AboutCard({ className = "" }) {
         <p className="text-[10px] tracking-[0.2em] uppercase text-cyan-400/90 font-semibold">
           A little about me
         </p>
-        <div className="mr-1 h-[4.15rem] w-[3.15rem] shrink-0 overflow-hidden rounded-t-[999px] rounded-b-xl border border-cyan-400/35 bg-gradient-to-b from-cyan-800 to-[#07131a] shadow-[0_8px_18px_rgba(6,182,212,0.22)] sm:mr-1.5 sm:h-[4.4rem] sm:w-[3.35rem]">
+        <div className="mr-1 h-[4.15rem] w-[3.15rem] shrink-0 overflow-hidden rounded-t-[999px] rounded-b-xl border border-cyan-400/35 bg-[#0b1320] shadow-[0_8px_18px_rgba(6,182,212,0.22)] sm:mr-1.5 sm:h-[4.4rem] sm:w-[3.35rem]">
           <img
             src="/profile-card.jpg"
             alt=""
             width={64}
             height={80}
-            className="h-full w-full object-cover object-[center_10%]"
+            className="h-[125%] w-[118%] max-w-none object-cover object-[42%_top] translate-x-[-6%] translate-y-[5%]"
             loading="lazy"
             decoding="async"
           />
