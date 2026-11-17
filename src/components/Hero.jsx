@@ -13,7 +13,7 @@ import {
 const buildItems = [
   "Websites & applications",
   "AI & API integrations",
-  "n8n automation & SaaS",
+  "AI automation & SaaS",
 ];
 
 function AboutCard({ className = "" }) {

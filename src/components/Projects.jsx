@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { ScrollSection, RevealHeading, Reveal } from './ScrollReveal'
-import { FaReact, FaNodeJs, FaExternalLinkAlt, FaHtml5, FaCss3 } from 'react-icons/fa'
+import { FaReact, FaNodeJs, FaExternalLinkAlt, FaHtml5, FaCss3, FaRobot, FaDownload } from 'react-icons/fa'
 import {
   SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit,
   SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase,
@@ -14,6 +14,7 @@ import {
   featuredProjects,
   PROJECT_CATEGORIES,
   PROJECTS_INITIAL,
+  resolveProjectLink,
 } from './ProjectsData.jsx'
 import FeaturedProject from './FeaturedProject'
 
@@ -42,6 +43,43 @@ const technologies = {
   'Flutter': { icon: <SiFlutter className="text-[#02569B]" />, name: 'Flutter' },
   'Dart': { icon: <SiDart className="text-[#0175C2]" />, name: 'Dart' },
   'Vercel': { icon: <SiVercel className="text-white" />, name: 'Vercel' },
+  'AI': { icon: <FaRobot className="text-[#22d3ee]" />, name: 'AI Integration' },
+}
+
+function ProjectActionButton({ project }) {
+  // Other Projects: APK gets an explicit Download button (not on Featured).
+  if (project.apk && !project.live && !project.playStore && !project.appStore) {
+    return (
+      <motion.a
+        href={project.apk}
+        download
+        className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
+        whileTap={{ scale: 0.95 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <FaDownload className="text-xs" />
+        Download APK
+      </motion.a>
+    )
+  }
+
+  const link = resolveProjectLink(project)
+  if (!link) return null
+
+  return (
+    <motion.a
+      href={link.href}
+      {...(link.download
+        ? { download: true }
+        : { target: '_blank', rel: 'noopener noreferrer' })}
+      className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
+      whileTap={{ scale: 0.95 }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      {link.download ? <FaDownload className="text-xs" /> : <FaExternalLinkAlt className="text-xs" />}
+      {link.label}
+    </motion.a>
+  )
 }
 
 const PROJECTS_SECTION_TITLE =
@@ -164,19 +202,7 @@ export default function Projects() {
                       ))}
                     </div>
                     <div className="flex items-center gap-2">
-                      {project.live && (
-                        <motion.a
-                          href={project.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
-                          whileTap={{ scale: 0.95 }}
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <FaExternalLinkAlt className="text-xs" />
-                          Live
-                        </motion.a>
-                      )}
+                      <ProjectActionButton project={project} />
                     </div>
                   </div>
                 </motion.div>
@@ -264,20 +290,9 @@ export default function Projects() {
                     ))}
                   </div>
                 </div>
-                {selectedProject.live && (
-                  <div className="flex items-center gap-4">
-                    <motion.a
-                      href={selectedProject.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-full font-medium transition-colors duration-300"
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <FaExternalLinkAlt />
-                      Live
-                    </motion.a>
-                  </div>
-                )}
+                <div className="flex items-center gap-4">
+                  <ProjectActionButton project={selectedProject} />
+                </div>
               </div>
             </motion.div>
           </motion.div>
