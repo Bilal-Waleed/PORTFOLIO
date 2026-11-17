@@ -4,11 +4,17 @@ import { FaReact, FaNodeJs, FaExternalLinkAlt, FaHtml5, FaCss3 } from 'react-ico
 import {
   SiMongodb, SiTailwindcss, SiJavascript, SiPython, SiStreamlit,
   SiNextdotjs, SiBootstrap, SiMui, SiReactquery, SiFirebase,
-  SiTypescript, SiExpress, SiWordpress, SiShopify, SiN8N, SiWoocommerce, SiNeovim
+  SiTypescript, SiExpress, SiWordpress, SiShopify, SiN8N, SiWoocommerce, SiNeovim,
+  SiFlutter, SiDart, SiVercel,
 } from 'react-icons/si'
 import { BsArrowUpRight } from 'react-icons/bs'
 import { useState } from 'react'
-import { projects, featuredProjects } from './ProjectsData.jsx'
+import {
+  projects,
+  featuredProjects,
+  PROJECT_CATEGORIES,
+  PROJECTS_INITIAL,
+} from './ProjectsData.jsx'
 import FeaturedProject from './FeaturedProject'
 
 const technologies = {
@@ -21,7 +27,7 @@ const technologies = {
   'CSS': { icon: <FaCss3 className="text-[#1572B6]" />, name: 'CSS' },
   'JavaScript': { icon: <SiJavascript className="text-[#F7DF1E]" />, name: 'JavaScript' },
   'Streamlit': { icon: <SiStreamlit className="text-[#FF4B4B]" />, name: 'Streamlit' },
-  'NextJs': { icon: <SiNextdotjs className="text-[#000000]" />, name: 'Next.js' },
+  'NextJs': { icon: <SiNextdotjs className="text-white" />, name: 'Next.js' },
   'Bootstrap': { icon: <SiBootstrap className="text-[#7952B3]" />, name: 'Bootstrap' },
   'MUI': { icon: <SiMui className="text-[#007FFF]" />, name: 'MUI' },
   'TanStackQuery': { icon: <SiReactquery className="text-[#FF4154]" />, name: 'TanStack Query' },
@@ -33,6 +39,9 @@ const technologies = {
   'Shopify': { icon: <SiShopify className="text-[#96BF48]" />, name: 'Shopify' },
   'NeonDB': { icon: <SiNeovim className="text-[#00E599]" />, name: 'NeonDB' },
   'n8n': { icon: <SiN8N className="text-[#E87C60]" />, name: 'n8n' },
+  'Flutter': { icon: <SiFlutter className="text-[#02569B]" />, name: 'Flutter' },
+  'Dart': { icon: <SiDart className="text-[#0175C2]" />, name: 'Dart' },
+  'Vercel': { icon: <SiVercel className="text-white" />, name: 'Vercel' },
 }
 
 const PROJECTS_SECTION_TITLE =
@@ -41,37 +50,15 @@ const PROJECTS_SECTION_TITLE =
 const HEADING_ACCENT_GRADIENT =
   'bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent'
 
-const categories = [
-  { label: 'MERN/Next.js', value: 'mern' },
-  { label: 'Python', value: 'python' },
-  { label: 'WordPress', value: 'wordpress' },
-]
-
-const getProjectType = (project) => {
-  if (project.technologies.some(tech => ['ReactJs', 'NextJs', 'NodeJS', 'MongoDB', 'Express'].includes(tech))) return 'mern'
-  if (project.technologies.includes('n8n')) return 'n8n'
-  if (project.technologies.includes('WordPress')) return 'wordpress'
-  if (project.technologies.includes('Python')) return 'python'
-  return 'other'
-}
-
-const PROJECTS_INITIAL = 6
-
 export default function Projects() {
-  const [selectedCategory, setSelectedCategory] = useState('mern')
+  const [selectedCategory, setSelectedCategory] = useState('web')
   const [showAllProjects, setShowAllProjects] = useState(false)
   const [selectedProject, setSelectedProject] = useState(null)
   const [fullScreenMedia, setFullScreenMedia] = useState(null)
 
-  const filteredProjects = projects.filter((project) => {
-    if (selectedCategory === 'python') return project.technologies.includes('Python')
-    if (selectedCategory === 'mern') {
-      return project.technologies.some(tech => ['ReactJs', 'NextJs', 'NodeJS', 'MongoDB', 'Express'].includes(tech))
-    }
-    if (selectedCategory === 'wordpress') return project.technologies.includes('WordPress')
-    if (selectedCategory === 'n8n') return project.technologies.includes('n8n')
-    return false
-  })
+  const filteredProjects = projects.filter(
+    (project) => project.category === selectedCategory
+  )
 
   const visibleProjects = showAllProjects
     ? filteredProjects
@@ -115,100 +102,104 @@ export default function Projects() {
       </RevealHeading>
 
       <Reveal className="w-full max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-10 flex justify-center">
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
-            {categories.map((cat) => (
-              <motion.button
-                key={cat.value}
-                onClick={() => handleCategoryChange(cat.value)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 border ${
-                  selectedCategory === cat.value
-                    ? 'bg-cyan-500 text-white border-cyan-500'
-                    : 'bg-white/10 text-cyan-400 border-cyan-500/20 hover:bg-cyan-500/20'
-                }`}
-                whileTap={{ scale: 0.95 }}
-              >
-                {cat.label}
-              </motion.button>
-            ))}
-          </div>
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-3xl mx-auto">
+          {PROJECT_CATEGORIES.map((cat) => (
+            <motion.button
+              key={cat.id}
+              onClick={() => handleCategoryChange(cat.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 border ${
+                selectedCategory === cat.id
+                  ? 'bg-cyan-500 text-white border-cyan-500'
+                  : 'bg-white/10 text-cyan-400 border-cyan-500/20 hover:bg-cyan-500/20'
+              }`}
+              whileTap={{ scale: 0.95 }}
+            >
+              {cat.label}
+            </motion.button>
+          ))}
+        </div>
       </Reveal>
 
       <Reveal className="w-full max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {filteredProjects.length > 0 && (
+        {filteredProjects.length > 0 ? (
           <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {visibleProjects.map((project) => (
-              <motion.div
-                key={project.title}
-                className="relative z-0 w-full h-full bg-[#112240]/95 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] group transition-all duration-300 hover:z-10 hover:border-cyan-400"
-              >
-                <div className="project-image-surface relative h-44 sm:h-52 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                    {project.title}
-                    <span className="text-cyan-400 inline-block transition-transform duration-300 group-hover:rotate-45">
-                      <BsArrowUpRight className="inline-block text-sm" />
-                    </span>
-                  </h3>
-                  <p className="text-gray-300 text-sm mb-3 leading-6">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.technologies.map((tech) => (
-                      <div
-                        key={tech}
-                        className="flex items-center gap-1 bg-cyan-950/30 px-2 py-0.5 rounded-full border border-cyan-500/20"
-                      >
-                        <span className="text-base">
-                          {technologies[tech]?.icon}
-                        </span>
-                        <span className="text-xs text-gray-300">
-                          {technologies[tech]?.name ?? tech}
-                        </span>
-                      </div>
-                    ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {visibleProjects.map((project) => (
+                <motion.div
+                  key={project.title}
+                  className="relative z-0 w-full h-full bg-[#112240]/95 border-2 border-cyan-500/20 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(6,182,212,0.15)] group transition-all duration-300 hover:z-10 hover:border-cyan-400"
+                >
+                  <div className="project-image-surface relative h-44 sm:h-52 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover object-top"
+                    />
                   </div>
-                  <div className="flex items-center gap-2">
-                    {project.live && (
-                      <motion.a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
-                        whileTap={{ scale: 0.95 }}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <FaExternalLinkAlt className="text-xs" />
-                        Live
-                      </motion.a>
-                    )}
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                      {project.title}
+                      <span className="text-cyan-400 inline-block transition-transform duration-300 group-hover:rotate-45">
+                        <BsArrowUpRight className="inline-block text-sm" />
+                      </span>
+                    </h3>
+                    <p className="text-gray-300 text-sm mb-3 leading-6">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.technologies.map((tech) => (
+                        <div
+                          key={tech}
+                          className="flex items-center gap-1 bg-cyan-950/30 px-2 py-0.5 rounded-full border border-cyan-500/20"
+                        >
+                          <span className="text-base">
+                            {technologies[tech]?.icon}
+                          </span>
+                          <span className="text-xs text-gray-300">
+                            {technologies[tech]?.name ?? tech}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {project.live && (
+                        <motion.a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 bg-cyan-500 hover:bg-cyan-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-300"
+                          whileTap={{ scale: 0.95 }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaExternalLinkAlt className="text-xs" />
+                          Live
+                        </motion.a>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {hasMoreProjects && (
-            <div className="mt-8 sm:mt-10 flex justify-center">
-              <motion.button
-                type="button"
-                onClick={() => setShowAllProjects((prev) => !prev)}
-                className="text-cyan-400 hover:text-cyan-300 text-sm sm:text-base font-medium tracking-wide underline underline-offset-4 decoration-cyan-500/40 transition-colors"
-                whileTap={{ scale: 0.97 }}
-              >
-                {showAllProjects ? 'See less' : 'See more'}
-              </motion.button>
+                </motion.div>
+              ))}
             </div>
-          )}
+
+            {hasMoreProjects && (
+              <div className="mt-8 sm:mt-10 flex justify-center">
+                <motion.button
+                  type="button"
+                  onClick={() => setShowAllProjects((prev) => !prev)}
+                  className="text-cyan-400 hover:text-cyan-300 text-sm sm:text-base font-medium tracking-wide underline underline-offset-4 decoration-cyan-500/40 transition-colors"
+                  whileTap={{ scale: 0.97 }}
+                >
+                  {showAllProjects ? 'See less' : 'See more'}
+                </motion.button>
+              </div>
+            )}
           </>
+        ) : (
+          <p className="text-center text-gray-400 text-sm sm:text-base py-10">
+            Projects for this section will be added soon.
+          </p>
         )}
       </Reveal>
 
@@ -245,7 +236,7 @@ export default function Projects() {
                   className="absolute inset-0 w-full h-full object-contain object-center p-2"
                 />
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  {getProjectType(selectedProject) === 'wordpress' && selectedProject.fullImage && (
+                  {selectedProject.category === 'cms' && selectedProject.fullImage && (
                     <motion.button
                       className="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-full"
                       whileTap={{ scale: 0.95 }}
@@ -273,20 +264,18 @@ export default function Projects() {
                     ))}
                   </div>
                 </div>
-                {['python', 'mern'].includes(getProjectType(selectedProject)) && (
+                {selectedProject.live && (
                   <div className="flex items-center gap-4">
-                    {selectedProject.live && (
-                      <motion.a
-                        href={selectedProject.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-full font-medium transition-colors duration-300"
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <FaExternalLinkAlt />
-                        Live
-                      </motion.a>
-                    )}
+                    <motion.a
+                      href={selectedProject.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded-full font-medium transition-colors duration-300"
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FaExternalLinkAlt />
+                      Live
+                    </motion.a>
                   </div>
                 )}
               </div>

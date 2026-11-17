@@ -1,8 +1,44 @@
+/**
+ * Project categories — edit labels / tech hints here.
+ * Assign each project a `category` id from this list.
+ *
+ * web      → Web Apps (normal website / app stack)
+ * mobile   → Mobile Apps (Flutter, Dart)
+ * business → CRM & ERP  (tell me which projects go here)
+ * cms      → CMS Website (WordPress, WooCommerce)
+ */
+export const PROJECT_CATEGORIES = [
+  {
+    id: 'web',
+    label: 'Web Apps',
+    techs: ['ReactJs', 'NextJs', 'NodeJS', 'MongoDB', 'Express', 'HTML', 'CSS', 'JavaScript', 'Tailwind', 'Bootstrap', 'Firebase', 'Python', 'Streamlit', 'MUI', 'NeonDB', 'TypeScript', 'Vercel'],
+  },
+  {
+    id: 'mobile',
+    label: 'Mobile Apps',
+    techs: ['Flutter', 'Dart'],
+  },
+  {
+    id: 'business',
+    label: 'CRM & ERP',
+    techs: [],
+  },
+  {
+    id: 'cms',
+    label: 'CMS Website',
+    techs: ['WordPress', 'WooCommerce', 'Shopify'],
+  },
+];
+
+/** How many projects show before "See more" (2 rows × 3 cols). */
+export const PROJECTS_INITIAL = 6;
+
 export const projects = [
- {
+  {
     title: 'Growth Mindset Mastery',
     description: 'A Python and Streamlit app with mindset lessons, self-checks, and habit tracking so people can practice better habits every day.',
     technologies: ['Python', 'Streamlit'],
+    category: 'web',
     image: '/growth-mindset.png',
     live: 'https://growth-mindset-bw.streamlit.app/',
     github: 'https://github.com/Bilal-Waleed/Growth-Mindset-Mastery.git',
@@ -11,6 +47,7 @@ export const projects = [
     title: 'Personal Library Manager',
     description: 'A Streamlit library app to add books, search the shelf, and manage a personal collection from one clean and simple screen.',
     technologies: ['Python', 'Streamlit'],
+    category: 'web',
     image: '/library.png',
     live: 'https://personal-library-bw.streamlit.app/',
     github: 'https://github.com/Bilal-Waleed/Personal-Library-Manager.git',
@@ -19,6 +56,7 @@ export const projects = [
     title: 'Realand Real Estate Website',
     description: 'A responsive real estate site for property listings, photos, and details, so buyers can inquire about a home on any device.',
     technologies: ['WordPress'],
+    category: 'cms',
     image: '/wp-real-estate.png',
     fullImage: '/wp-real-estate-full.png',
   },
@@ -26,6 +64,7 @@ export const projects = [
     title: 'Stradale Cafe Website',
     description: 'A café website with digital menus, a photo gallery, and location details so guests can plan a visit before they arrive.',
     technologies: ['WordPress'],
+    category: 'cms',
     image: '/wp-cafe.png',
     fullImage: '/wp-cafe-full.png',
   },
@@ -33,6 +72,7 @@ export const projects = [
     title: 'Salt-n-Pepper-web',
     description: 'A responsive Salt n Pepper site with a homepage carousel, franchise listings, and social feeds for a modern brand feel.',
     technologies: ['HTML', 'CSS', 'Bootstrap'],
+    category: 'web',
     image: '/saltnpepper.png',
     live: 'https://saltnpepper-bw.netlify.app/',
     github: 'https://github.com/Bilal-Waleed/Assignment-10-Salt-n-Pepper-web.git',
@@ -41,6 +81,7 @@ export const projects = [
     title: 'Tomato.',
     description: 'A React food delivery app to browse dishes, choose a meal, and place an order quickly from a phone or desktop.',
     technologies: ['ReactJs', 'Tailwind', 'CSS', 'JavaScript'],
+    category: 'web',
     image: '/tomato.png',
     live: 'https://tomato-food-delivery-app-nine.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/Tomato-Food-Delivery-App.git',
@@ -49,46 +90,15 @@ export const projects = [
     title: 'Modern Restaurant Website',
     description: 'A fast restaurant website so guests can browse the menu, check offers, and contact the business without extra steps.',
     technologies: ['WordPress'],
+    category: 'cms',
     image: '/wp-rest-1.png',
     fullImage: '/wp-rest-1-full.png',
   },
-  // {
-  //   title: 'TrioClear Aligner',
-  //   description: 'A responsive dental web app developed for a client, connecting patients and doctors through appointments, treatment information, and dedicated user journeys.',
-  //   tagline: 'A dentist web app for patients and doctors - bookings, treatment guidance, and aligner care in one place.',
-  //   achievements:
-  //   'Built separate patient and doctor experiences with appointment flows, treatment content, and a clean, trust-focused UI for TrioClear.',
-  //   technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
-  //   image: '/trioclear.png',
-  //   live: 'https://www.trioclear.com/',
-  //   featured: true,
-  // },
-  // {
-  //   title: 'Sociair - Super App for business',
-  //   description: 'A complete business super app developed for a client to manage orders, deliveries, payments, customer engagement, e-commerce, and analytics in one platform.',
-  //   tagline: 'Super app for your business - orders, deliveries, payments, and growth, all in one place.',
-  //   achievements:
-  //     'Developed core modules for order management, delivery tracking, payments, and business dashboards to help teams work smarter and scale seamlessly.',
-  //   technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
-  //   image: '/sociair.png',
-  //   live: 'https://sociair.com/',
-  //   featured: true,
-  // },
-  // {
-  //   title: 'Tokma - All in One local service App',
-  //   description: 'A full-stack local services platform developed for a client, covering rides, guidance, support, and safety across mobile and web.',
-  //   tagline: 'All-in-one local service app for rides, guidance, support, and safety - everything you need, right from your phone.',
-  //   achievements:
-  //     'Delivered the production Next.js app with service flows, user dashboards, and a responsive UI for on-the-go local assistance.',
-  //   technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
-  //   image: '/tokma.png',
-  //   live: 'https://tokma.ai/',
-  //   featured: true,
-  // },
   {
     title: 'Social Media Web with Firebase',
     description: 'A Firebase social app where people can post, send friend requests, chat, comment, and like updates on any screen.',
     technologies: ['HTML', 'CSS', 'JavaScript', 'Firebase'],
+    category: 'web',
     image: '/social-media-web.png',
     live: 'https://bw-web.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/Complete-web-with-firebase.git',
@@ -98,8 +108,9 @@ export const projects = [
     description: 'An AI tool that turns a written prompt into editable slides, then lets you export the finished deck as PPTX or PDF.',
     tagline: 'An AI-powered presentation builder that turns prompts into editable slides with export to PPTX and PDF.',
     achievements:
-    'Planned and built the MERN platform with prompt-to-slide generation, real-time canvas editing, file export pipelines, and backend processing for fast presentation creation.',
+      'Planned and built the MERN platform with prompt-to-slide generation, real-time canvas editing, file export pipelines, and backend processing for fast presentation creation.',
     technologies: ['ReactJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    category: 'web',
     image: '/slide-agent.png',
     live: 'https://slides.studentcheatsheet.com/',
     featured: true,
@@ -109,8 +120,9 @@ export const projects = [
     description: 'A tour platform for Umrah and Hajj packages, with package listings, admin tools, and secure payments for bookings.',
     tagline: 'A tour listing platform for Umrah & Hajj packages with listings, search, and booking-ready flows.',
     achievements:
-    'Developed the full-stack Next.js and MERN application with tour management, responsive UI, and production deployment for real users exploring pilgrimage packages.',
+      'Developed the full-stack Next.js and MERN application with tour management, responsive UI, and production deployment for real users exploring pilgrimage packages.',
     technologies: ['NextJs', 'NodeJS', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    category: 'web',
     image: '/islambol.png',
     live: 'https://islambol.com/',
     featured: true,
@@ -122,6 +134,7 @@ export const projects = [
     achievements:
       'Built the complete MERN stack application with an admin dashboard to manage services and content, integrated payment flows, and delivered a polished, mobile-first experience for clients.',
     technologies: ['ReactJs', 'NodeJS', 'MUI', 'MongoDB', 'Express', 'JavaScript', 'Tailwind'],
+    category: 'web',
     image: '/agency-web.png',
     live: 'https://agency-web-client.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/Agency-web-client.git',
@@ -134,6 +147,7 @@ export const projects = [
     achievements:
       'Developed the React and MongoDB application with Roman Urdu + English UX, report uploads, AI summary views, and vitals tracking for a hackathon-ready health product.',
     technologies: ['ReactJs', 'JavaScript', 'Tailwind', 'MongoDB', 'Vercel'],
+    category: 'web',
     image: '/healthmate.png',
     live: 'https://hackathon-client-one.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/Hackathon-Client.git',
@@ -146,6 +160,7 @@ export const projects = [
     achievements:
       'Designed and shipped a responsive academy platform with course showcases, tutor profiles, and enrollment flows for Tutora Online.',
     technologies: ['JavaScript', 'HTML', 'Bootstrap', 'Vercel'],
+    category: 'web',
     image: '/tutoracademy.png',
     live: 'https://www.tutoraonline.com/',
     featured: true,
@@ -156,7 +171,8 @@ export const projects = [
     tagline: 'A Jira-style project management SaaS for teams, tasks, and sprint planning with real-time updates.',
     achievements:
       'Built the Next.js SaaS with team and project workflows, task boards, sprint planning, and database-backed real-time collaboration features.',
-    technologies: ['NextJs','JavaScript', 'NeonDB', 'Vercel'],
+    technologies: ['NextJs', 'JavaScript', 'NeonDB', 'Vercel'],
+    category: 'web',
     image: '/zcrum.png',
     live: 'https://zcrum-self.vercel.app/',
     github: 'https://github.com/Bilal-Waleed/ZCRUM.git',
@@ -166,6 +182,7 @@ export const projects = [
     title: 'Quiz App',
     description: 'A responsive quiz app where users answer each question and see their final score as soon as the quiz ends.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
+    category: 'web',
     image: '/quiz-app.png',
     live: 'https://bilal-waleed.github.io/Quiz-App/',
     github: 'https://github.com/Bilal-Waleed/Quiz-App.git',
@@ -174,6 +191,7 @@ export const projects = [
     title: 'Dentlab Dental Website',
     description: 'A clinic website with services, doctor profiles, appointment booking, and patient reviews for new visitors.',
     technologies: ['WordPress'],
+    category: 'cms',
     image: '/wp-dentist-1-dentlab.png',
     fullImage: '/wp-dentlab-full.png',
   },
@@ -181,6 +199,7 @@ export const projects = [
     title: 'Cryptex Web Clone',
     description: 'A responsive crypto website clone that follows the original layout, spacing, and visual style across devices.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
+    category: 'web',
     image: '/cryptex-web.png',
     live: 'https://bilal-waleed.github.io/Cryptex-Web-Clone/',
     github: 'https://github.com/Bilal-Waleed/Cryptex-Web-Clone.git',
@@ -189,6 +208,7 @@ export const projects = [
     title: 'Quantum Vault',
     description: 'A Streamlit tool that lets you encrypt and decrypt sensitive data through a simple form in the browser.',
     technologies: ['Python', 'Streamlit'],
+    category: 'web',
     image: '/Quantum.png',
     live: 'https://data-encrypted-system.streamlit.app/',
     github: 'https://github.com/Bilal-Waleed/Data-encrypted-system.git',
@@ -197,19 +217,10 @@ export const projects = [
     title: 'Finovate Financial Website',
     description: 'A finance website for services, client stories, and a contact form that firms can use to hear from new clients.',
     technologies: ['WordPress'],
+    category: 'cms',
     image: '/wp-finovate.png',
     fullImage: '/wp-finovate-full.png',
   },
-  
-  // {
-  //   title: 'n8n Example',
-  //   description: '...',
-  //   technologies: ['n8n'],
-  //   image: '/n8n.png',
-  //   video: '/n8n-video.mp4',
-  // },
 ];
 
-export const featuredProjects = projects.filter(
-  (p) => p.featured && p.live
-);
+export const featuredProjects = projects.filter((p) => p.featured && p.live);
