@@ -17,17 +17,17 @@ const achievements = [
   {
     title: "Revotic AI ML Internship Completion Certificate",
     description: "Finished an AI/ML internship at Revotic, building apps with Python, FastAPI, React, Next.js, and Hugging Face.",
-    images: ['/revoticai certificate.png'],
+    images: ['/revoticai certificate.webp'],
   },
   {
     title: "Saylani Mass IT Training Hackathon 2025",
     description: "Joined the Saylani Mass IT Training Hackathon 2025 and built full-stack features with a team.",
-    images: ['/achieve5 (3).png'],
+    images: ['/achieve5 (3).webp'],
   },
   {
     title: "CodSoft Web Development Internship",
     description: "Completed a CodSoft web internship, shipping responsive apps with React, JavaScript, and modern UI.",
-    images: ['/codesoft.png'],
+    images: ['/codesoft.webp'],
   },
   {
     title: "Saylani Mass IT Training Completion Certificate",

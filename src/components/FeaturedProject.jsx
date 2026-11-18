@@ -3,7 +3,12 @@ import { resolveProjectLink } from './ProjectsData.jsx';
 const formatTech = (tech, technologies) =>
   technologies[tech]?.name ?? tech.replace(/([A-Z])/g, ' $1').trim();
 
-export default function FeaturedProject({ project, imageOnRight, technologies }) {
+export default function FeaturedProject({
+  project,
+  imageOnRight,
+  technologies,
+  priority = false,
+}) {
   const tagline = project.tagline ?? project.description;
   const achievements = project.achievements ?? project.description;
   const link = resolveProjectLink(project);
@@ -21,8 +26,11 @@ export default function FeaturedProject({ project, imageOnRight, technologies })
       <img
         src={project.image}
         alt={project.title}
-        loading="lazy"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
         decoding="async"
+        width={1200}
+        height={675}
         className={`absolute inset-0 h-full w-full transition-opacity duration-300 group-hover:opacity-95 ${
           isBanner
             ? 'object-contain object-center'

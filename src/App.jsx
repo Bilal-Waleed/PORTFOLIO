@@ -80,6 +80,8 @@ export default function App() {
                 <About />
                 <Services />
                 <Projects />
+              </Suspense>
+              <Suspense fallback={null}>
                 <Skills />
                 <Achievements />
                 <Contact />

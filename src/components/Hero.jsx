@@ -32,7 +32,7 @@ function AboutCard({ className = "" }) {
             width={64}
             height={80}
             className="h-[125%] w-[118%] max-w-none object-cover object-[42%_top] translate-x-[-6%] translate-y-[5%]"
-            loading="lazy"
+            loading="eager"
             decoding="async"
           />
         </div>
@@ -99,12 +99,32 @@ export default function Hero({ startAnimation = true }) {
   const [heroKey, setHeroKey] = useState(0);
   const [ready, setReady] = useState(false);
   const [showContent, setShowContent] = useState(false);
+  const [showParticles, setShowParticles] = useState(false);
 
   useEffect(() => {
     if (startAnimation) {
       setReady(true);
       setShowContent(true);
     }
+  }, [startAnimation]);
+
+  // Defer particles until browser is idle so hero text/image paint first
+  useEffect(() => {
+    if (!startAnimation) return undefined;
+    let idleId;
+    let timeoutId;
+    const enable = () => setShowParticles(true);
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(enable, { timeout: 1800 });
+    } else {
+      timeoutId = setTimeout(enable, 900);
+    }
+    return () => {
+      if (idleId && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [startAnimation]);
 
   useEffect(() => {
@@ -127,9 +147,11 @@ export default function Hero({ startAnimation = true }) {
       className="relative min-h-[100svh] min-[880px]:h-[100svh] flex flex-col text-white overflow-x-hidden min-[880px]:overflow-hidden scroll-mt-24 pt-24 sm:pt-[6.25rem] pb-5 sm:pb-6"
     >
       <div className="absolute inset-0 -z-10">
-        <Suspense fallback={null}>
-          <ParticleBackground />
-        </Suspense>
+        {showParticles && (
+          <Suspense fallback={null}>
+            <ParticleBackground />
+          </Suspense>
+        )}
       </div>
 
       <div className="pointer-events-none absolute inset-0 -z-[5] bg-[radial-gradient(ellipse_at_center,rgba(6,182,212,0.08)_0%,transparent_55%),linear-gradient(to_bottom,rgba(0,0,0,0.35)_0%,transparent_28%,transparent_72%,rgba(0,0,0,0.8)_100%)]" />

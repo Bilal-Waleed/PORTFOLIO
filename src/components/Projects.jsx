@@ -127,6 +127,7 @@ export default function Projects() {
               project={project}
               imageOnRight={index % 2 === 1}
               technologies={technologies}
+              priority={index === 0}
             />
           </Reveal>
         ))}
