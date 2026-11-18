@@ -17,33 +17,34 @@ import {
   resolveProjectLink,
 } from './ProjectsData.jsx'
 import FeaturedProject from './FeaturedProject'
+import { decorativeIconProps } from '../utils/iconA11y'
 
 const technologies = {
-  'ReactJs': { icon: <FaReact className="text-[#61DAFB]" />, name: 'React' },
-  'NodeJS': { icon: <FaNodeJs className="text-[#339933]" />, name: 'Node.js' },
-  'MongoDB': { icon: <SiMongodb className="text-[#47A248]" />, name: 'MongoDB' },
-  'Python': { icon: <SiPython className="text-[#3776AB]" />, name: 'Python' },
-  'Tailwind': { icon: <SiTailwindcss className="text-[#06B6D4]" />, name: 'Tailwind' },
-  'HTML': { icon: <FaHtml5 className="text-[#E34F26]" />, name: 'HTML' },
-  'CSS': { icon: <FaCss3 className="text-[#1572B6]" />, name: 'CSS' },
-  'JavaScript': { icon: <SiJavascript className="text-[#F7DF1E]" />, name: 'JavaScript' },
-  'Streamlit': { icon: <SiStreamlit className="text-[#FF4B4B]" />, name: 'Streamlit' },
-  'NextJs': { icon: <SiNextdotjs className="text-white" />, name: 'Next.js' },
-  'Bootstrap': { icon: <SiBootstrap className="text-[#7952B3]" />, name: 'Bootstrap' },
-  'MUI': { icon: <SiMui className="text-[#007FFF]" />, name: 'MUI' },
-  'TanStackQuery': { icon: <SiReactquery className="text-[#FF4154]" />, name: 'TanStack Query' },
-  'Firebase': { icon: <SiFirebase className="text-[#FFCA28]" />, name: 'Firebase' },
-  'TypeScript': { icon: <SiTypescript className="text-[#007ACC]" />, name: 'TypeScript' },
-  'Express': { icon: <SiExpress className="text-[#F7DF1E]" />, name: 'Express' },
-  'WordPress': { icon: <SiWordpress className="text-[#21759B]" />, name: 'WordPress' },
-  'WooCommerce': { icon: <SiWoocommerce className="text-[#96588A]" />, name: 'WooCommerce' },
-  'Shopify': { icon: <SiShopify className="text-[#96BF48]" />, name: 'Shopify' },
-  'NeonDB': { icon: <SiNeovim className="text-[#00E599]" />, name: 'NeonDB' },
-  'n8n': { icon: <SiN8N className="text-[#E87C60]" />, name: 'n8n' },
-  'Flutter': { icon: <SiFlutter className="text-[#02569B]" />, name: 'Flutter' },
-  'Dart': { icon: <SiDart className="text-[#0175C2]" />, name: 'Dart' },
-  'Vercel': { icon: <SiVercel className="text-white" />, name: 'Vercel' },
-  'AI': { icon: <FaRobot className="text-[#22d3ee]" />, name: 'AI Integration' },
+  'ReactJs': { icon: <FaReact className="text-[#61DAFB]" {...decorativeIconProps} />, name: 'React' },
+  'NodeJS': { icon: <FaNodeJs className="text-[#339933]" {...decorativeIconProps} />, name: 'Node.js' },
+  'MongoDB': { icon: <SiMongodb className="text-[#47A248]" {...decorativeIconProps} />, name: 'MongoDB' },
+  'Python': { icon: <SiPython className="text-[#3776AB]" {...decorativeIconProps} />, name: 'Python' },
+  'Tailwind': { icon: <SiTailwindcss className="text-[#06B6D4]" {...decorativeIconProps} />, name: 'Tailwind' },
+  'HTML': { icon: <FaHtml5 className="text-[#E34F26]" {...decorativeIconProps} />, name: 'HTML' },
+  'CSS': { icon: <FaCss3 className="text-[#1572B6]" {...decorativeIconProps} />, name: 'CSS' },
+  'JavaScript': { icon: <SiJavascript className="text-[#F7DF1E]" {...decorativeIconProps} />, name: 'JavaScript' },
+  'Streamlit': { icon: <SiStreamlit className="text-[#FF4B4B]" {...decorativeIconProps} />, name: 'Streamlit' },
+  'NextJs': { icon: <SiNextdotjs className="text-white" {...decorativeIconProps} />, name: 'Next.js' },
+  'Bootstrap': { icon: <SiBootstrap className="text-[#7952B3]" {...decorativeIconProps} />, name: 'Bootstrap' },
+  'MUI': { icon: <SiMui className="text-[#007FFF]" {...decorativeIconProps} />, name: 'MUI' },
+  'TanStackQuery': { icon: <SiReactquery className="text-[#FF4154]" {...decorativeIconProps} />, name: 'TanStack Query' },
+  'Firebase': { icon: <SiFirebase className="text-[#FFCA28]" {...decorativeIconProps} />, name: 'Firebase' },
+  'TypeScript': { icon: <SiTypescript className="text-[#007ACC]" {...decorativeIconProps} />, name: 'TypeScript' },
+  'Express': { icon: <SiExpress className="text-[#F7DF1E]" {...decorativeIconProps} />, name: 'Express' },
+  'WordPress': { icon: <SiWordpress className="text-[#21759B]" {...decorativeIconProps} />, name: 'WordPress' },
+  'WooCommerce': { icon: <SiWoocommerce className="text-[#96588A]" {...decorativeIconProps} />, name: 'WooCommerce' },
+  'Shopify': { icon: <SiShopify className="text-[#96BF48]" {...decorativeIconProps} />, name: 'Shopify' },
+  'NeonDB': { icon: <SiNeovim className="text-[#00E599]" {...decorativeIconProps} />, name: 'NeonDB' },
+  'n8n': { icon: <SiN8N className="text-[#E87C60]" {...decorativeIconProps} />, name: 'n8n' },
+  'Flutter': { icon: <SiFlutter className="text-[#02569B]" {...decorativeIconProps} />, name: 'Flutter' },
+  'Dart': { icon: <SiDart className="text-[#0175C2]" {...decorativeIconProps} />, name: 'Dart' },
+  'Vercel': { icon: <SiVercel className="text-white" {...decorativeIconProps} />, name: 'Vercel' },
+  'AI': { icon: <FaRobot className="text-[#22d3ee]" {...decorativeIconProps} />, name: 'AI Integration' },
 }
 
 function ProjectActionButton({ project }) {
@@ -57,7 +58,7 @@ function ProjectActionButton({ project }) {
         whileTap={{ scale: 0.95 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <FaDownload className="text-xs" />
+        <FaDownload className="text-xs" aria-hidden="true" focusable="false" />
         Download APK
       </motion.a>
     )
@@ -76,7 +77,11 @@ function ProjectActionButton({ project }) {
       whileTap={{ scale: 0.95 }}
       onClick={(e) => e.stopPropagation()}
     >
-      {link.download ? <FaDownload className="text-xs" /> : <FaExternalLinkAlt className="text-xs" />}
+      {link.download ? (
+        <FaDownload className="text-xs" aria-hidden="true" focusable="false" />
+      ) : (
+        <FaExternalLinkAlt className="text-xs" aria-hidden="true" focusable="false" />
+      )}
       {link.label}
     </motion.a>
   )
@@ -181,7 +186,7 @@ export default function Projects() {
                     <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
                       {project.title}
                       <span className="text-cyan-400 inline-block transition-transform duration-300 group-hover:rotate-45">
-                        <BsArrowUpRight className="inline-block text-sm" />
+                        <BsArrowUpRight className="inline-block text-sm" aria-hidden="true" focusable="false" />
                       </span>
                     </h3>
                     <p className="text-gray-300 text-sm mb-3 leading-6">
@@ -193,7 +198,7 @@ export default function Projects() {
                           key={tech}
                           className="flex items-center gap-1 bg-cyan-950/30 px-2 py-0.5 rounded-full border border-cyan-500/20"
                         >
-                          <span className="text-base">
+                          <span className="text-base" aria-hidden="true">
                             {technologies[tech]?.icon}
                           </span>
                           <span className="text-xs text-gray-300">
@@ -285,7 +290,7 @@ export default function Projects() {
                         key={tech}
                         className="flex items-center gap-1 bg-cyan-950/30 px-3 py-1 rounded-full border border-cyan-500/20"
                       >
-                        <span className="text-lg">{technologies[tech]?.icon}</span>
+                        <span className="text-lg" aria-hidden="true">{technologies[tech]?.icon}</span>
                         <span className="text-sm text-gray-300">{technologies[tech]?.name ?? tech}</span>
                       </div>
                     ))}

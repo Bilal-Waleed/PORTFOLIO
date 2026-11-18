@@ -44,7 +44,15 @@
     />
     <meta name="twitter:image" content="https://portfolio-bilal-waleeds-projects.vercel.app/og-image.jpg?v=6" />
 
-    <link rel="preload" as="image" href="/profile.webp" type="image/webp" fetchpriority="high" />
+    <link
+      rel="preload"
+      as="image"
+      href="/profile-540.webp"
+      type="image/webp"
+      fetchpriority="high"
+      imagesrcset="/profile-360.webp 360w, /profile-540.webp 540w, /profile-720.webp 720w, /profile-800.webp 800w"
+      imagesizes="(min-width: 1280px) 360px, (min-width: 1024px) 340px, (min-width: 880px) 280px, min(72vw, 300px)"
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,13 +73,6 @@
         rel="stylesheet"
       />
     </noscript>
-    <link
-      rel="stylesheet"
-      href="https://fonts.cdnfonts.com/css/agustina"
-      media="print"
-      onload="this.media='all'"
-    />
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",

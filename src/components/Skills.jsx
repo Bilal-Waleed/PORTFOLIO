@@ -6,35 +6,36 @@ import {
   SiGooglecolab, SiStreamlit, SiFirebase, SiTypescript,
   SiWordpress, SiWoocommerce, SiShopify, SiN8N
 } from 'react-icons/si'
+import { decorativeIconProps } from '../utils/iconA11y'
 
 const technologies = [
-  { name: 'JavaScript', icon: <FaJsSquare /> },
-  { name: 'Python', icon: <FaPython /> },
-  { name: 'Artificial Intelligence', icon: <FaRobot /> },
-  { name: 'Node.js', icon: <FaNodeJs /> },
-  { name: 'MongoDB', icon: <SiMongodb /> },
-  { name: 'TypeScript', icon: <SiTypescript /> },
-  { name: 'React', icon: <FaReact /> },
-  { name: 'Next.js', icon: <SiNextdotjs /> },
-  { name: 'Express', icon: <FaNodeJs /> },
-  { name: 'Google Colab', icon: <SiGooglecolab /> },
-  { name: 'Firebase', icon: <SiFirebase /> },
-  { name: 'Streamlit', icon: <SiStreamlit /> },
-  { name: 'Bootstrap', icon: <SiBootstrap /> },
-  { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
-  { name: 'Figma', icon: <FaFigma /> },
-  { name: 'Git', icon: <FaGitAlt /> },
-  { name: 'Adobe XD', icon: <SiAdobexd /> },
-  { name: 'WordPress', icon: <SiWordpress /> },
-  { name: 'WooCommerce', icon: <SiWoocommerce /> },
-  { name: 'Shopify', icon: <SiShopify /> },
-  { name: 'n8n', icon: <SiN8N /> },
+  { name: 'JavaScript', icon: <FaJsSquare {...decorativeIconProps} /> },
+  { name: 'Python', icon: <FaPython {...decorativeIconProps} /> },
+  { name: 'Artificial Intelligence', icon: <FaRobot {...decorativeIconProps} /> },
+  { name: 'Node.js', icon: <FaNodeJs {...decorativeIconProps} /> },
+  { name: 'MongoDB', icon: <SiMongodb {...decorativeIconProps} /> },
+  { name: 'TypeScript', icon: <SiTypescript {...decorativeIconProps} /> },
+  { name: 'React', icon: <FaReact {...decorativeIconProps} /> },
+  { name: 'Next.js', icon: <SiNextdotjs {...decorativeIconProps} /> },
+  { name: 'Express', icon: <FaNodeJs {...decorativeIconProps} /> },
+  { name: 'Google Colab', icon: <SiGooglecolab {...decorativeIconProps} /> },
+  { name: 'Firebase', icon: <SiFirebase {...decorativeIconProps} /> },
+  { name: 'Streamlit', icon: <SiStreamlit {...decorativeIconProps} /> },
+  { name: 'Bootstrap', icon: <SiBootstrap {...decorativeIconProps} /> },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss {...decorativeIconProps} /> },
+  { name: 'Figma', icon: <FaFigma {...decorativeIconProps} /> },
+  { name: 'Git', icon: <FaGitAlt {...decorativeIconProps} /> },
+  { name: 'Adobe XD', icon: <SiAdobexd {...decorativeIconProps} /> },
+  { name: 'WordPress', icon: <SiWordpress {...decorativeIconProps} /> },
+  { name: 'WooCommerce', icon: <SiWoocommerce {...decorativeIconProps} /> },
+  { name: 'Shopify', icon: <SiShopify {...decorativeIconProps} /> },
+  { name: 'n8n', icon: <SiN8N {...decorativeIconProps} /> },
 ]
 
 const SkillCard = ({ name, icon }) => {
   return (
     <div className="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-black to-[#0a0a0a] border-2 border-cyan-500/10 hover:border-cyan-500/30 transition-colors duration-300">
-      <div className="text-4xl text-cyan-400 mb-2">
+      <div className="text-4xl text-cyan-400 mb-2" aria-hidden="true">
         {icon}
       </div>
       <p className="text-sm text-gray-300 font-medium">{name}</p>

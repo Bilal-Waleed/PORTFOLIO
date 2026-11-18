@@ -267,19 +267,19 @@ export default function Contact() {
         <Reveal className="order-4 w-full lg:order-none">
           <div className="flex flex-wrap gap-x-5 gap-y-3 text-xs tracking-[0.14em] uppercase text-white/55">
             <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">
-              <FaGithub /> GitHub
+              <span aria-hidden="true" className="inline-flex"><FaGithub role="presentation" focusable="false" /></span> GitHub
             </a>
             <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">
-              <FaLinkedin /> LinkedIn
+              <span aria-hidden="true" className="inline-flex"><FaLinkedin role="presentation" focusable="false" /></span> LinkedIn
             </a>
             <a href={UPWORK_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">
-              <SiUpwork /> Upwork
+              <span aria-hidden="true" className="inline-flex"><SiUpwork role="presentation" focusable="false" /></span> Upwork
             </a>
             <a href={FIVERR_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">
-              <SiFiverr /> Fiverr
+              <span aria-hidden="true" className="inline-flex"><SiFiverr role="presentation" focusable="false" /></span> Fiverr
             </a>
             <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan-300">
-              <FaWhatsapp /> WhatsApp
+              <span aria-hidden="true" className="inline-flex"><FaWhatsapp role="presentation" focusable="false" /></span> WhatsApp
             </a>
           </div>
         </Reveal>

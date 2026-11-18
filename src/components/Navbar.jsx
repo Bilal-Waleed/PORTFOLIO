@@ -140,7 +140,9 @@ export default function Navbar({ startAnimation = true }) {
               whileHover="hover"
               whileTap={{ scale: 0.9 }}
             >
-              <social.icon className="text-lg lg:text-xl" />
+              <span aria-hidden="true" className="inline-flex">
+                <social.icon className="text-lg lg:text-xl" role="presentation" focusable="false" />
+              </span>
             </motion.a>
           ))}
         </div>
@@ -151,7 +153,11 @@ export default function Navbar({ startAnimation = true }) {
           whileTap={{ scale: 0.9 }}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
-          {menuOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
+          {menuOpen ? (
+            <FaTimes className="text-2xl" aria-hidden="true" focusable="false" />
+          ) : (
+            <FaBars className="text-2xl" aria-hidden="true" focusable="false" />
+          )}
         </motion.button>
 
         <motion.div
@@ -172,7 +178,7 @@ export default function Navbar({ startAnimation = true }) {
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
             >
-              <FaTimes size={24} />
+              <FaTimes size={24} aria-hidden="true" focusable="false" />
             </button>
             <ul className="mt-16 space-y-5">
               {navLinks.map((link) => (
@@ -198,7 +204,9 @@ export default function Navbar({ startAnimation = true }) {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.16em] uppercase text-white/55 transition-colors hover:text-cyan-300 active:text-cyan-300"
                     >
-                      <social.icon className="text-base shrink-0" />
+                      <span aria-hidden="true" className="inline-flex shrink-0">
+                        <social.icon className="text-base" role="presentation" focusable="false" />
+                      </span>
                       {social.label}
                     </a>
                   ))}

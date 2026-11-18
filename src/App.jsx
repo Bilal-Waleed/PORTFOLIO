@@ -38,12 +38,12 @@ export default function App() {
   useEffect(() => {
     if (introFinished) return undefined;
 
-    // Shorter intro — content mounts underneath so first paint is ready.
-    const leaveTimer = setTimeout(() => setIntro('leave'), 700);
+    // Short intro; mount main content under the overlay ASAP for better LCP.
+    const leaveTimer = setTimeout(() => setIntro('leave'), 420);
     const doneTimer = setTimeout(() => {
       introFinished = true;
       setIntro('done');
-    }, 980);
+    }, 620);
 
     return () => {
       clearTimeout(leaveTimer);
@@ -68,14 +68,13 @@ export default function App() {
 
         {showContent && (
           <div
-            className={`w-full relative transition-opacity duration-500 ease-out ${
-              animateNow ? 'opacity-100' : 'opacity-0'
-            }`}
+            className="w-full relative opacity-100"
             aria-hidden={intro !== 'done'}
           >
             <Navbar startAnimation={animateNow} />
             <main>
-              <Hero startAnimation={animateNow} />
+              {/* Start hero as soon as overlay begins leaving — portrait can paint for LCP */}
+              <Hero startAnimation={showContent} />
               <Suspense fallback={null}>
                 <About />
                 <Services />
@@ -99,7 +98,7 @@ export default function App() {
                   className="fixed bottom-8 right-8 bg-cyan-400 text-black p-3 rounded-full shadow-lg hover:bg-cyan-500 transition-all duration-300 focus:outline-none z-50"
                   aria-label="Scroll to top"
                 >
-                  <FaArrowUp className="text-xl" />
+                  <FaArrowUp className="text-xl" aria-hidden="true" focusable="false" />
                 </motion.button>
               )}
             </AnimatePresence>

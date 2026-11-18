@@ -115,7 +115,7 @@ function AchievementCard({ achievement }) {
 
         <div className="relative z-20 p-6 flex flex-col items-center text-center flex-grow bg-gradient-to-t from-black/60 via-black/30 to-transparent">
           <div className="mb-3">
-            <FaMedal className="text-4xl text-yellow-400 drop-shadow-glow" />
+            <FaMedal className="text-4xl text-yellow-400 drop-shadow-glow" aria-hidden="true" focusable="false" />
           </div>
           <h3 className="text-cyan-100 text-lg mb-2 line-clamp-2 font-bold leading-tight">
             {achievement.title}

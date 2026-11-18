@@ -135,7 +135,9 @@ export default function Services() {
               >
                 <div className="flex items-start justify-between gap-4">
                   <span className="service-icon inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 text-cyan-300 transition-colors duration-300 group-hover:border-black/30 group-hover:text-black">
-                    <Icon className="text-xl" />
+                    <span aria-hidden="true" className="inline-flex">
+                      <Icon className="text-xl" role="presentation" focusable="false" />
+                    </span>
                   </span>
                   <span className="service-num text-xs tracking-[0.18em] text-white/40 transition-colors duration-300 group-hover:text-black/50">
                     {number}

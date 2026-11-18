@@ -1,11 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Agustina";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Agustina.woff") format("woff");
+}
+
 :root {
   --background: #000000;
   --foreground: #ededed;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
-  --font-brand: agustina, sans-serif;
+  --font-brand: "Agustina", sans-serif;
   --color-brand: rgb(56, 189, 248);
 }
 

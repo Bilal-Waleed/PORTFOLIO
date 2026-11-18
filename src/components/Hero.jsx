@@ -27,10 +27,12 @@ function AboutCard({ className = "" }) {
         </p>
         <div className="mr-1 h-[4.15rem] w-[3.15rem] shrink-0 overflow-hidden rounded-t-[999px] rounded-b-xl border border-cyan-400/35 bg-[#0b1320] shadow-[0_8px_18px_rgba(6,182,212,0.22)] sm:mr-1.5 sm:h-[4.4rem] sm:w-[3.35rem]">
           <img
-            src="/profile-card.jpg"
+            src="/profile-card-96.webp"
+            srcSet="/profile-card-96.webp 96w, /profile-card-160.webp 160w"
+            sizes="85px"
             alt=""
-            width={64}
-            height={80}
+            width={96}
+            height={120}
             className="h-[125%] w-[118%] max-w-none object-cover object-[42%_top] translate-x-[-6%] translate-y-[5%]"
             loading="eager"
             decoding="async"
@@ -193,19 +195,20 @@ export default function Hero({ startAnimation = true }) {
                 Developer
               </motion.h1>
 
-              {/* Portrait — centered in frame */}
-              <motion.div
-                variants={slide}
-                className="absolute inset-0 z-10 flex items-end justify-center pointer-events-none pb-2"
-              >
+              {/* Portrait — not faded in (LCP element); always visible once hero mounts */}
+              <div className="absolute inset-0 z-10 flex items-end justify-center pointer-events-none pb-2">
                 <div className="relative hero-portrait h-[92%] max-h-full">
                   <picture>
-                    <source srcSet="/profile.webp" type="image/webp" />
+                    <source
+                      type="image/webp"
+                      srcSet="/profile-360.webp 360w, /profile-540.webp 540w, /profile-720.webp 720w, /profile-800.webp 800w"
+                      sizes="(min-width: 1280px) 360px, (min-width: 1024px) 340px, (min-width: 880px) 280px, min(72vw, 300px)"
+                    />
                     <img
-                      src="/profile.png"
+                      src="/profile-540.webp"
                       alt="M Bilal Waleed — Full Stack and AI Developer"
-                      width={720}
-                      height={930}
+                      width={540}
+                      height={697}
                       className="h-full w-auto max-w-[min(72vw,300px)] min-[880px]:max-w-[280px] lg:max-w-[340px] xl:max-w-[360px] object-contain object-bottom mx-auto"
                       loading="eager"
                       fetchPriority="high"
@@ -214,7 +217,7 @@ export default function Hero({ startAnimation = true }) {
                   </picture>
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/65 to-transparent" />
                 </div>
-              </motion.div>
+              </div>
 
               {/* Desktop side cards */}
               <motion.div
