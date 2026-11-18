@@ -7,15 +7,27 @@ export default function FeaturedProject({ project, imageOnRight, technologies })
   const tagline = project.tagline ?? project.description;
   const achievements = project.achievements ?? project.description;
   const link = resolveProjectLink(project);
+  // Promo banners (16:9 edge-to-edge art) use contain; website screenshots use cover.
+  const isBanner = project.imageFit === 'contain';
 
   const media = (
-    <div className="project-image-surface relative w-full h-[240px] sm:h-[300px] lg:h-[360px] rounded-lg overflow-hidden">
+    <div
+      className={`project-image-surface relative w-full overflow-hidden rounded-lg ${
+        isBanner
+          ? 'aspect-[16/9]'
+          : 'h-[240px] sm:h-[300px] lg:h-[360px]'
+      }`}
+    >
       <img
         src={project.image}
         alt={project.title}
         loading="lazy"
         decoding="async"
-        className="absolute inset-0 w-full h-full object-cover object-top transition-opacity duration-300 group-hover:opacity-95"
+        className={`absolute inset-0 h-full w-full transition-opacity duration-300 group-hover:opacity-95 ${
+          isBanner
+            ? 'object-contain object-center'
+            : 'object-cover object-top'
+        }`}
       />
     </div>
   );

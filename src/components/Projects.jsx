@@ -173,7 +173,7 @@ export default function Projects() {
                       alt={project.title}
                       loading="lazy"
                       decoding="async"
-                      className="w-full h-full object-cover object-top"
+                      className="h-full w-full object-cover object-top"
                     />
                   </div>
                   <div className="p-4">
@@ -259,7 +259,7 @@ export default function Projects() {
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="absolute inset-0 w-full h-full object-contain object-center p-2"
+                  className="absolute inset-0 h-full w-full object-contain object-center p-2"
                 />
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   {selectedProject.category === 'cms' && selectedProject.fullImage && (
